@@ -12,8 +12,8 @@ class Jabatan extends CI_Controller
 
     public function index()
     {
-        $data['result'] = $this->Jabatan_model->index();
-        $this->load->view("admin/pengabdian/jabatan/jabatan", $data);
+        $data['jabatan'] = $this->Jabatan_model->getJabatanLPM();
+        $this->load->view('admin/pengabdian/jabatan/jabatanlpm', $data);
     }
 
     public function add()
@@ -30,56 +30,10 @@ class Jabatan extends CI_Controller
         redirect('admin/pengabdian/jabatan');
     }
 
-    public function edit()
-    {
-        $model = $this->Jabatan_model;
-        $validation = $this->form_validation;
-        
-        if ($validation) {
-            $model->edit();
-            $this->session->set_flashdata('ubah', 'Berhasil ubah');
-        } else {
-            $this->session->set_flashdata('gglubah', 'gagal ubah');
-        }
-        redirect('admin/pengabdian/jabatan');
-    }
-
-    public function delete($id)
-    {
-      
-        if (!isset($id)) show_404();
-
-        if ($this->Jabatan_model->delete($id)) {
-            $this->session->set_flashdata('terhapus', 'success');
-            redirect('admin/pengabdian/jabatan');
-        }
-    }
-
-    public function lpm()
-    {
-        $data['jabatan'] = $this->Jabatan_model->getJabatanLPM();
-        $this->load->view('admin/pengabdian/jabatan/jabatanlpm', $data);
-    }
-
-    public function addlpm()
-    {
-        $model = $this->Jabatan_model;
-        $validation = $this->form_validation;
-
-        if ($validation) {
-            $model->addlpm();
-            $this->session->set_flashdata('simpan', 'success');
-        } else {
-            $this->session->set_flashdata('gglsimpan', 'gagal');
-        }
-        redirect('admin/pengabdian/jabatan/lpm');
-    }
-
     public function editjabatan($id)
     {
         $data['lpm'] = $this->Jabatan_model->getLpm($id);
         $this->load->view('admin/pengabdian/jabatan/editjabatanlpm', $data);
-
     }
 
     public function ubahlpm()
@@ -91,10 +45,21 @@ class Jabatan extends CI_Controller
         if ($validation) {
             $model->updatelpm();
             $this->session->set_flashdata('ubah', 'Berhasil ubah');
-        }else{
+        } else {
             $this->session->set_flashdata('gglubah', 'gagal ubah');
         }
         redirect('admin/pengabdian/Jabatan/editjabatan/' . $id);
+    }
+
+    public function delete($id)
+    {
+      
+        if (!isset($id)) show_404();
+
+        if ($this->Jabatan_model->delete($id)) {
+            $this->session->set_flashdata('terhapus', 'success');
+            redirect('admin/pengabdian/jabatan');
+        }
     }
 
     public function dosen()
@@ -113,7 +78,7 @@ class Jabatan extends CI_Controller
         }else{
             $this->session->set_flashdata('gglactive', 'gagal ubah');
         }
-        redirect('admin/pengabdian/jabatan/lpm');
+        redirect('admin/pengabdian/jabatan');
         
     }
 
@@ -128,7 +93,7 @@ class Jabatan extends CI_Controller
         } else {
             $this->session->set_flashdata('gglactive', 'gagal ubah');
         }
-        redirect('admin/pengabdian/jabatan/lpm');
+        redirect('admin/pengabdian/jabatan');
     }
 }
 

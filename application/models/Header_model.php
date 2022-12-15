@@ -44,22 +44,32 @@ class Header_model extends CI_Model {
         }
     }
 
+    public function reviewerpengabdian($id)
+    {
+        $query = $this->db->query("SELECT * FROM `ab_reviewer` WHERE nidn = '$id' AND `status` = 'Active' ");
+        if ($query->num_rows() == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 
     public function c_penelitian()
     {
         if ($this->session->userdata('level') == 'dosen') {
-            return $this->db->query("SELECT COUNT(`propose_id`) AS jumlah FROM `lemlit_propose` WHERE `user_username` = '" . $this->session->userdata('nidn') . "' OR `user_username` ='" . $this->session->userdata('nis') . "'")->row();
+            return $this->db->query("SELECT COUNT(`id_usulan`) AS jumlah FROM `lit_usulan` WHERE `nidn_pengusul` = '" . $this->session->userdata('nidn') . "' OR `nidn_pengusul` ='" . $this->session->userdata('nis') . "'")->row();
         } else {
-            return $this->db->query("SELECT COUNT(`propose_id`) AS jumlah FROM `lemlit_propose` ")->row();
+            return $this->db->query("SELECT COUNT(`id_usulan`) AS jumlah FROM `lit_usulan` ")->row();
         }
     }
 
     public function c_pengabdian()
     {
         if ($this->session->userdata('level') == 'dosen') {
-            return $this->db->query("SELECT COUNT(`usulan_id`) AS jumlah FROM `p_usulan` WHERE `username` = '" . $this->session->userdata('nidn') . "' OR `username` ='" . $this->session->userdata('nis') . "'")->row();
+            return $this->db->query("SELECT COUNT(`usulan_id`) AS jumlah FROM `ab_usulan` WHERE `nidn_pengusul` = '" . $this->session->userdata('nidn') . "' OR `nidn_pengusul` ='" . $this->session->userdata('nis') . "'")->row();
         } else {
-            return $this->db->query("SELECT COUNT(`usulan_id`) AS jumlah FROM `p_usulan` ")->row();
+            return $this->db->query("SELECT COUNT(`usulan_id`) AS jumlah FROM `ab_usulan` ")->row();
         }
     }
 }

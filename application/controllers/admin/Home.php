@@ -12,14 +12,12 @@ class Home extends CI_Controller
 
     public function index()
     {
+       
         $data['penelitian'] = $this->Header_model->c_penelitian();
         $data['pengabdian'] = $this->Header_model->c_pengabdian();
-       
-        if ($this->session->userdata('level') == 'dosen') {
-            $this->load->view("homepage", $data);
-        }else{
-            $this->load->view("homeadmin", $data);
-        }
+        
+
+        $this->load->view("homeadmin", $data);
     }
 
     public function profile()
@@ -44,11 +42,10 @@ class Home extends CI_Controller
         ));
 
         $response = curl_exec($curl);
+        $result = json_decode($response, true);
+        $res = $result['result']['data'][0];
 
-        curl_close($curl);
-        echo '<pre>';
-        // echo $response;
-        var_dump($response);
-        echo '</pre>';
+        $data['profile'] = $res;
+        $this->load->view("dosen/profile", $data);
     }
 }

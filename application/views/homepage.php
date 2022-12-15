@@ -39,7 +39,7 @@
                                 <div class="col-md-4">
                                     <div class="card">
                                         <div class="card-body">
-                                            <a href="#">
+                                            <a href="<?= site_url('home/profile') ?>">
                                                 <div class="d-flex">
                                                     <div class="flex-grow-1">
                                                         <p class="text-muted fw-medium menu_profile_title">Identitas</p>

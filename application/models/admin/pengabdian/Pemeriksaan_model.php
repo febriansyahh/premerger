@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pemeriksaan_model extends CI_Model
 {
-    private $_table = "p_pemeriksaan";
+    private $_table = "ab_pemeriksaan";
     
     public function index()
     {
@@ -29,7 +29,7 @@ class Pemeriksaan_model extends CI_Model
         $materi = $post['materi'];
         $ids = $this->variasi->decode($id);
 
-        $this->db->query("UPDATE `p_pemeriksaan` SET `materi_pemeriksaan` = '$materi' WHERE `pemeriksaan_id` = '$ids' ");
+        $this->db->query("UPDATE `ab_aspek_penilaian` SET `materi_pemeriksaan` = '$materi' WHERE `pemeriksaan_id` = '$ids' ");
     }
 
     public function delete($id)

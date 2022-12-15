@@ -36,7 +36,7 @@ class Login_model extends CI_Model
 
     public function loginnon($usr, $pw)
     {
-        $query = $this->db->query("SELECT * FROM `pre_users` WHERE `username` ='$usr' AND `password` = '$pw' AND `user_active` ='Active' ");
+        $query = $this->db->query("SELECT * FROM `mst_users` WHERE `username` ='$usr' AND `password` = '$pw' AND `user_active` ='Active' ");
         if ($query->num_rows() == 1) {
             return $query->result();
         } else {

@@ -5,7 +5,7 @@ class Periode_model extends CI_Model
 {
     public function periode()
     {
-        return $this->db->get('lemlit_periode')->result_array();
+        return $this->db->get('lit_periode')->result_array();
     }
 
     public function updateperiode()
@@ -20,7 +20,7 @@ class Periode_model extends CI_Model
         $update = date("Y-m-d H:i:s");
         $ids = $this->variasi->decode($id);
 
-        $this->db->query("UPDATE `lemlit_periode` SET `periode_dari` = '$dari', `periode_sampai` = '$sampai', 
+        $this->db->query("UPDATE `lit_periode` SET `periode_dari` = '$dari', `periode_sampai` = '$sampai', 
         `periode_status` = '$status', `periode_update` = '$update', `periode_max_ketua` = '$maks_ketua', `periode_max_anggota` = '$maks_anggota'
         , `periode_max_usulan` = '$maks_usulan' WHERE `periode_id` = '$ids' ");
     }

@@ -32,7 +32,7 @@ class Login extends CI_Controller
                 $this->session->set_userdata('level', $value->user_level);
                 $this->session->set_userdata('sistem', $value->user_sistem);
 
-                redirect('home');
+                redirect('admin/home');
             }
 
         }else{
@@ -55,7 +55,7 @@ class Login extends CI_Controller
                     $this->session->set_userdata('is_reviewer', $reviewer);
                     $this->session->set_userdata('is_pusatstudi', $pusatstudi);
     
-                    redirect('home');
+                    redirect('dosen/home');
     
                 }else{
                     echo "<script>alert('Akun Anda Tidak Sebagai Dosen !'); document.location='index' </script>";

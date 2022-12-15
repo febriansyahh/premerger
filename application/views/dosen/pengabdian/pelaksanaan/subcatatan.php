@@ -29,9 +29,10 @@
 
                     <div class="container">
                         <div class="form-group mt-4">
-                            <a data-bs-toggle="modal" data-bs-target="#baseJabatan" class="btn btn-primary" type="button" style="color: white;"><i class="bx bx-plus"></i> Skim Pengabdian</a>
+                            <a data-bs-toggle="modal" data-bs-target="#basePemeriksaan" class="btn btn-primary" type="button" style="color: white;">Tambah Catatan Harian</a>
                         </div>
                     </div>
+
 
                     <div class=" container-xxl flex-grow-1 container-p-y">
                         <div class="card">
@@ -63,49 +64,34 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
                                     ?>
-                                    <h5 class="card-title text-primary">SKim Pengabdian</h5>
+                                    <h6 class="card-title text-primary">Judul : <?= $judul->usulan_judul ?></h6>
 
-                                    <table id="tableskim" class="table table-bordered table-striped table-hover" style="width:100%">
+                                    <table id="tablesubcatatan" class="table table-bordered table-striped table-hover" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Skim</th>
-                                                <th>Jabatan Minimal</th>
-                                                <th>Pagu Minimal</th>
-                                                <th>Pagu Maksimal</th>
-                                                <th>Kuota Skim</th>
-                                                <th>Status Skim</th>
+                                                <th>Tanggal</th>
+                                                <th>Uraian</th>
+                                                <th>Persentase</th>
+                                                <th>Download</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            foreach ($skim as $value) {
+                                            foreach ($detail as $value) {
                                             ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
-                                                    <td><?= $value->nama_skim ?></td>
-                                                    <td><?= $value->jabatan_minimal ?></td>
-                                                    <td><?= $value->biaya_pagu_min ?></td>
-                                                    <td><?= $value->biaya_pagu_max ?></td>
-                                                    <td><?= $value->kuota_skim ?></td>
+                                                    <td><?= date("d-m-Y", strtotime($value->catatan_tanggal)) ?></td>
+                                                    <td><?= $value->catatan_uraian ?></td>
+                                                    <td><?= $value->catatan_persentase .' %' ?></td>
                                                     <td>
-                                                        <?php
-                                                        if ($value->status_skim == 'Active') {
-                                                        ?>
-                                                            <span class="badge bg-success">Active</span>
-                                                        <?php
-                                                        } else {
-                                                        ?>
-                                                            <span class="badge bg-warning">Not Active</span>
-                                                        <?php
-                                                        }
-                                                        ?>
+                                                        <a href="<?php echo base_url('/upload_file/pengabdian/pelaksanaan/' . $value->catatan_file);  ?>" target="_blank" title="Download <?php echo $value->catatan_file ?>"><i class="icon-download-alt"></i> <?php echo substr($value->catatan_file, 0, 30) . '...'; ?></a>
                                                     </td>
                                                     <td>
-                                                        <a href="<?= site_url('admin/pengabdian/Skim/edit/' . $this->variasi->encode($value->skim_id)) ?>" class="btn btn-outline-primary btn-sm">Edit</a>
-                                                        <a href="<?php echo site_url('admin/pengabdian/Skim/delete/' . $this->variasi->encode($value->skim_id)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm">Hapus</a>
+                                                        <a href="<?= site_url('dosen/pengabdian/catatan/delete/' . $this->variasi->encode($value->catatan_id) .'~'. $this->uri->segment('5')) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm"><i class="bx bxs-trash"></i> Hapus</a>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -132,54 +118,46 @@
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    <!-- / Layout wrapper -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="baseJabatan" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <div class="modal fade" id="basePemeriksaan" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel1">Tambah Skim Pengabdian</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">Catatan Harian</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="<?php echo site_url('admin/pengabdian/Skim/save') ?>" method="post" enctype="multipart/form">
+                <form action="<?php echo site_url('dosen/pengabdian/catatan/add') ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Nama Skim</label>
-                            <input type="text" class="form-control" placeholder="Masukkan nama Skim" name="nama">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">Tanggal</label>
+                                <input type="hidden" class="form-control" name="id" value="<?= $this->uri->segment('5') ?>">
+                                <input type="date" class="form-control" name="tanggal">
+                            </div>
                         </div>
-
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Minimal Jabatan</label>
-                            <select name="jabatan" id="" class="form-control">
-                                <option selected>- Pilih -</option>
-                                <?php
-                                foreach ($jabatan as $value) {
-                                ?>
-                                    <option value="<?= $value->kode_jabatan ?>"><?= $value->nama_jabatan ?></option>;
-                                <?php
-                                }
-                                ?>
-                            </select>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">Uraian Catatan</label>
+                                <textarea name="uraian" id="content" rows="3" class="form-control"></textarea>
+                            </div>
                         </div>
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Biaya Pagu Min</label>
-                            <input type="text" class="form-control" placeholder="Masukkan Pagu Biaya Minimal" name="pagumin">
-                        </div>
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Biaya Pagu Max</label>
-                            <input type="text" class="form-control" placeholder="Masukkan Pagu Biaya Maksimal" name="pagumax">
-                        </div>
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Kuota Skim</label>
-                            <input type="text" class="form-control" placeholder="Masukkan kuota lolos skim" name="kuota">
-                        </div>
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Status Skim</label>
-                            <select name="status" class="form-control">
-                                <option selected>- Pilih -</option>
-                                <option value="Active">Active</option>
-                                <option value="Not Active">Not Active</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Persentase</label>
+                                    <input type="text" class="form-control" name="persentase" maxlength="3" placeholder="Masukkan dengan format angka tanpa %, contoh : 80">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Catatan File</label>
+                                    <input type="file" class="form-control" name="filecatatan" accept=".pdf">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -192,11 +170,9 @@
             </div>
         </div>
     </div>
-    <!-- / Layout wrapper -->
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
     <?php $this->load->view("_partials/js.php") ?>
+
 </body>
 
 </html>

@@ -1,0 +1,474 @@
+%PDF-1.3
+1 0 obj
+<< /Type /Catalog
+/Outlines 2 0 R
+/Pages 3 0 R >>
+endobj
+2 0 obj
+<< /Type /Outlines /Count 0 >>
+endobj
+3 0 obj
+<< /Type /Pages
+/Kids [6 0 R
+10 0 R
+]
+/Count 2
+/Resources <<
+/ProcSet 4 0 R
+/Font << 
+/F1 8 0 R
+/F2 9 0 R
+>>
+>>
+/MediaBox [0.000 0.000 612.000 792.000]
+ >>
+endobj
+4 0 obj
+[/PDF /Text ]
+endobj
+5 0 obj
+<<
+/Creator (DOMPDF)
+/CreationDate (D:20221202145040+07'00')
+/ModDate (D:20221202145040+07'00')
+/Title (Data Presensi)
+>>
+endobj
+6 0 obj
+<< /Type /Page
+/Parent 3 0 R
+/Contents 7 0 R
+>>
+endobj
+7 0 obj
+<<
+/Length 7369 >>
+stream
+
+0.000 0.000 0.000 rg
+BT 34.016 719.095 Td /F1 24.0 Tf  [(Data Presensi Personal Kepegawaian Universitas )] TJ ET
+BT 34.016 690.583 Td /F1 24.0 Tf  [(Muria Kudus)] TJ ET
+BT 55.592 640.745 Td /F1 12.0 Tf  [(NIK/NIP)] TJ ET
+BT 124.586 640.745 Td /F1 12.0 Tf  [(:)] TJ ET
+BT 214.832 640.745 Td /F1 12.0 Tf  [(0610702000002199)] TJ ET
+BT 429.422 640.745 Td /F1 12.0 Tf  [(Terlambat)] TJ ET
+BT 519.422 640.745 Td /F1 12.0 Tf  [(:)] TJ ET
+BT 63.596 623.489 Td /F1 12.0 Tf  [(Nama)] TJ ET
+BT 124.586 623.489 Td /F1 12.0 Tf  [(:)] TJ ET
+BT 164.144 623.489 Td /F1 12.0 Tf  [(Nor Fadli / Laboran / Fakultas Teknik)] TJ ET
+BT 423.914 623.489 Td /F1 12.0 Tf  [(Pulang Awal)] TJ ET
+BT 519.422 623.489 Td /F1 12.0 Tf  [(:)] TJ ET
+BT 36.266 606.233 Td /F1 12.0 Tf  [(Total Jam Kerja)] TJ ET
+BT 124.586 606.233 Td /F1 12.0 Tf  [(:)] TJ ET
+BT 397.082 606.233 Td /F1 12.0 Tf  [(Total Wajib Berangkat)] TJ ET
+BT 519.422 606.233 Td /F1 12.0 Tf  [(:)] TJ ET
+BT 530.918 606.233 Td /F1 12.0 Tf  [(Hari)] TJ ET
+BT 414.584 588.977 Td /F1 12.0 Tf  [(Total Berangkat)] TJ ET
+BT 519.422 588.977 Td /F1 12.0 Tf  [(:)] TJ ET
+BT 526.418 588.977 Td /F1 12.0 Tf  [(0 Hari)] TJ ET
+BT 34.016 560.471 Td /F2 12.0 Tf  [(Rekap Absensi : )] TJ ET
+BT 115.676 560.471 Td /F1 12.0 Tf  [(1 Nopember 2021)] TJ ET
+BT 205.664 560.471 Td /F2 12.0 Tf  [( sampai )] TJ ET
+BT 245.660 560.471 Td /F1 12.0 Tf  [(30 Nopember 2021)] TJ ET
+BT 36.266 531.965 Td /F1 12.0 Tf  [(No.)] TJ ET
+BT 90.584 531.965 Td /F1 12.0 Tf  [(Hari/Tanggal)] TJ ET
+BT 196.586 531.965 Td /F1 12.0 Tf  [(Datang)] TJ ET
+BT 236.918 531.965 Td /F1 12.0 Tf  [(Terlambat)] TJ ET
+BT 294.578 531.965 Td /F1 12.0 Tf  [(Pulang)] TJ ET
+BT 333.590 531.965 Td /F1 12.0 Tf  [(Pulang Awal)] TJ ET
+BT 402.266 531.965 Td /F1 12.0 Tf  [(Total Jam Kerja)] TJ ET
+BT 36.266 514.709 Td /F2 12.0 Tf  [(1)] TJ ET
+BT 56.930 514.709 Td /F2 12.0 Tf  [(Senin, 1 Nopember 2021)] TJ ET
+BT 196.586 514.709 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 514.709 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 497.453 Td /F2 12.0 Tf  [(2)] TJ ET
+BT 56.930 497.453 Td /F2 12.0 Tf  [(Selasa, 2 Nopember 2021)] TJ ET
+BT 196.586 497.453 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 497.453 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 480.197 Td /F2 12.0 Tf  [(3)] TJ ET
+BT 56.930 480.197 Td /F2 12.0 Tf  [(Rabu, 3 Nopember 2021)] TJ ET
+BT 196.586 480.197 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 480.197 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 462.941 Td /F2 12.0 Tf  [(4)] TJ ET
+BT 56.930 462.941 Td /F2 12.0 Tf  [(Kamis, 4 Nopember 2021)] TJ ET
+BT 196.586 462.941 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 462.941 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 445.685 Td /F2 12.0 Tf  [(5)] TJ ET
+BT 56.930 445.685 Td /F2 12.0 Tf  [(Jum'at, 5 Nopember 2021)] TJ ET
+BT 196.586 445.685 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 445.685 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 428.429 Td /F2 12.0 Tf  [(6)] TJ ET
+BT 56.930 428.429 Td /F2 12.0 Tf  [(Sabtu, 6 Nopember 2021)] TJ ET
+BT 196.586 428.429 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 428.429 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 411.173 Td /F2 12.0 Tf  [(7)] TJ ET
+1.000 0.000 0.000 rg
+BT 56.930 411.173 Td /F2 12.0 Tf  [(Minggu, 7 Nopember 2021)] TJ ET
+0.000 0.000 0.000 rg
+BT 36.266 393.917 Td /F2 12.0 Tf  [(8)] TJ ET
+BT 56.930 393.917 Td /F2 12.0 Tf  [(Senin, 8 Nopember 2021)] TJ ET
+BT 196.586 393.917 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 393.917 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 376.661 Td /F2 12.0 Tf  [(9)] TJ ET
+BT 56.930 376.661 Td /F2 12.0 Tf  [(Selasa, 9 Nopember 2021)] TJ ET
+BT 196.586 376.661 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 376.661 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 359.405 Td /F2 12.0 Tf  [(10)] TJ ET
+BT 56.930 359.405 Td /F2 12.0 Tf  [(Rabu, 10 Nopember 2021)] TJ ET
+BT 196.586 359.405 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 359.405 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 342.149 Td /F2 12.0 Tf  [(11)] TJ ET
+BT 56.930 342.149 Td /F2 12.0 Tf  [(Kamis, 11 Nopember 2021)] TJ ET
+BT 196.586 342.149 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 342.149 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 324.893 Td /F2 12.0 Tf  [(12)] TJ ET
+BT 56.930 324.893 Td /F2 12.0 Tf  [(Jum'at, 12 Nopember 2021)] TJ ET
+BT 196.586 324.893 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 324.893 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 307.637 Td /F2 12.0 Tf  [(13)] TJ ET
+BT 56.930 307.637 Td /F2 12.0 Tf  [(Sabtu, 13 Nopember 2021)] TJ ET
+BT 196.586 307.637 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 307.637 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 290.381 Td /F2 12.0 Tf  [(14)] TJ ET
+1.000 0.000 0.000 rg
+BT 56.930 290.381 Td /F2 12.0 Tf  [(Minggu, 14 Nopember 2021)] TJ ET
+0.000 0.000 0.000 rg
+BT 36.266 273.125 Td /F2 12.0 Tf  [(15)] TJ ET
+BT 56.930 273.125 Td /F2 12.0 Tf  [(Senin, 15 Nopember 2021)] TJ ET
+BT 196.586 273.125 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 273.125 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 255.869 Td /F2 12.0 Tf  [(16)] TJ ET
+BT 56.930 255.869 Td /F2 12.0 Tf  [(Selasa, 16 Nopember 2021)] TJ ET
+BT 196.586 255.869 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 255.869 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 238.613 Td /F2 12.0 Tf  [(17)] TJ ET
+BT 56.930 238.613 Td /F2 12.0 Tf  [(Rabu, 17 Nopember 2021)] TJ ET
+BT 196.586 238.613 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 238.613 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 221.357 Td /F2 12.0 Tf  [(18)] TJ ET
+BT 56.930 221.357 Td /F2 12.0 Tf  [(Kamis, 18 Nopember 2021)] TJ ET
+BT 196.586 221.357 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 221.357 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 204.101 Td /F2 12.0 Tf  [(19)] TJ ET
+BT 56.930 204.101 Td /F2 12.0 Tf  [(Jum'at, 19 Nopember 2021)] TJ ET
+BT 196.586 204.101 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 204.101 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 186.845 Td /F2 12.0 Tf  [(20)] TJ ET
+BT 56.930 186.845 Td /F2 12.0 Tf  [(Sabtu, 20 Nopember 2021)] TJ ET
+BT 196.586 186.845 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 186.845 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 169.589 Td /F2 12.0 Tf  [(21)] TJ ET
+1.000 0.000 0.000 rg
+BT 56.930 169.589 Td /F2 12.0 Tf  [(Minggu, 21 Nopember 2021)] TJ ET
+0.000 0.000 0.000 rg
+BT 36.266 152.333 Td /F2 12.0 Tf  [(22)] TJ ET
+BT 56.930 152.333 Td /F2 12.0 Tf  [(Senin, 22 Nopember 2021)] TJ ET
+BT 196.586 152.333 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 152.333 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 135.077 Td /F2 12.0 Tf  [(23)] TJ ET
+BT 56.930 135.077 Td /F2 12.0 Tf  [(Selasa, 23 Nopember 2021)] TJ ET
+BT 196.586 135.077 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 135.077 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 117.821 Td /F2 12.0 Tf  [(24)] TJ ET
+BT 56.930 117.821 Td /F2 12.0 Tf  [(Rabu, 24 Nopember 2021)] TJ ET
+BT 196.586 117.821 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 117.821 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 100.565 Td /F2 12.0 Tf  [(25)] TJ ET
+BT 56.930 100.565 Td /F2 12.0 Tf  [(Kamis, 25 Nopember 2021)] TJ ET
+BT 196.586 100.565 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 100.565 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 83.309 Td /F2 12.0 Tf  [(26)] TJ ET
+BT 56.930 83.309 Td /F2 12.0 Tf  [(Jum'at, 26 Nopember 2021)] TJ ET
+BT 196.586 83.309 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 83.309 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 66.053 Td /F2 12.0 Tf  [(27)] TJ ET
+BT 56.930 66.053 Td /F2 12.0 Tf  [(Sabtu, 27 Nopember 2021)] TJ ET
+BT 196.586 66.053 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 66.053 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 48.797 Td /F2 12.0 Tf  [(28)] TJ ET
+1.000 0.000 0.000 rg
+BT 56.930 48.797 Td /F2 12.0 Tf  [(Minggu, 28 Nopember 2021)] TJ ET
+endstream
+endobj
+8 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F1
+/BaseFont /Times-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+9 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F2
+/BaseFont /Times-Roman
+/Encoding /WinAnsiEncoding
+>>
+endobj
+10 0 obj
+<< /Type /Page
+/Parent 3 0 R
+/Contents 11 0 R
+>>
+endobj
+11 0 obj
+<<
+/Length 1284 >>
+stream
+
+1.000 0.000 0.000 rg
+0.000 0.000 0.000 rg
+BT 36.266 744.329 Td /F1 12.0 Tf  [(No.)] TJ ET
+BT 90.584 744.329 Td /F1 12.0 Tf  [(Hari/Tanggal)] TJ ET
+BT 196.586 744.329 Td /F1 12.0 Tf  [(Datang)] TJ ET
+BT 236.918 744.329 Td /F1 12.0 Tf  [(Terlambat)] TJ ET
+BT 294.578 744.329 Td /F1 12.0 Tf  [(Pulang)] TJ ET
+BT 333.590 744.329 Td /F1 12.0 Tf  [(Pulang Awal)] TJ ET
+BT 402.266 744.329 Td /F1 12.0 Tf  [(Total Jam Kerja)] TJ ET
+BT 36.266 727.073 Td /F2 12.0 Tf  [(29)] TJ ET
+BT 56.930 727.073 Td /F2 12.0 Tf  [(Senin, 29 Nopember 2021)] TJ ET
+BT 196.586 727.073 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 727.073 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 709.817 Td /F2 12.0 Tf  [(30)] TJ ET
+BT 56.930 709.817 Td /F2 12.0 Tf  [(Selasa, 30 Nopember 2021)] TJ ET
+BT 196.586 709.817 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 294.578 709.817 Td /F2 12.0 Tf  [(-)] TJ ET
+BT 36.266 673.661 Td /F1 12.0 Tf  [( )] TJ ET
+BT 217.922 656.405 Td /F1 12.0 Tf  [(Kudus, 2 Desember 2022)] TJ ET
+BT 258.254 639.149 Td /F1 12.0 Tf  [(Ka. BAU)] TJ ET
+BT 36.266 621.893 Td /F1 12.0 Tf  [( )] TJ ET
+BT 36.266 604.637 Td /F1 12.0 Tf  [( )] TJ ET
+BT 36.266 587.381 Td /F1 12.0 Tf  [( )] TJ ET
+BT 42.266 570.125 Td /F1 12.0 Tf  [(Fajar Nugraha, S.Kom., M.Kom)] TJ ET
+BT 233.912 570.125 Td /F1 12.0 Tf  [(Muh. Manjid, S.E.)] TJ ET
+endstream
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000008 00000 n 
+0000000073 00000 n 
+0000000119 00000 n 
+0000000290 00000 n 
+0000000319 00000 n 
+0000000456 00000 n 
+0000000519 00000 n 
+0000007940 00000 n 
+0000008048 00000 n 
+0000008157 00000 n 
+0000008222 00000 n 
+trailer
+<<
+/Size 12
+/Root 1 0 R
+/Info 5 0 R
+>>
+startxref
+9559
+%%EOF
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+<link rel="stylesheet" href="https://dev.umk.ac.id:5300/presensi_old/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://dev.umk.ac.id:5300/presensi_old/resources/css/docs.css">
+<link href="https://dev.umk.ac.id:5300/presensi_old/resources/backend/dashboard.css" rel="stylesheet"> 
+<style type="text/css" id="holderjs-style"></style>
+<link rel="icon" href="https://dev.umk.ac.id:5300/presensi_old/favicon.ico" type="image/gif">
+<link rel="icon" href="https://dev.umk.ac.id:5300/presensi_old/resources/images/ico/images.png" type="image/png"/>
+</head>
+<body>
+    <script src="https://dev.umk.ac.id:5300/presensi_old/resources/backend/jquery.js"></script>
+<!--<script src="https://dev.umk.ac.id:5300/presensi_old/resources/plugins/jquery-2.0.3.min.js"></script>-->
+	<script src="https://dev.umk.ac.id:5300/presensi_old/resources/js/core.js"></script>
+	<script src="https://dev.umk.ac.id:5300/presensi_old/resources/js/widget.js"></script>
+	<script src="https://dev.umk.ac.id:5300/presensi_old/resources/js/bootstrap.min.js"></script>
+    <script src="https://dev.umk.ac.id:5300/presensi_old/resources/backend/bootstrap.js"></script>
+    <script src="https://dev.umk.ac.id:5300/presensi_old/resources/backend/docs.js"></script>
+<script src="https://dev.umk.ac.id:5300/presensi_old/resources/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="https://dev.umk.ac.id:5300/presensi_old/resources/plugins/dataTables/dataTables.bootstrap.js"></script>
+	<script type="text/javascript">var BASE_URL='https://dev.umk.ac.id:5300/presensi_old/';</script>
+	    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+         <div class="logoumk"><img src="https://dev.umk.ac.id:5300/presensi_old/resources/images/ico/logo-1.png"></div> <a class="navbar-brand">Sistem Informasi Presensi</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+			 				<li><a href="https://dev.umk.ac.id:5300/presensi_old/profil/profiles/index"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+				            <li><a href="https://dev.umk.ac.id:5300/presensi_old/home/logout"><span class="glyphicon glyphicon-off"></span> Keluar</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="col-sm-3 col-md-2 sidebar">
+    			<ul class="nav nav-sidebar">
+    				    						<li><a href="https://dev.umk.ac.id:5300/presensi_old/submenu/index/UsdojYCgDCWcCdlew9S5XSXGVpwwixy_hT0VKN-U69k"><span class="glyphicon glyphicon-time"></span> Manajemen Jam Kerja</a></li>
+    				    						<li><a href="https://dev.umk.ac.id:5300/presensi_old/submenu/index/J9Qs_1JWhrHNEZGuBFBakxYm2vQ-OKU5-LnWL5UxJoU"><span class="glyphicon glyphicon-user"></span> Manajemen Kepegawaian</a></li>
+    				    						<li><a href="https://dev.umk.ac.id:5300/presensi_old/submenu/index/0LV7GFaP04XYYGRGcJHUlGjKx4k6Flx3VrDiLYIsM44"><span class="glyphicon glyphicon-tag"></span> Manajemen Departemen</a></li>
+    				    						<li><a href="https://dev.umk.ac.id:5300/presensi_old/submenu/index/f3ayBHSv3wdrwkModfGrZN6PbNFMs0CfcQP2J4L_C-U"><span class="glyphicon glyphicon-list-alt"></span> Laporan Presensi/Absensi</a></li>
+    				    						<li><a href="https://dev.umk.ac.id:5300/presensi_old/submenu/index/PElEwks8X182nivnwmbLkPWy5w80zV1mJr0Qnbd2MTY"><span class="glyphicon glyphicon-user"></span> Manajemen Pengguna</a></li>
+    				    						<li><a href="https://dev.umk.ac.id:5300/presensi_old/submenu/index/WD8feqo0BSs1MUgYyqjtBL4KjkO3IeHmssWHtAEQQM4"><span class="glyphicon glyphicon-book"></span> Data Referensi Reward</a></li>
+    				    						<li><a href="https://dev.umk.ac.id:5300/presensi_old/submenu/index/AQ5UqIU9044zQHhFt1rDDrmiJ0vFnjF7jzlMhvwDp8Y"><span class="glyphicon glyphicon-list-alt"></span> Laporan Reward Presensi</a></li>
+    				    						<li><a href="https://dev.umk.ac.id:5300/presensi_old/submenu/index/dD2NEnriYjBZy_r3jdCBADevShZC08Oi6HXi9nuK0QU"><span class="glyphicon glyphicon-list"></span> Presensi Manual</a></li>
+    				    			</ul>
+    		</div>     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"><script src="https://dev.umk.ac.id:5300/presensi_old/resources/js/libs/datepicker.js"></script>
+<link rel="stylesheet" href="https://dev.umk.ac.id:5300/presensi_old/resources/css/datepicker.css">
+<link rel="stylesheet" href="https://dev.umk.ac.id:5300/presensi_old/resources/css/all.css">
+<title>Data Presensi</title>
+<h1 class="page-header">Data Presensi Personal</h1>
+
+<div class="row">
+<div class="col-md-8">
+		<form action="https://dev.umk.ac.id:5300/presensi_old/presensi/presensi/cari_data_presensi" class="form-inline" method="post" accept-charset="utf-8">			<table class="table table-condensed table-striped">
+			<tbody>
+				<tr>
+					<td width=20%>Departemen</td>
+					<td><select name="bag" id="bag" class="form-control">
+				<option value="">- pilih -</option>
+				<option value='a000000018'>AC</option><option value='a000000019'>Cleaning Service</option><option value='a000000005'>Dosen</option><option value='a000000006'>Dosen DPK</option><option value='a000000007'>Dosen Pejabat</option><option value='a000000004'>Driver</option><option value='a000000020'>Driver Outsc.</option><option value='a000000003'>Laboran</option><option value='a000000010'>Mandor</option><option value='a000000021'>Operator</option><option value='a000000022'>Parkir</option><option value='a000000009'>Pustakawan</option><option value='a000000002'>Satpam</option><option value='a000000023'>Satpam Outsrc.</option><option value='a000000024'>Taman</option><option value='a000000025'>Teknisi</option><option value='a000000001'>Tenaga Administrasi</option><option value='a000000008'>Tenaga Lapangan</option>				</select></td>
+				</tr>
+				<tr id="nm">
+					<td>Nama</td>
+					<td><select name="nama_kar" id="nama_kar" class="form-control">
+				<option value="">- pilih -</option>
+				</select></td>
+				</tr>
+				<tr id="tgl">
+					<td>Periode</td>
+					<td><input type="text" name="tgawal"  id="tg1" class="form-control" placeholder="Tanggal Awal" autocomplete="off"> - <input type="text" name="tgakhir"  id="tg2" class="form-control" placeholder="Tanggal Akhir" autocomplete="off"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" name="submit" value="Cari"  class="btn btn-primary btn-sm" /></td>
+				</tr>
+			</tbody>
+			</table>
+				</form><br>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-8">
+			<table class="table table-condensed table-striped">
+			<thead>
+				<tr>
+					<th class="col-xs-3">NIK/NIP</th>
+					<th class="col-xs-6">: 0610702000002199</th>
+				</tr>
+				<tr>
+					<th>Nama</th>
+					<th>: Nor Fadli ( Laboran / Fakultas Teknik )</th>
+				</tr>
+						<tr>
+					<th>Total Jam Kerja</th>
+					<th>: </th>
+				</tr>
+				<tr>
+					<th>Total berangkat</th>
+					<th>: 0 hari</th>
+				</tr>
+				<tr>
+					<th>Terlambat / Pulang Awal</th>
+					<th>:  / </th>
+				</tr>
+					</thead>
+			</table>
+</div></div>
+<div class="row">
+<div class="col-md-8">
+				<form action="https://dev.umk.ac.id:5300/presensi_old/presensi/cetak_presensi/cetak_presensi_personal/175/2021-11-01/2021-11-30" class="form-inline" method="post" accept-charset="utf-8">			<table class="table table-condensed table-striped">
+			<tbody>
+				<!--<tr>
+					<td width=30%>Total Hari Wajib Masuk</td>
+					<td><input type="text" name="totharimasuk" class="form-control" placeholder="Total Hari Wajib Masuk" autocomplete="off" value="25"></td>
+				</tr>-->
+				<tr>
+					<td>Tanggal Cetak</td>
+					<td><input type="text" name="tgcetak"  id="tgc" class="form-control" value="2022-12-02" placeholder="Tanggal Cetak" autocomplete="off"> &nbsp;<input type="submit" name="submit" value="Cetak"  class="btn btn-primary btn-sm" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td> </td>
+				</tr>
+			</tbody>
+			</table>
+				</form></div>
+</div>
+<div class="row">
+<div class="col-md-5">
+<br>Rekap Absensi : <b>1 Nopember 2021</b> sampai <b>30 Nopember 2021</b></div>
+<div class="col-md-7">
+	<!--<p align="right"><a href="presensi/cetak_presensi/cetak_presensi_personal/">
+	<button type="button" name='save' class="btn btn-success btn-sm"><span class="glyphicon glyphicon-print"></span>
+	<b>Cetak</b>
+	</button></a></p>-->
+</div></div>
+<div class="row">
+<div class="col-md-12">
+<div class="table-responsive">
+				<table class="table table-bordered table-condensed table-hover table-striped">
+	<thead>
+		<tr class="bg-primary">
+			<th width=1%>No.</th>
+			<th class="col-xs-2">Hari/Tanggal</th>
+			<th class="col-xs-1">Datang</th>
+			<th class="col-xs-1">Terlambat</th>
+			<th class="col-xs-1">Pulang</th>
+			<th class="col-xs-1">Kurang</th>
+			<th class="col-xs-1">Total Jam Kerja</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr><td>2022</td><td >1 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2023</td><td >2 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2024</td><td >3 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2025</td><td >4 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2026</td><td >5 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2027</td><td >6 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2028</td><td style="color: red;">7 Nopember 2021</td><td></td><td></td><td></td><td></td><td></td><tr><td>2029</td><td >8 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2030</td><td >9 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2031</td><td >10 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2032</td><td >11 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2033</td><td >12 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2034</td><td >13 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2035</td><td style="color: red;">14 Nopember 2021</td><td></td><td></td><td></td><td></td><td></td><tr><td>2036</td><td >15 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2037</td><td >16 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2038</td><td >17 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2039</td><td >18 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2040</td><td >19 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2041</td><td >20 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2042</td><td style="color: red;">21 Nopember 2021</td><td></td><td></td><td></td><td></td><td></td><tr><td>2043</td><td >22 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2044</td><td >23 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2045</td><td >24 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2046</td><td >25 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2047</td><td >26 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2048</td><td >27 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2049</td><td style="color: red;">28 Nopember 2021</td><td></td><td></td><td></td><td></td><td></td><tr><td>2050</td><td >29 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td><tr><td>2051</td><td >30 Nopember 2021</td><td>-</td><td></td><td>-</td><td></td><td></td>	</tbody>
+	</table>
+	</div>
+</div>
+</div>
+<script>
+    $(document).ready(function(){
+		$( "#tg1,#tg2, #tgc" ).datepicker({
+			changeMonth: true,
+			changeYear: true
+		});
+		 $("#nm").hide();
+		 $("#tgl").hide();
+		 $("#bag").change(function(){
+                    var bag = {bag:$("#bag").val()};
+                    var bagian = $("#bag").val();
+						  if(bagian=='') {
+							$("#nm").hide();
+							$("#tgl").hide();
+						  } else {
+						  $("#nm").show();
+						  }
+                    $.ajax({
+                            type: "POST",
+                            url : "https://dev.umk.ac.id:5300/presensi_old/presensi/presensi/select_nama_karyawan",
+                            data: bag,
+                            success: function(data){
+                                $('#nama_kar').html(data);
+                            }
+                    });
+        });				
+					$("#nama_kar").change(function(){
+       var nam = $("#nama_kar").val();
+		 if(nam=='')
+		 { 
+		 $("#tgl").hide();
+		 } else {
+		 $("#tgl").show();
+		 }
+        });
+    });
+</script>

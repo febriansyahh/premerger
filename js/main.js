@@ -14,6 +14,83 @@ $(document).ready(function () {
 	],
 	});
 
+	$('#tablereviewer').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "15%" }, // NIDN
+      { width: "30%" }, // Nama
+      { width: "20%" }, // Jabatan
+      { width: "15%" }, // status
+      { width: "15%" }, // action
+			
+	],
+	});
+
+	$('#tblrvrw').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "25%" }, // NIDN
+      { width: "35%" }, // Nama
+      { width: "25%" }, // Jabatan
+      { width: "10%" }, // check
+			
+	],
+	});
+
+	$('#tablecatatan').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "35%" }, // NIDN
+      { width: "30%" }, // Nama
+      { width: "15%" }, // Jabatan
+      { width: "15%" }, // check
+			
+	],
+	});
+
+	$('#tablesubcatatan').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "20%" }, // Tanggal
+      { width: "30%" }, // Uraian
+      { width: "15%" }, // Persetase
+      { width: "15%" }, // File
+      { width: "15%" }, // check
+			
+	],
+	});
+
+	$('#tablesubcatatanadmin').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "20%" }, // Tanggal
+      { width: "40%" }, // Uraian
+      { width: "15%" }, // Persetase
+      { width: "20%" }, // File
+	],
+	});
+
+	$('#tablechild').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "30%" }, // Nama
+      { width: "15%" }, // biaya
+      { width: "10%" }, // kuota
+      { width: "15%" }, // status
+      { width: "25%" }, // action
+			
+	],
+	});
+
+	$('#tableskema').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "55%" }, // Nama
+      { width: "20%" }, // kuota
+      { width: "20%" }, // action
+	],
+	});
+
 	$('#tableanggota').DataTable({
 	columns: [
       { width: "5%" }, // No
@@ -26,15 +103,45 @@ $(document).ready(function () {
 	],
 	});
 
-	$('#tableusulan').DataTable({
+	// $('#tableusulan').DataTable({
+	// columns: [
+    //   { width: "3%" }, // No
+    //   { width: "20%" }, // Judul
+    //   { width: "17%" }, // Skim
+    //   { width: "10%" }, // Tahun usulan
+    //   { width: "10%" }, // Tahun Ajar
+    //   { width: "10%" }, // Review
+    //   { width: "10%" }, // kelengkapan
+    //   { width: "15%" }, // action
+			
+	// ],
+	// });
+	$('#tableusulan').DataTable();
+
+	$('#tableusulanadmin').DataTable({
 	columns: [
       { width: "5%" }, // No
-      { width: "35%" }, // Judul
+      { width: "15%" }, // NIDN
+      { width: "25%" }, // Judul
+      { width: "6%" }, // Tahun usulan
+    //   { width: "8%" }, // lama
+      { width: "18%" }, // review
+      { width: "8%" }, // kelengkapan
+      { width: "10%" }, // hasilnilai
+      { width: "18%" }, // action
+			
+	],
+	});
+
+	$('#tableusulanrvw').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "23%" }, // Judul
       { width: "20%" }, // Skim
       { width: "10%" }, // Tahun usulan
-      { width: "10%" }, // Review
-      { width: "10%" }, // kelengkapan
-      { width: "10%" }, // action
+      { width: "15%" }, // Review
+      { width: "15%" }, // kelengkapan
+      { width: "7%" }, // action
 			
 	],
 	});
@@ -44,6 +151,16 @@ $(document).ready(function () {
       { width: "5%" }, // No
       { width: "70%" }, // Keterangan
       { width: "10%" }, // Keterangan
+      { width: "15%" }, // action
+			
+	],
+	});
+
+	$('#tablebatasmin').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "40%" }, // Keterangan
+      { width: "40%" }, // Keterangan
       { width: "15%" }, // action
 			
 	],
@@ -87,6 +204,7 @@ $(document).ready(function () {
 	});
 });
 
+
 // function editableJabatan(param) {
 // 	console.log("AAAA");
 // 	let data = $(param).data("id");
@@ -120,6 +238,15 @@ function editablePemerikasaan(param) {
 	console.log(data);
 	$("#editId").val(exp[0]);
 	$("#editNama").val(exp[1]);
+}
+
+function editableBatasminimal(param) {
+	let data = $(param).data("id");
+	let exp = data.split("~");
+	console.log(data);
+	$("#editId").val(exp[0]);
+	$("#editNilai").val(exp[1]);
+	$("#editTanggal").val(exp[2]);
 }
 
 function editablePendidikan(param) {
@@ -237,6 +364,57 @@ function editableSkim(param) {
 							<select name="ekternal" class="form-control" id="">
                                 <option value="1" selected>Ya</option>
                                 <option value="">Tidak</option>
+                            </select></div>`);
+	}
+}
+
+
+function editableSkema(param) {
+	let data = $(param).data("id");
+	let exp = data.split("~");
+	$("#editId").val(exp[0]);
+	$("#editNama").val(exp[1]);
+	$("#editBudget").val(exp[2]);
+	$("#editKuota").val(exp[3]);
+	$("#editParent").val(exp[4]);
+	$("#editStatus").val(exp[5]);
+
+	if (exp[5] == 'active') {
+		$('#status').html(`<div class="input-group input-group-merge">
+							<select name="status" class="form-control" id="">
+                                <option value="Active" selected>Active</option>
+								<option value="Non Active">Non Active</option>
+                            </select></div>`);
+	} else {
+		$('#status').html(`<div class="input-group input-group-merge">
+							<select name="status" class="form-control" id="">
+                                <option value="Active">Active</option>
+								<option value="Non Active" selected>Non Active</option>
+                            </select></div>`);
+	}
+}
+
+function editableChild(param) {
+	let data = $(param).data("id");
+	let exp = data.split("~");
+	$("#editId").val(exp[0]);
+	$("#editNama").val(exp[1]);
+	$("#editBudget").val(exp[2]);
+	$("#editKuota").val(exp[3]);
+	$("#editParent").val(exp[4]);
+	$("#editStatus").val(exp[5]);
+
+	if (exp[5] == 'active') {
+		$('#status').html(`<div class="input-group input-group-merge">
+							<select name="status" class="form-control" id="">
+                                <option value="Active" selected>Active</option>
+								<option value="Non Active">Non Active</option>
+                            </select></div>`);
+	} else {
+		$('#status').html(`<div class="input-group input-group-merge">
+							<select name="status" class="form-control" id="">
+                                <option value="Active">Active</option>
+								<option value="Non Active" selected>Non Active</option>
                             </select></div>`);
 	}
 }

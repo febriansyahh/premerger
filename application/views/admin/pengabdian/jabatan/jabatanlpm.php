@@ -20,7 +20,6 @@
 
                 <?php $this->load->view("_partials/navbar.php") ?>
 
-
                 <!-- / Navbar -->
 
                 <!-- Content wrapper -->
@@ -139,15 +138,24 @@
                     <h5 class="modal-title" id="exampleModalLabel1">Tambah Jabatan LPM</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="<?php echo site_url('admin/pengabdian/jabatan/addlpm') ?>" method="post" enctype="multipart/form">
+                <form action="<?php echo site_url('admin/pengabdian/jabatan/add') ?>" method="post" enctype="multipart/form">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col mb-3">
-                                <label for="nameBasic" class="form-label">NIDN Jabatan</label>
-                                <input list="datadosen" name="kode_dos" id="kode_dos" class="form-control" placeholder="Masukkan NIDN Dosen" autocomplete="on" onkeyup="showResultDosen(this.value)">
-                                <datalist id="datadosen">
-                                    <div id="listdosen"></div>
-                                </datalist>
+                                <label for="nameBasic" class="form-label">Nama</label>
+                                <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Ketua LPM" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">NIDN </label>
+                                <input type="text" class="form-control" name="nidn" placeholder="Masukkan NIDN Ketua LPM" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">NIS </label>
+                                <input type="text" class="form-control" name="nis" placeholder="Masukkan NIS Ketua LPM" required>
                             </div>
                         </div>
                     </div>
@@ -166,28 +174,6 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <?php $this->load->view("_partials/js.php") ?>
-    <script>
-        function showResultDosen(str) {
-            console.log(str);
-            var id = str;
-            var lenght = id.trim().length;
-            if (lenght < 3) {
-                document.getElementById("listdosen").innerHTML = "Kosong";
-            } else {
-                $.ajax({
-                    type: "POST",
-                    url: "<?= site_url('pengabdian/jabatan/dosen'); ?>",
-                    data: {
-                        id
-                    },
-                    success: function(response) {
-                        document.getElementById("listdosen").innerHTML = response;
-                    },
-                });
-            }
-        }
-    </script>
-
 </body>
 
 </html>

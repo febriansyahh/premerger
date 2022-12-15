@@ -50,4 +50,55 @@ class Skim_model extends CI_Model
         $ids = $this->variasi->decode($id);
         return $this->db->delete('lemlit_skim', array("skim_id" => $ids));
     }
+
+    public function sbk()
+    {
+        return $this->db->get('lit_sbk')->result();
+    }
+
+    public function savesbk()
+    {
+        $date = date('Y-m-d H:i:s');
+
+        $this->sbk_nama            = $this->input->post('sbk');
+        // $this->sbk_name_seo        = seo_title($this->input->post('skim'));
+        $this->sbk_budget          = $this->input->post('budget');
+        $this->sbk_status          = $this->input->post('status');
+        // $this->sbk_external        = $this->input->post('eksternal');
+        $this->sbk_anggota_min     = $this->input->post('min_anggota');
+        $this->sbk_anggota_max     = $this->input->post('max_anggota');
+        $this->sbk_anggotamhs_min  = $this->input->post('anggota_mhs');
+        $this->sbk_anggotaeks_min  = $this->input->post('anggota_eks');
+        $this->sbk_update          = $date;
+
+        return $this->db->insert('lit_sbk', $this);
+    }
+
+    public function updatesbk()
+    {
+        $id = $this->input->post('id_sbk');
+        $skim = $this->input->post('sbk');
+        // $seo = seo_title($this->input->post('skim'));
+        $min_anggota = $this->input->post('min_anggota');
+        $max_anggota = $this->input->post('max_anggota');
+        $anggota_mhs = $this->input->post('anggota_mhs');
+        $anggota_eks = $this->input->post('anggota_eks');
+        $budget = $this->input->post('budget');
+        $status = $this->input->post('status');
+        // $eksternal = $this->input->post('eksternal');
+        $date = date('Y-m-d H:i:s');
+
+        $ids = $this->variasi->decode($id);
+
+        $this->db->query("UPDATE `lit_sbk` SET `sbk_nama` = '$skim',
+        `sbk_budget` = '$budget', `sbk_status` = '$status', `sbk_update` = '$date',
+        `sbk_anggota_min` = '$min_anggota', `sbk_anggota_max` ='$max_anggota', `sbk_anggotamhs_min` = '$anggota_mhs',
+        `sbk_anggotaeks_min` = '$anggota_eks'  WHERE `sbk_id` = '$ids' ");
+    }
+
+    public function deletesbk($id)
+    {
+        $ids = $this->variasi->decode($id);
+        return $this->db->delete('lit_sbk', array("sbk_id" => $ids));
+    }
 }

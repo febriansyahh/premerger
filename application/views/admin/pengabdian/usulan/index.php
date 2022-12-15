@@ -43,6 +43,16 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
 
+                                    if ($this->session->flashdata('ubah')) echo '<div class="alert alert-success alert-dismissible" role="alert">
+                                    Berhasil melakukan perubahan data
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+
+                                    if ($this->session->flashdata('gglubah')) echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                                        Gagal melakukan perubahan data
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+
                                     if ($this->session->flashdata('active')) echo '<div class="alert alert-success alert-dismissible" role="alert">
                                     Berhasil melakukan perubahan status data jabatan LPM
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -60,15 +70,17 @@
                                     ?>
                                     <h5 class="card-title text-primary">Usulan Pengabdian</h5>
 
-                                    <table id="tableusulan" class="table table-bordered table-striped table-hover" style="width:100%">
+                                    <table id="tableusulanadmin" class="table table-bordered table-striped table-hover" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
+                                                <th>Pengusul</th>
                                                 <th>Judul</th>
-                                                <th>Skim</th>
                                                 <th>Tahun Usulan</th>
-                                                <th>Review</th>
+                                                <!-- <th>Lama Pengabdian</th> -->
+                                                <th>Reviewer</th>
                                                 <th>Kelengkapan</th>
+                                                <th>Review</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -79,33 +91,99 @@
                                             ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
-                                                    <td><?= $data->judul ?></td>
-                                                    <td><?= $data->nama_skim ?></td>
-                                                    <td><?= $data->tahun_usulan ?></td>
-                                                    <td><?= $data->tahun_usulan ?></td>
+                                                    <td><?= $data->nidn_pengusul . ' - ' . $data->nama ?></td>
+                                                    <td><?= $data->usulan_judul ?></td>
+                                                    <td><?= $data->usulan_tahun ?></td>
+                                                    <!-- <td><?= $data->usulan_lama_pengabdian ?></td> -->
+                                                    <td>
+                                                        <?php
+                                                        $jmlh = $this->Atribut_model->jmlhreview($data->usulan_id);
+                                                        $mengisi = $this->Atribut_model->mengisi($data->usulan_id);
+                                                        if ($jmlh->jmlh > 0) {
+                                                            echo '<span class="badge bg-success">';
+                                                            echo $mengisi->jum  . ' / ' . $jmlh->jmlh;
+                                                            echo '</span>';
+                                                        } else {
+                                                            echo '<span class="badge bg-warning">Belum Dipilih</span>';
+                                                        }
+                                                        ?>
+                                                        <a href="<?= site_url('admin/pengabdian/usulan/hslreview/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-zoom-in"></i> </a>
+                                                        <?php
+                                                        if ($data->hasil_nilai == '') {
+                                                            ?>
+                                                            <a href="<?= site_url('admin/pengabdian/usulan/reviewer/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-user"></i> </a>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </td>
                                                     <td>
                                                         <?php
                                                         switch ($data->status_usulan) {
-                                                            case 'Selesei':
-                                                                echo '<span class="badge bg-success">Selesai</span>';
+                                                            case 'Menunggu':
+                                                                echo '<span class="badge bg-warning">Menunggu</span>';
+                                                                break;
+
+                                                            case 'Ditolak':
+                                                                echo '<span class="badge bg-danger">Diterima</span>';
                                                                 break;
 
                                                             case 'Diterima':
                                                                 echo '<span class="badge bg-primary">Diterima</span>';
                                                                 break;
 
+                                                            case 'Selesai':
+                                                                echo '<span class="badge bg-success">Selesai</span>';
+                                                                break;
+                                                        }
+                                                        ?>
+                                                        /
+                                                        <?php
+                                                        switch ($data->status_kelengkapan) {
                                                             case 'Menunggu':
                                                                 echo '<span class="badge bg-warning">Menunggu</span>';
                                                                 break;
 
-                                                            case 'Ditolak':
-                                                                echo '<span class="badge bg-danger">Ditolak</span>';
+                                                            case 'Tidak Lengkap':
+                                                                echo '<span class="badge bg-danger">Tidak Lengkap</span>';
+                                                                break;
+
+                                                            case 'Lengkap':
+                                                                echo '<span class="badge bg-primary">Lengkap</span>';
                                                                 break;
                                                         }
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <a href="<?= site_url('dosen/pengabdian/Usulan/detail/' . $this->variasi->encode($data->usulan_id)) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-detail"></i> Detail</a>
+                                                        <?php
+                                                        switch ($data->hasil_nilai) {
+                                                            case 'Tidak Lolos':
+                                                                echo '<span class="badge bg-danger">Tidak Lolos</span>';
+                                                                break;
+
+                                                            case 'Lolos':
+                                                                echo '<span class="badge bg-success">Lolos</span>';
+                                                                break;
+
+                                                            default:
+                                                                echo '<span class="badge bg-warning">Menunggu</span>';
+                                                                break;
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="<?= site_url('admin/pengabdian/usulan/detail/' . $this->variasi->encode($data->usulan_id)) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-detail"></i> </a>
+                                                        <?php
+                                                        if ($data->hasil_nilai != '') {
+                                                        ?>
+                                                            <a href="<?= site_url('admin/pengabdian/usulan/isdone/' . $this->variasi->encode($data->usulan_id)) ?>" onclick="return confirm('Apakah yakin untuk mengkonfirmasi bahwa usulan ini sudah benar ?');" class="btn btn-outline-success btn-sm"><i class="bx bx-check"></i></a>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <a href="<?= site_url('admin/pengabdian/usulan/isconfirm/' . $this->variasi->encode($data->usulan_id)) ?>" onclick="return confirm('Apakah yakin untuk mengkomfirmasi usulan ini ?');" class="btn btn-outline-primary btn-sm"><i class="bx bx-check"></i></a>
+
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </td>
                                                 </tr>
                                             <?php

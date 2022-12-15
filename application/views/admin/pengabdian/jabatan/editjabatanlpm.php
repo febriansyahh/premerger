@@ -47,7 +47,7 @@
                                             <h5 class="mb-0">Ubah Jabatan LPM</h5>
                                         </div>
                                         <div class="card-body">
-                                            <form action="<?php echo base_url('pengabdian/jabatan/ubahlpm'); ?>" method="post" enctype="multipart/form">
+                                            <form action="<?php echo base_url('admin/pengabdian/jabatan/ubahlpm'); ?>" method="post" enctype="multipart/form">
                                                 <div class="row mb-3">
                                                     <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama</label>
                                                     <div class="col-sm-10">
@@ -78,7 +78,7 @@
                                                 </div>
                                                 <div class="row justify-content-end">
                                                     <div class="col-sm-10">
-                                                        <a href="<?= site_url('pengabdian/Jabatan/lpm') ?> " class="btn btn-warning">Kembali</a>
+                                                        <a href="<?= site_url('admin/pengabdian/jabatan') ?> " class="btn btn-warning">Kembali</a>
                                                         <button type="submit" class="btn btn-primary">Ubah</button>
                                                     </div>
                                                 </div>
