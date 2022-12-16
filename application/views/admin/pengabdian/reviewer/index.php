@@ -114,7 +114,7 @@
                                                                 break;
 
                                                             case 'Nonactive':
-                                                                echo '<span class="badge bg-danger">Diterima</span>';
+                                                                echo '<span class="badge bg-danger">Non Aktif</span>';
                                                                 break;
                                                         }
                                                         ?>
