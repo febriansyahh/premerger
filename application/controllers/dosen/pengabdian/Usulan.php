@@ -53,6 +53,22 @@ class Usulan extends CI_Controller
         redirect('dosen/pengabdian/usulan');
     }
 
+    public function update()
+    {
+        $id = $_POST['id'];
+        $model = $this->Usulan_model;
+        $validation = $this->form_validation;
+
+        if ($validation) {
+            $model->update();
+            $this->session->set_flashdata('ubah', 'success');
+        } else {
+            $this->session->set_flashdata('gglubah', 'failed');
+        }
+
+        redirect('dosen/pengabdian/usulan');
+    }
+
     public function deleteusulan($id)
     {
         if (!isset($id)) show_error('404');

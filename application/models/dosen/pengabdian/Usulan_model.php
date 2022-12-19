@@ -7,6 +7,7 @@ class Usulan_model extends CI_Model
     {
         $nis = $this->session->userdata('nis');
         $nidn = $this->session->userdata('nidn');
+        $kode = $this->session->userdata('kode');
 
         // Pre merger
         // $sql = $this->db->query("SELECT u.*, IF(s.`semester` = '1', 'Ganjil', IF(s.`semester` = '2', 'Genap', '-')) AS semester , s.`tahun_ajaran`, sk.`nama_skim` 
@@ -15,7 +16,7 @@ class Usulan_model extends CI_Model
 
         // simlitabmas
         $sql = $this->db->query("SELECT a.*, b.`skema_nama`, c.`tahun_ajaran`, c.tahun_semester, IF(c.tahun_semester = '1', 'Gasal', 'Genap') AS semester FROM `ab_usulan` a LEFT JOIN `ab_skema` b ON a.`skema_id`=b.`skema_id` LEFT JOIN `mst_tahun_akademik` c ON a.`id_tahun`=c.`id_tahun`
-        WHERE (a.`nidn_pengusul` = '$nidn' OR a.`nidn_pengusul` = '$nis') ORDER BY a.`usulan_id` DESC ")->result();
+        WHERE (a.`nidn_pengusul` = '$nidn' OR a.`nidn_pengusul` = '$nis' OR a.kode_user='$kode') ORDER BY a.`usulan_id` DESC ")->result();
         return $sql;
     }
 
@@ -30,10 +31,11 @@ class Usulan_model extends CI_Model
         $ids = $this->variasi->decode($id);
         $nis = $this->session->userdata('nis');
         $nidn = $this->session->userdata('nidn');
+        $kode = $this->session->userdata('kode');
 
         $sql = $this->db->query("SELECT * FROM `ab_usulan` a LEFT JOIN `ab_lembaga` b ON b.`usulan_id`=a.`usulan_id` 
-        LEFT JOIN `ab_skema` c ON a.`skema_id`=c.`skema_id` WHERE a.`usulan_id` = '$ids' 
-        AND (a.`nidn_pengusul` = '$nis' OR a.`nidn_pengusul`='$nidn')")->row();
+        LEFT JOIN `ab_skema` c ON a.`skema_id`=c.`skema_id` LEFT JOIN `ab_tahap_hibah` d ON a.usulan_id=d.`usulan_id`  WHERE a.`usulan_id` = '$ids' 
+        AND (a.`nidn_pengusul` = '$nis' OR a.`nidn_pengusul`='$nidn' OR a.kode_user='$kode') AND d.status_tahap = 'Proposal'")->row();
         return $sql;
     }
 
@@ -126,29 +128,33 @@ class Usulan_model extends CI_Model
 
         $this->nidn_pengusul          = $this->session->userdata('nidn');
         $this->nama                   = $namagelar;
+        $this->program_studi          = $jabatan['prodi'];
+        $this->fakultas               = $jabatan['fakultas'];
         $this->usulan_judul           = $post['judul'];
+        $this->usulan_abstrak         = $post['abstrak'];
+        $this->usulan_keyword         = $post['keyword'];
         $this->skema_id               = $post['skim'];
-        $this->usulan_tahun           = $post['tahun'];
+        $this->usulan_tahun           = $post['tahun_usulan'];
+        $this->usulan_tahun_pelaksanaan   = $post['tahun_pelaksanaan'];
         $this->usulan_lama_pengabdian = $post['lama'];
         $this->usulan_biaya           = $post['budget'];
         $this->usulan_total_biaya     = $post['total'];
         $this->target_luaran          = $post['luaran'];
         $this->jmlh_mahasiswa         = $post['jmlmhs'];
         $this->usulan_kota            = $post['kota'];
-        $this->program_studi          = $jabatan['prodi'];
-        $this->fakultas               = $jabatan['fakultas'];
         $this->lpm_nama               = $lpm->nama_jab_lpm;
         $this->lpm_nidn               = $lpm->nidn_jab_lpm;
         $this->dekan_nama             = $jabatan['nama_dekan'];
         $this->dekan_nidn             = $jabatan['nip_dekan'];
         $this->rektor_nama            = $jabatan['nama_rektor'];
         $this->rektor_nidn            = $jabatan['nip_rektor'];
-        $this->file_usulan            = $this->_uploadFile($nidn, $judul);
+        // $this->file_usulan            = $this->_uploadFile($nidn, $judul);
         $this->status_usulan          = 'Menunggu';
         $this->status_kelengkapan     = 'Menunggu';
+        $this->status_tahap           = 'Proposal';
         $this->id_tahun               = $tahun;
+        $this->kode_user              = $this->session->userdata('kode');
         $this->created_at             = $date;
-
      
         $this->db->insert('ab_usulan', $this);
 
@@ -156,6 +162,14 @@ class Usulan_model extends CI_Model
 
         $idusulan = $this->db->query("SELECT max(usulan_id) as id FROM `ab_usulan` ")->row();
         $usulanid = $idusulan->id;
+
+        $this->db->query("INSERT INTO `ab_tahap_hibah`(`usulan_id`, `status_tahap`, `tanggal`, `file_usulan`, `inserted`) VALUES
+        ('" . $usulanid . "',
+        'Proposal',
+        '". date('Y-m-d') ."',
+        '". $this->_uploadFile($nidn, $judul) ."',
+        '" . date('Y-m-d H:i:s') . "')
+        ");
 
         $this->db->query("INSERT INTO `ab_lembaga` (`usulan_id`, `lembaga_nama`, `lembaga_jabatan`, `lembaga_pimpinan`, `lembaga_pimpinan_id`, `lembaga_file`, `lembaga_lokasi`, `lembaga_updated`) values
         ('" . $usulanid . "',
@@ -187,7 +201,8 @@ class Usulan_model extends CI_Model
     {
         $aj = str_replace(' ', '_', $a);
         $judul = str_replace(' ', '_', $b);
-        $c = 'Pengabdian_' . $aj . '_' . $judul;
+        $date = date('d-m-Y');
+        $c = $date. '_Pengabdian_' . $aj . '_' . $judul;
   
         $config['upload_path']          = './upload_file/pengabdian/file/';
         $config['allowed_types']        = 'pdf|jpg|png';
@@ -198,6 +213,7 @@ class Usulan_model extends CI_Model
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
 
+        // return $c;
         if ($this->upload->do_upload('fileproposal')) {
             return $this->upload->data("file_name");
         }
@@ -208,7 +224,8 @@ class Usulan_model extends CI_Model
         $nidn = $this->session->userdata('nidn');
         
         $nama = str_replace(' ', '_', $a);
-        $c = 'Lembaga_' . $nama . '_' . $nidn . '_' . $b;
+        $date = date('d-m-Y');
+        $c = $date . '_Lembaga_' . $nama . '_' . $nidn . '_' . $b;
 
         $config['upload_path']          = './upload_file/pengabdian/lembaga/';
         $config['allowed_types']        = 'pdf|jpg|png';
@@ -222,6 +239,348 @@ class Usulan_model extends CI_Model
 
         if ($this->upload->do_upload('filemitra')) {
             return $this->upload->data("file_name");
+        }
+    }
+
+    public function update()
+    {
+        $id = $_POST['id'];
+        $ids = $this->variasi->decode($id);
+        $post = $this->input->post();
+        $date = date("Y-m-d H:i:s");
+
+        // Untuk cek name file proposal
+        $fprop = $this->db->query("SELECT `status_tahap`, `file_usulan` FROM `ab_tahap_hibah` WHERE usulan_id = '$ids'")->row();
+        // Untuk cek name file lembaga
+        $flem = $this->db->query("SELECT `lembaga_file` FROM `ab_lembaga` WHERE usulan_id = '$ids'")->row();
+
+        $fileprop  = $fprop->file_usulan;
+        $filelem = $flem->lembaga_file;
+
+        $cekstatus = $this->db->query("SELECT `status_usulan`, `status_kelengkapan`, 
+        `status_tahap` FROM ab_usulan WHERE `usulan_id` = $ids")->row();
+
+        $cek = $cekstatus->status_usulan;
+        $tahap = $cekstatus->status_tahap;
+        $cekpem = $this->is_pemeriksaan($id);
+
+        if ($cek == 'Menunggu' && $tahap == 'Proposal' ) {
+            if (empty($_POST['fileproposal']) && empty($_POST['filemitra'])) {
+               
+                $data = array(
+                        'usulan_judul'              => $post['judul'],
+                        'usulan_abstrak'            => $post['abstrak'],
+                        'usulan_keyword'            => $post['keyword'],
+                        'skema_id'                  => $post['skim'],
+                        'usulan_tahun'              => $post['tahun_usulan'],
+                        'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
+                        'usulan_lama_pengabdian'    => $post['lama'],
+                        'usulan_biaya'              => $post['budget'],
+                        'usulan_total_biaya'        => $post['total'],
+                        'target_luaran'             => $post['luaran'],
+                        'usulan_kota'               => $post['kota'],
+                        'jmlh_mahasiswa'            => $post['jmlmhs'],
+                        'updated_at'                => $date
+                    );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_usulan', $data);
+
+                
+                $datalem = array(
+                    'lembaga_nama' => $post['lembaga'],
+                    'lembaga_jabatan' => $post['jns_lembaga'],
+                    'lembaga_pimpinan' => $post['pimpinan'],
+                    'lembaga_pimpinan_id' => $post['nopim'],
+                    'lembaga_lokasi' => $post['titiklokasi']
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_lembaga', $datalem);
+
+
+            }elseif (!empty($_POST['fileproposal'])&& !empty($_POST['filemitra'])) {
+
+                unlink('./upload_file/pengabdian/file/' . $fileprop);
+                unlink('./upload_file/pengabdian/lembaga/' . $filelem);
+
+                $data = array(
+                    'usulan_judul'              => $post['judul'],
+                    'usulan_abstrak'            => $post['abstrak'],
+                    'usulan_keyword'            => $post['keyword'],
+                    'skema_id'                  => $post['skim'],
+                    'usulan_tahun'              => $post['tahun_usulan'],
+                    'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
+                    'usulan_lama_pengabdian'    => $post['lama'],
+                    'usulan_biaya'              => $post['budget'],
+                    'usulan_total_biaya'        => $post['total'],
+                    'target_luaran'             => $post['luaran'],
+                    'usulan_kota'               => $post['kota'],
+                    'jmlh_mahasiswa'            => $post['jmlmhs'],
+                    'updated_at'                => $date
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_usulan', $data);
+
+                $nidn = $this->session->userdata('nidn');
+                $judul = $post['judul'];
+
+                $datahibah = array(
+                    'tanggal'       => date('Y-m-d'),
+                    'file_usulan'   => $this->_uploadFile($nidn, $judul),
+                    'inserted'      => date('Y-m-d H:i:s')
+                );
+
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_tahap_hibah', $datahibah);
+
+
+                $datalem = array(
+                    'lembaga_nama' => $post['lembaga'],
+                    'lembaga_jabatan' => $post['jns_lembaga'],
+                    'lembaga_pimpinan' => $post['pimpinan'],
+                    'lembaga_pimpinan_id' => $post['nopim'],
+                    'lembaga_file' => $this->_uploadLembaga($post['lembaga'], $ids),
+                    'lembaga_lokasi' => $post['titiklokasi']
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_lembaga', $datalem);
+
+            }elseif (!empty($_POST['fileproposal']) && empty($_POST['filemitra'])) {
+                unlink('./upload_file/pengabdian/file/' . $fileprop);
+                $data = array(
+                    'usulan_judul'              => $post['judul'],
+                    'usulan_abstrak'            => $post['abstrak'],
+                    'usulan_keyword'            => $post['keyword'],
+                    'skema_id'                  => $post['skim'],
+                    'usulan_tahun'              => $post['tahun_usulan'],
+                    'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
+                    'usulan_lama_pengabdian'    => $post['lama'],
+                    'usulan_biaya'              => $post['budget'],
+                    'usulan_total_biaya'        => $post['total'],
+                    'target_luaran'             => $post['luaran'],
+                    'usulan_kota'               => $post['kota'],
+                    'jmlh_mahasiswa'            => $post['jmlmhs'],
+                    'updated_at'                => $date
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_usulan', $data);
+
+                $nidn = $this->session->userdata('nidn');
+                $judul = $post['judul'];
+
+                $datahibah = array(
+                    'tanggal'       => date('Y-m-d'),
+                    'file_usulan'   => $this->_uploadFile($nidn, $judul),
+                    'inserted'      => date('Y-m-d H:i:s')
+                );
+
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_tahap_hibah', $datahibah);
+
+                $datalem = array(
+                    'lembaga_nama' => $post['lembaga'],
+                    'lembaga_jabatan' => $post['jns_lembaga'],
+                    'lembaga_pimpinan' => $post['pimpinan'],
+                    'lembaga_pimpinan_id' => $post['nopim'],
+                    'lembaga_lokasi' => $post['titiklokasi']
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_lembaga', $datalem);
+
+            }elseif (!empty($_POST['filemitra']) && empty($_POST['fileproposal'])) {
+                unlink('./upload_file/pengabdian/lembaga/' . $filelem);
+                $data = array(
+                    'usulan_judul'              => $post['judul'],
+                    'usulan_abstrak'            => $post['abstrak'],
+                    'usulan_keyword'            => $post['keyword'],
+                    'skema_id'                  => $post['skim'],
+                    'usulan_tahun'              => $post['tahun_usulan'],
+                    'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
+                    'usulan_lama_pengabdian'    => $post['lama'],
+                    'usulan_biaya'              => $post['budget'],
+                    'usulan_total_biaya'        => $post['total'],
+                    'target_luaran'             => $post['luaran'],
+                    'usulan_kota'               => $post['kota'],
+                    'jmlh_mahasiswa'            => $post['jmlmhs'],
+                    'updated_at'                => $date
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_usulan', $data);
+
+
+                $datalem = array(
+                    'lembaga_nama' => $post['lembaga'],
+                    'lembaga_jabatan' => $post['jns_lembaga'],
+                    'lembaga_pimpinan' => $post['pimpinan'],
+                    'lembaga_pimpinan_id' => $post['nopim'],
+                    'lembaga_file' => $this->_uploadLembaga($post['lembaga'], $ids),
+                    'lembaga_lokasi' => $post['titiklokasi']
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_lembaga', $datalem);
+            }            
+        }elseif ($cekpem > 0 ) {
+            if (empty($_POST['fileproposal']) && empty($_POST['filemitra'])) {
+                $data = array(
+                    'usulan_judul'              => $post['judul'],
+                    'usulan_abstrak'            => $post['abstrak'],
+                    'usulan_keyword'            => $post['keyword'],
+                    'skema_id'                  => $post['skim'],
+                    'usulan_tahun'              => $post['tahun_usulan'],
+                    'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
+                    'usulan_lama_pengabdian'    => $post['lama'],
+                    'usulan_biaya'              => $post['budget'],
+                    'usulan_total_biaya'        => $post['total'],
+                    'target_luaran'             => $post['luaran'],
+                    'usulan_kota'               => $post['kota'],
+                    'jmlh_mahasiswa'            => $post['jmlmhs'],
+                    'status_tahap'              => 'Revisi Proposal',
+                    'updated_at'                => $date
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_usulan', $data);
+
+                $this->db->query("INSERT INTO `ab_tahap_hibah`(`usulan_id`, `status_tahap`, `tanggal`, `file_usulan`, `inserted`) VALUES
+                ('" . $ids . "',
+                'Proposal Revisi',
+                '" . date('Y-m-d') . "',
+                '" . $fileprop . "',
+                '" . date('Y-m-d H:i:s') . "')
+                ");
+
+                $datalem = array(
+                    'lembaga_nama' => $post['lembaga'],
+                    'lembaga_jabatan' => $post['jns_lembaga'],
+                    'lembaga_pimpinan' => $post['pimpinan'],
+                    'lembaga_pimpinan_id' => $post['nopim'],
+                    'lembaga_lokasi' => $post['titiklokasi']
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_lembaga', $datalem);
+            } elseif (!empty($_POST['fileproposal']) && !empty($_POST['filemitra'])) {
+
+                unlink('./upload_file/pengabdian/lembaga/' . $filelem);
+
+                $data = array(
+                    'usulan_judul'              => $post['judul'],
+                    'usulan_abstrak'            => $post['abstrak'],
+                    'usulan_keyword'            => $post['keyword'],
+                    'skema_id'                  => $post['skim'],
+                    'usulan_tahun'              => $post['tahun_usulan'],
+                    'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
+                    'usulan_lama_pengabdian'    => $post['lama'],
+                    'usulan_biaya'              => $post['budget'],
+                    'usulan_total_biaya'        => $post['total'],
+                    'target_luaran'             => $post['luaran'],
+                    'usulan_kota'               => $post['kota'],
+                    'jmlh_mahasiswa'            => $post['jmlmhs'],
+                    'status_tahap'              => 'Revisi Proposal',
+                    'updated_at'                => $date
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_usulan', $data);
+
+                $nidn = $this->session->userdata('nidn');
+                $judul = $post['judul'];
+                
+                $this->db->query("INSERT INTO `ab_tahap_hibah`(`usulan_id`, `status_tahap`, `tanggal`, `file_usulan`, `inserted`) VALUES
+                ('" . $ids . "',
+                'Proposal Revisi',
+                '" . date('Y-m-d') . "',
+                '" . $this->_uploadFile($nidn, $judul) . "',
+                '" . date('Y-m-d H:i:s') . "')
+                ");
+
+                $datalem = array(
+                    'lembaga_nama' => $post['lembaga'],
+                    'lembaga_jabatan' => $post['jns_lembaga'],
+                    'lembaga_pimpinan' => $post['pimpinan'],
+                    'lembaga_pimpinan_id' => $post['nopim'],
+                    'lembaga_file' => $this->_uploadLembaga($post['lembaga'], $ids),
+                    'lembaga_lokasi' => $post['titiklokasi']
+                );
+
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_lembaga', $datalem);
+            } elseif (!empty($_POST['fileproposal']) && empty($_POST['filemitra'])) {
+                $data = array(
+                    'usulan_judul'              => $post['judul'],
+                    'usulan_abstrak'            => $post['abstrak'],
+                    'usulan_keyword'            => $post['keyword'],
+                    'skema_id'                  => $post['skim'],
+                    'usulan_tahun'              => $post['tahun_usulan'],
+                    'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
+                    'usulan_lama_pengabdian'    => $post['lama'],
+                    'usulan_biaya'              => $post['budget'],
+                    'usulan_total_biaya'        => $post['total'],
+                    'target_luaran'             => $post['luaran'],
+                    'usulan_kota'               => $post['kota'],
+                    'jmlh_mahasiswa'            => $post['jmlmhs'],
+                    'status_tahap'              => 'Revisi Proposal',
+                    'updated_at'                => $date
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_usulan', $data);
+
+                $nidn = $this->session->userdata('nidn');
+                $judul = $post['judul'];
+                
+                $this->db->query("INSERT INTO `ab_tahap_hibah`(`usulan_id`, `status_tahap`, `tanggal`, `file_usulan`, `inserted`) VALUES
+                ('" . $ids . "',
+                'Proposal Revisi',
+                '" . date('Y-m-d') . "',
+                '" . $this->_uploadFile($nidn, $judul) . "',
+                '" . date('Y-m-d H:i:s') . "')
+                ");
+
+                $datalem = array(
+                    'lembaga_nama' => $post['lembaga'],
+                    'lembaga_jabatan' => $post['jns_lembaga'],
+                    'lembaga_pimpinan' => $post['pimpinan'],
+                    'lembaga_pimpinan_id' => $post['nopim'],
+                    'lembaga_lokasi' => $post['titiklokasi']
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_lembaga', $datalem);
+            } elseif (!empty($_POST['filemitra']) && empty($_POST['fileproposal'])) {
+                unlink('./upload_file/pengabdian/lembaga/' . $filelem);
+                $data = array(
+                    'usulan_judul'              => $post['judul'],
+                    'usulan_abstrak'            => $post['abstrak'],
+                    'usulan_keyword'            => $post['keyword'],
+                    'skema_id'                  => $post['skim'],
+                    'usulan_tahun'              => $post['tahun_usulan'],
+                    'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
+                    'usulan_lama_pengabdian'    => $post['lama'],
+                    'usulan_biaya'              => $post['budget'],
+                    'usulan_total_biaya'        => $post['total'],
+                    'target_luaran'             => $post['luaran'],
+                    'usulan_kota'               => $post['kota'],
+                    'jmlh_mahasiswa'            => $post['jmlmhs'],
+                    'status_tahap'              => 'Revisi Proposal',
+                    'updated_at'                => $date
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_usulan', $data);
+
+                $this->db->query("INSERT INTO `ab_tahap_hibah`(`usulan_id`, `status_tahap`, `tanggal`, `file_usulan`, `inserted`) VALUES
+                ('" . $ids . "',
+                'Proposal Revisi',
+                '" . date('Y-m-d') . "',
+                '" . $fileprop . "',
+                '" . date('Y-m-d H:i:s') . "')
+                ");
+
+                $datalem = array(
+                    'lembaga_nama' => $post['lembaga'],
+                    'lembaga_jabatan' => $post['jns_lembaga'],
+                    'lembaga_pimpinan' => $post['pimpinan'],
+                    'lembaga_pimpinan_id' => $post['nopim'],
+                    'lembaga_file' => $this->_uploadLembaga($post['lembaga'], $ids),
+                    'lembaga_lokasi' => $post['titiklokasi']
+                );
+                $this->db->where('usulan_id', $ids);
+                $this->db->update('ab_lembaga', $datalem);
+            }     
         }
     }
 

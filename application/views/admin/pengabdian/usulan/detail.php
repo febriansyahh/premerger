@@ -279,17 +279,17 @@
                                                     <td width="84%"><input type="text" name="judul" class="form-control" value="<?php echo $data->usulan_judul ?>" readonly></td>
                                                 </tr>
 
-                                                <!-- <tr>
-                                    <td>Abstrak</td>
-                                    <td>:</td>
-                                    <td><textarea name="abstrak" id="content" rows="5" value="<?php echo $data->abstrak ?>"><?php echo $data->abstrak ?></textarea></td>
-                                </tr>
+                                                <tr>
+                                                    <td>Abstrak</td>
+                                                    <td>:</td>
+                                                    <td><textarea name="abstrak" id="content" class="form-control" rows="5" value="<?php echo $data->usulan_abstrak ?>" readonly><?php echo $data->usulan_abstrak ?></textarea></td>
+                                                </tr>
 
-                                <tr>
-                                    <td>Keywords</td>
-                                    <td>:</td>
-                                    <td><input type="text" name="keyword" class="form-control" value="<?php echo $data->keyword ?>"></td>
-                                </tr> -->
+                                                <tr>
+                                                    <td>Keywords</td>
+                                                    <td>:</td>
+                                                    <td><input type="text" name="keyword" class="form-control" value="<?php echo $data->usulan_keyword ?>"></td>
+                                                </tr>
 
                                                 <tr>
                                                     <td>Surel (e-mail)</td>

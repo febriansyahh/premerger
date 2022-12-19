@@ -69,6 +69,7 @@ class Laporan extends CI_Controller
     {
         $data['detail'] = $this->Laporan_model->subindexakhir($id);
         $data['judul'] = $this->Laporan_model->judul($id);
+        $data['cek'] = $this->Laporan_model->cekkemajuan($id);
         $this->load->view('dosen/pengabdian/pelaksanaan/detakhir', $data);
     }
 

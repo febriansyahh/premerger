@@ -49,6 +49,16 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
 
+                                    if ($this->session->flashdata('ubah')) echo '<div class="alert alert-success alert-dismissible" role="alert">
+                                    Berhasil melakukan perubahan data
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+
+                                    if ($this->session->flashdata('gglubah')) echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                                        Gagal melakukan perubahan data
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+
                                     if ($this->session->flashdata('active')) echo '<div class="alert alert-success alert-dismissible" role="alert">
                                     Berhasil melakukan perubahan status data jabatan LPM
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -87,7 +97,11 @@
                                                 <tr>
                                                     <td><?= $no++ ?></td>
                                                     <td><?= $data->usulan_judul ?></td>
-                                                    <td><?= $data->skema_nama ?></td>
+                                                    <td><?php if ($data->skema_nama == ''){
+                                                        echo 'Usulan Lama';
+                                                    }else{
+                                                        echo $data->skema_nama;
+                                                    } ?></td>
                                                     <td><?= $data->usulan_tahun ?></td>
                                                     <td><?= $data->tahun_ajaran . ' ' . $data->semester ?></td>
                                                     <!-- <td>

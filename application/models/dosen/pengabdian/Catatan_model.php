@@ -8,7 +8,9 @@ class Catatan_model extends CI_Model{
     {
         $nis = $this->session->userdata('nis');
         $nidn = $this->session->userdata('nidn');
-        $sql = $this->db->query("SELECT b.`usulan_id`, b.`usulan_judul`, b.`status_usulan`,  c.`skema_nama` FROM `ab_usulan` b LEFT JOIN `ab_skema` c ON b.`skema_id`=c.`skema_id` WHERE (b.`nidn_pengusul` = '$nidn' OR b.`nidn_pengusul` = '$nis') ORDER BY b.`usulan_id` DESC")->result();
+        $kode = $this->session->userdata('kode');
+
+        $sql = $this->db->query("SELECT b.`usulan_id`, b.`usulan_judul`, b.`status_usulan`,  c.`skema_nama` FROM `ab_usulan` b LEFT JOIN `ab_skema` c ON b.`skema_id`=c.`skema_id` WHERE (b.`nidn_pengusul` = '$nidn' OR b.`nidn_pengusul` = '$nis' OR b.kode_user='$kode') ORDER BY b.`usulan_id` DESC")->result();
         return $sql;
     }
 

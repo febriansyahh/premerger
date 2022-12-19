@@ -112,4 +112,71 @@ class Usulan extends CI_Controller
         $this->load->view('admin/pengabdian/usulan/hasilreview', $data);
     }
 
+    public function migrasi()
+    {
+        $data = $this->Usulan_model->migrasi();
+
+    
+
+        foreach ($data as $key => $value){
+
+
+            $ws = _wsgetdosen($value->anggota_nidn);
+            $res = $ws['result'];
+            if ($ws['result']['data'] != NULL) {
+                $kode = $res['data'][0]['kode'];
+                // echo $kode;
+                $execute = $this->db->query("UPDATE `ab_anggota` SET `kode_user` = '$kode' WHERE anggota_nidn = '$value->anggota_nidn' ");
+                if ($execute) {
+                    echo 'Ubah Berhasil';
+                }else{
+                    echo 'Ubah Gagal';
+                }
+
+            }
+
+            // if ($ws['result']['data'] != NULL) {
+            //     $kode = $res['data'][0]['kode'];
+
+            //     $execute = $this->db->query("UPDATE `ab_reviewer` SET `kode` = '$kode' WHERE nidn = '$value->nidn' ");
+            //     if ($execute) {
+            //         echo 'Ubah Berhasil';
+            //     }else{
+            //         echo 'Ubah Gagal';
+            //     }
+
+            // }
+        }
+        exit;
+    }
+
+    function _wsgetdosen($nidn)
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://ws.umk.ac.id/services/simpel/getdosen',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'nip'             => $nidn
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'umk_api_key: c3e8e2070a6ca052a781c8546b7973578de8f62f',
+                'Cookie: PHPSESSID=8bbgupsnq6hl6u7kktgsg2k3b9q6amek'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        $result = json_decode($response, true);
+        return $result;
+    }
+
 }

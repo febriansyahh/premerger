@@ -78,7 +78,12 @@
                                                 <tr>
                                                     <td><?= $no++ ?></td>
                                                     <td><?= $value->usulan_judul ?></td>
-                                                    <td><?= $value->skema_nama ?></td>
+                                                    <td><?php
+                                                     if($value->skema_nama != ''){
+                                                        echo $value->skema_nama;
+                                                     }else{
+                                                        echo '<span><em>Data Lama</em></span>';
+                                                     } ?></td>
                                                     <td>
                                                         <?php
                                                         switch ($value->status_usulan) {

@@ -301,12 +301,12 @@
                                                         <td><?php echo $cekno ?></td>
                                                         <td><?php echo $cek->materi_pemeriksaan ?></td>
                                                         <td><select name="cek_pilihan<?php echo $cekno ?>" class="form-control" id="cek_pilihan" class="radio" readonly>
-                                                                    <option value="Tidak" <?php if ($cek->cek_pilihan == 'Tidak') {
-                                                                                                echo 'selected';
-                                                                                            } ?>>Tidak</option>
-                                                                    <option value="Ya" <?php if ($cek->cek_pilihan == 'Ya') {
+                                                                <option value="Tidak" <?php if ($cek->cek_pilihan == 'Tidak') {
                                                                                             echo 'selected';
-                                                                                        } ?>>Ya</option>
+                                                                                        } ?>>Tidak</option>
+                                                                <option value="Ya" <?php if ($cek->cek_pilihan == 'Ya') {
+                                                                                        echo 'selected';
+                                                                                    } ?>>Ya</option>
                                                             </select>
                                                             <input type="hidden" name="pemeriksaan_id<?php echo $cekno ?>" value="<?php echo $cek->pemeriksaan_id; ?>">
                                                         </td>
@@ -374,12 +374,24 @@
                                                         <fieldset>
                                                             <div class="form">
                                                                 <h4 class="title" style="text-align: center">Identitas Ajuan</h4>
-                                                                <input type="hidden" name="id" value="<?= $data->usulan_id ?>">
+                                                                <input type="hidden" name="id" value="<?= $this->variasi->encode($data->usulan_id) ?>">
                                                                 <input type="hidden" name="budget" value="<?= $data->usulan_biaya ?>" id="budget">
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Judul</label>
                                                                     <div class="col-sm-10">
                                                                         <input type="text" name="judul" value="<?= $data->usulan_judul ?>" class="form-control" placeholder="Masukkan Judul Usulan Pengabdian" <?= $disabled ?>>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2" for="basic-icon-default-fullname">Abstrak</label>
+                                                                    <div class="col-sm-10">
+                                                                        <textarea name="abstrak" class="form-control" id="content" rows="5" value="<?= $data->usulan_abstrak ?>" <?= $disabled ?>><?= $data->usulan_abstrak ?></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2" for="basic-icon-default-fullname">Keyword</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" name="keyword" value="<?= $data->usulan_keyword ?>" class="form-control" placeholder="Masukkan Judul Usulan Pengabdian" <?= $disabled ?>>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
@@ -407,7 +419,13 @@
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Tahun Usulan Pengabdian</label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" name="tahun" value="<?= $data->usulan_tahun ?>" class="form-control" placeholder="<?= date('Y') ?>" <?= $disabled ?>>
+                                                                        <input type="text" name="tahun_usulan" value="<?= $data->usulan_tahun ?>" class="form-control" placeholder="<?= date('Y') ?>" <?= $disabled ?>>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2" for="basic-icon-default-fullname">Tahun Pelaksanaan Pengabdian</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" name="tahun_pelaksanaan" value="<?= $data->usulan_tahun_pelaksanaan ?>" class="form-control" placeholder="<?= date('Y') ?>" <?= $disabled ?>>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
@@ -433,6 +451,12 @@
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Target Luaran</label>
                                                                     <div class="col-sm-10">
                                                                         <textarea name="luaran" id="" rows="3" class="form-control" style="resize: none;" <?= $disabled ?>> <?= $data->target_luaran ?></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2" for="basic-icon-default-fullname">Kota Usulan Pengabdian</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" name="kota" class="form-control" value="<?= $data->usulan_kota ?>" <?= $disabled ?>>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
@@ -504,7 +528,15 @@
 
                                                                         <div class="row mb-3">
                                                                             <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Proposal</label>
-                                                                            <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/file/' . $data->file_usulan; ?>" frameborder="0" width="420px" height="680px"></iframe>
+                                                                            <?php
+                                                                                $filecek = base_url() . 'upload_file/pengabdian/file/' . $data->file_usulan;
+                                                                            if (file_exists($filecek)) {
+                                                                                $file = base_url() . 'upload_file/pengabdian/file/' . $data->file_usulan;
+                                                                            }else{
+                                                                                $file = base_url() . 'upload_file/pengabdian/file/default.pdf';
+                                                                            }
+                                                                            ?>
+                                                                            <iframe class="mt-4" src="<?php echo $file ?>" frameborder="0" width="420px" height="680px"></iframe>
                                                                         </div>
                                                                     </div>
 
@@ -518,7 +550,17 @@
                                                                         </div>
                                                                         <div class="row mb-3">
                                                                             <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Mitra</label>
-                                                                            <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/' . $data->lembaga_file; ?>" frameborder="0" width="420px" height="680px"></iframe>
+                                                                            <?php
+                                                                            if ($data->lembaga_file != '') {
+                                                                                ?>
+                                                                                <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/' . $data->lembaga_file; ?>" frameborder="0" width="420px" height="680px"></iframe>
+                                                                                <?php
+                                                                            }else{
+                                                                                ?>
+                                                                                <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/default.pdf'; ?>" frameborder="0" width="420px" height="680px"></iframe>
+                                                                                <?php
+                                                                            }
+                                                                            ?>
                                                                         </div>
                                                                     </div>
 

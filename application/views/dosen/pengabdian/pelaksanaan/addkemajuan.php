@@ -4,6 +4,7 @@
 
 <?php $this->load->view("_partials/head.php") ?>
 
+
 <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
@@ -83,9 +84,9 @@
                                                         <input type="file" name="filekemajuan" class="form-control" id="" accept=".pdf">
                                                     </div>
                                                 </div>
-                                                <hr>
+                                                <!-- <hr> -->
                                                 <!-- <span>Luaran Pengabdian</span> -->
-                                                <div class="row mb-3">
+                                                <!-- <div class="row mb-3">
                                                     <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Artikel Ilmiah</label>
                                                     <div class="col-sm-10">
                                                         <input type="file" name="luaran1" class="form-control" id="" accept=".pdf">
@@ -102,7 +103,7 @@
                                                     <div class="col-sm-10">
                                                         <input type="file" name="luaran3" class="form-control" id="" accept=".pdf">
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 <div class="row justify-content-end">
                                                     <div class="col-sm-10 mt-4">

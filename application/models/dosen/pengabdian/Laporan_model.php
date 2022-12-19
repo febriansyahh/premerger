@@ -12,6 +12,13 @@ class Laporan_model extends CI_Model
         return $sql;
     }
 
+    public function cekkemajuan($id)
+    {
+        $ids = $this->variasi->decode($id);
+        $sql = $this->db->query("SELECT COUNT(catatan_id) AS jmlh, SUM(catatan_persentase) AS persentase FROM `ab_catatan_harian` WHERE `usulan_id` = '$ids' ")->row();
+        return $sql;
+    }
+
     public function judul($id)
     {
         $ids = $this->variasi->decode($id);
@@ -26,6 +33,44 @@ class Laporan_model extends CI_Model
         return $sql;
     }
 
+    // Versi luaran ditambahkaan
+    // public function savekemajuan()
+    // {
+    //     $post = $this->input->post();
+    //     $date = date("Y-m-d H:i:s");
+    //     $usulan_id = $this->variasi->decode($post['idusulan']);
+
+    //     $this->usulan_id                = $usulan_id;
+    //     $this->tanggal                  = $post['tanggal'];
+    //     $this->kemajuan_ringkasan       = $post['uraian'];
+    //     $this->kemajuan_keyword         = $post['keyword'];
+    //     $this->kemajuan_file            = $this->_uploadFile($usulan_id, $post['tanggal'], 'Kemajuan', 'filekemajuan');
+    //     $this->luaran_satu              = $this->_uploadFile($usulan_id, $post['tanggal'], 'Luaran_Kem_1', 'luaran1');
+    //     $this->luaran_dua               = $this->_uploadFile($usulan_id, $post['tanggal'], 'Luaran_Kem_2', 'luaran2');
+    //     $this->luaran_tiga              = $this->_uploadFile($usulan_id, $post['tanggal'], 'Luaran_Kem_3', 'luaran3');
+    //     $this->kemajuan_insert          = $date;
+
+    //     $this->db->insert('ab_laporan_kemajuan', $this);
+    // }
+
+    // public function deletekem($id)
+    // {
+    //     $ids = $this->variasi->decode($id);
+    //     $sql = $this->db->query("SELECT `kemajuan_file`, `luaran_satu`, `luaran_dua`, `luaran_tiga` FROM `ab_laporan_kemajuan` WHERE `kemajuan_id`= '$ids'")->row();
+
+    //     $a = $sql->kemajuan_file;
+    //     $b = $sql->luaran_satu;
+    //     $c = $sql->luaran_dua;
+    //     $d = $sql->luaran_tiga;
+
+    //     unlink('./upload_file/pengabdian/pelaksanaan/' . $a);
+    //     unlink('./upload_file/pengabdian/pelaksanaan/' . $b);
+    //     unlink('./upload_file/pengabdian/pelaksanaan/' . $c);
+    //     unlink('./upload_file/pengabdian/pelaksanaan/' . $d);
+
+    //     return $this->db->delete('ab_laporan_kemajuan', array("kemajuan_id" => $ids));
+    // }
+    
     public function savekemajuan()
     {
         $post = $this->input->post();
@@ -37,29 +82,22 @@ class Laporan_model extends CI_Model
         $this->kemajuan_ringkasan       = $post['uraian'];
         $this->kemajuan_keyword         = $post['keyword'];
         $this->kemajuan_file            = $this->_uploadFile($usulan_id, $post['tanggal'], 'Kemajuan', 'filekemajuan');
-        $this->luaran_satu              = $this->_uploadFile($usulan_id, $post['tanggal'], 'Luaran_Kem_1', 'luaran1');
-        $this->luaran_dua               = $this->_uploadFile($usulan_id, $post['tanggal'], 'Luaran_Kem_2', 'luaran2');
-        $this->luaran_tiga              = $this->_uploadFile($usulan_id, $post['tanggal'], 'Luaran_Kem_3', 'luaran3');
         $this->kemajuan_insert          = $date;
 
         $this->db->insert('ab_laporan_kemajuan', $this);
+
+        // $this->db->query("UPDATE `ab_usulan` SET `status_tahap` = 'Laporan Kemajuan' WHERE `usulan_id` = '$usulan_id'");
     }
 
 
     public function deletekem($id)
     {
         $ids = $this->variasi->decode($id);
-        $sql = $this->db->query("SELECT `kemajuan_file`, `luaran_satu`, `luaran_dua`, `luaran_tiga` FROM `ab_laporan_kemajuan` WHERE `kemajuan_id`= '$ids'")->row();
+        $sql = $this->db->query("SELECT `kemajuan_file` FROM `ab_laporan_kemajuan` WHERE `kemajuan_id`= '$ids'")->row();
         
         $a = $sql->kemajuan_file;
-        $b = $sql->luaran_satu;
-        $c = $sql->luaran_dua;
-        $d = $sql->luaran_tiga;
-
+        
         unlink('./upload_file/pengabdian/pelaksanaan/' . $a);
-        unlink('./upload_file/pengabdian/pelaksanaan/' . $b);
-        unlink('./upload_file/pengabdian/pelaksanaan/' . $c);
-        unlink('./upload_file/pengabdian/pelaksanaan/' . $d);
 
         return $this->db->delete('ab_laporan_kemajuan', array("kemajuan_id" => $ids));
     }
@@ -88,6 +126,8 @@ class Laporan_model extends CI_Model
         $this->luaran_tiga              = $this->_uploadFile($usulan_id, $post['tanggal'], 'Luaran_Akhir_3', 'luaran3');
         $this->laporan_insert          = $date;
         $this->db->insert('ab_laporan_pengabdian', $this);
+
+        $this->db->query("UPDATE `ab_usulan` SET `status_tahap` = 'Laporan Akhir' WHERE `usulan_id` = '$usulan_id'");
     }
 
     public function deleteakhir($id)

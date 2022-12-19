@@ -351,6 +351,18 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
+                                                                        <label class="col-sm-2" for="basic-icon-default-fullname">Abstrak</label>
+                                                                        <div class="col-sm-10">
+                                                                            <textarea name="abstrak" class="form-control" id="content" cols="80" rows="10"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-sm-2" for="basic-icon-default-fullname">Keyword</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="text" name="keyword" class="form-control" placeholder="Masukkan Keyword sesuai dengan judul yang diajukan">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Kategori Pengabdian (Skim)</label>
                                                                         <div class="col-sm-10">
                                                                             <select name="skim" id="lstSkim" class="form-control" onchange="TampilBudget()">
@@ -366,9 +378,15 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
-                                                                        <label class="col-sm-2" for="basic-icon-default-fullname">Tahun Usulan Pengabdian</label>
+                                                                        <label class="col-sm-2" for="basic-icon-default-fullname">Tahun Usulan</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" name="tahun" class="form-control" placeholder="<?= date('Y') ?>">
+                                                                            <input type="text" name="tahun_usulan" class="form-control" placeholder="<?= date('Y') ?>" maxlength="4">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-sm-2" for="basic-icon-default-fullname">Tahun Pelaksanaan</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="text" name="tahun_pelaksanaan" class="form-control" placeholder="<?= date('Y') ?>" maxlength="4">
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
@@ -394,6 +412,12 @@
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Target Luaran</label>
                                                                         <div class="col-sm-10">
                                                                             <textarea name="luaran" id="" rows="3" class="form-control" style="resize: none;" placeholder="Masukkan Target Luaran"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-sm-2" for="basic-icon-default-fullname">Kota Usulan Pengabdian</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="text" name="kota" class="form-control" placeholder="Masukkan Kota Pengabdian">
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">

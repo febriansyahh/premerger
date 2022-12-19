@@ -190,5 +190,12 @@ class Usulan_model extends CI_Model
     {
         return $this->db->get("ab_aspek_penilaian")->result();
     }
+
+    public function migrasi()
+    {
+        // return $this->db->query("SELECT usulan_id, nidn_pengusul, nama, kode_user FROM `ab_usulans` WHERE kode_user = '0' AND nidn_pengusul != '0610713020001009' ")->result();
+        // return $this->db->query("SELECT nidn, nama_lengkap, kode FROM `ab_reviewer` WHERE kode ='' ")->result();
+        return $this->db->query("SELECT * FROM `ab_anggota` WHERE kode_user ='' ")->result();
+    }
     
 }

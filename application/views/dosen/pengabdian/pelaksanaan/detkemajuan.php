@@ -3,6 +3,9 @@
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="<?php echo base_url('assets/') ?>" data-template="vertical-menu-template-free">
 
 <?php $this->load->view("_partials/head.php") ?>
+<?php
+$cektahap = $this->Header_model->statustahap($this->variasi->encode($judul->usulan_id));
+?>
 
 <body>
     <!-- Layout wrapper -->
@@ -27,11 +30,20 @@
                 <div class="content-wrapper">
                     <!-- Content -->
 
-                    <div class="container">
-                        <div class="form-group mt-4">
-                            <a href="<?= site_url('dosen/pengabdian/laporan/addkemajuan/' . $this->variasi->encode($judul->usulan_id)) ?>" class="btn btn-primary"><i class="bx bx-plus"></i> Laporan Kemajuan</a>
+                    <?php
+                    if ($cektahap != 'Proposal') {
+                        if ($cektahap != 'Revisi Proposal') {
+                        ?>
+                        <div class="container">
+                            <div class="form-group mt-4">
+                                <a href="<?= site_url('dosen/pengabdian/laporan/addkemajuan/' . $this->variasi->encode($judul->usulan_id)) ?>" class="btn btn-primary"><i class="bx bx-plus"></i> Laporan Kemajuan</a>
+                            </div>
                         </div>
-                    </div>
+                        <?php
+                        }
+                    }
+                    ?>
+
 
 
                     <div class=" container-xxl flex-grow-1 container-p-y">

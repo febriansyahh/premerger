@@ -26,13 +26,18 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-
-                    <div class="container">
-                        <div class="form-group mt-4">
-                            <a href="<?= site_url('dosen/pengabdian/laporan/addlaporan/' . $this->variasi->encode($judul->usulan_id)) ?>" class="btn btn-primary"><i class="bx bx-plus"></i> Laporan Akhir</a>
+                    <?php
+                    $persen =  $cek->persentase;
+                    if ($cek->jmlh > 0 && $persen > 70) {
+                    ?>
+                        <div class="container">
+                            <div class="form-group mt-4">
+                                <a href="<?= site_url('dosen/pengabdian/laporan/addlaporan/' . $this->variasi->encode($judul->usulan_id)) ?>" class="btn btn-primary"><i class="bx bx-plus"></i> Laporan Akhir</a>
+                            </div>
                         </div>
-                    </div>
-
+                    <?php
+                    }
+                    ?>
 
                     <div class=" container-xxl flex-grow-1 container-p-y">
                         <div class="card">
