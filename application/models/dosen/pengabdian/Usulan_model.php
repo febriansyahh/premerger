@@ -189,7 +189,7 @@ class Usulan_model extends CI_Model
         '" . date('Y-m-d H:i:s') . "')
         ");
 
-        $this->db->query("INSERT INTO `ab_anggota` (`usulan_id`, `anggota_nidn`, `anggota_nama`, `anggota_pangkat`, `anggota_jabatan`, `email`, `anggota_experience`, `anggota_posisi`, `anggota_isconfirm`, `anggota_jobdesk`, `updated`) VALUES
+        $this->db->query("INSERT INTO `ab_anggota` (`usulan_id`, `anggota_nidn`, `anggota_nama`, `anggota_pangkat`, `anggota_jabatan`, `email`, `anggota_experience`, `anggota_posisi`, `anggota_isconfirm`, `anggota_jobdesk`, `kode_user`, `updated`) VALUES
         ('" . $usulanid . "',
         '" . $nidn ."',
         '" . $res['nama'] . "',
@@ -200,6 +200,7 @@ class Usulan_model extends CI_Model
         'ketua',
         '1',
         'Ketua',
+        '" . $res['kode'] . "',
         '" . date('Y-m-d H:i:s') . "')
         ");
     }
@@ -346,7 +347,7 @@ class Usulan_model extends CI_Model
                     'lembaga_pimpinan' => $post['pimpinan'],
                     'lembaga_pimpinan_id' => $post['nopim'],
                     'lembaga_file' => $this->_uploadLembaga($post['lembaga'], $ids),
-                    'lembaga_lokasi' => $post['titiklokasi']
+                    'lembaga_lokasi' => $post['titiklokasi']    
                 );
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_lembaga', $datalem);
