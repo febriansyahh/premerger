@@ -127,7 +127,7 @@
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
                     <li class="menu-item active">
-                        <a href="<?= site_url('dosen/home') ?>" class="menu-link">
+                        <a href="<?= site_url('admin/home') ?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Beranda</div>
                         </a>
@@ -438,7 +438,7 @@
         <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-                <a href="<?= site_url('admin/home') ?>" class="menu-link">
+                <a href="<?= site_url('dosen/home') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Beranda</div>
                 </a>
@@ -455,12 +455,12 @@
                 </a>
             </li>
 
-            <!-- <li class="menu-item">
-                <a href="<?= site_url('dosen/pengabdian/usulan') ?>" class="menu-link">
-                    <i class="menu-icon tf-icons bx bxs-edit-alt"></i>
-                    <div data-i18n="Basic">Perbaikan Usulan</div>
+            <li class="menu-item">
+                <a href="<?= site_url('dosen/pengabdian/usulan/sbganggota') ?>" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-user"></i>
+                    <div data-i18n="Basic">Sebagai Anggota</div>
                 </a>
-            </li> -->
+            </li>
 
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">

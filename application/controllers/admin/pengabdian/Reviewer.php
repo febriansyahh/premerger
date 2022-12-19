@@ -28,8 +28,13 @@ class Reviewer extends CI_Controller
         $validation = $this->form_validation;
 
         if ($validation) {
-            $model->save();
-            $this->session->set_flashdata('simpan', 'success');
+            if ($model->save()) {
+                $this->session->set_flashdata('simpan', 'success');
+            }else{
+                $this->session->set_flashdata('exist', 'success');
+            }
+            // $model->save();
+            // $this->session->set_flashdata('simpan', 'success');
         }else{
             $this->session->set_flashdata('gglsimpan', 'success');
         }

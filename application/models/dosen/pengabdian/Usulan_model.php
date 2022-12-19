@@ -15,7 +15,7 @@ class Usulan_model extends CI_Model
         //         WHERE (u.`username` = '$nis' OR u.`username` = '$nidn') ")->result();
 
         // simlitabmas
-        $sql = $this->db->query("SELECT a.*, b.`skema_nama`, c.`tahun_ajaran`, c.tahun_semester, IF(c.tahun_semester = '1', 'Gasal', 'Genap') AS semester FROM `ab_usulan` a LEFT JOIN `ab_skema` b ON a.`skema_id`=b.`skema_id` LEFT JOIN `mst_tahun_akademik` c ON a.`id_tahun`=c.`id_tahun`
+        $sql = $this->db->query("SELECT a.*, b.`skema_nama`, c.`tahun_ajaran`, c.tahun_semester, IF(c.tahun_semester = '1', 'Gasal', IF(c.tahun_semester = '2', 'Genap', 'Data Lama')) AS semester FROM `ab_usulan` a LEFT JOIN `ab_skema` b ON a.`skema_id`=b.`skema_id` LEFT JOIN `mst_tahun_akademik` c ON a.`id_tahun`=c.`id_tahun`
         WHERE (a.`nidn_pengusul` = '$nidn' OR a.`nidn_pengusul` = '$nis' OR a.kode_user='$kode') ORDER BY a.`usulan_id` DESC ")->result();
         return $sql;
     }
@@ -587,7 +587,6 @@ class Usulan_model extends CI_Model
     public function anggotainternal($id)
     {
         $ids = $this->variasi->decode($id);
-
         return $this->db->query("SELECT * FROM `ab_anggota` WHERE `usulan_id` = '$ids'  AND `anggota_posisi` = 'anggota' ")->result();
     }
 
@@ -788,6 +787,46 @@ class Usulan_model extends CI_Model
     public function aspek()
     {
         return $this->db->get("ab_aspek_penilaian")->result();
+    }
+
+    public function sbganggota()
+    {
+        $kode = $this->session->userdata('kode');
+        $sql = $this->db->query("SELECT b.*, c.skema_nama, d.tahun_ajaran, d.tahun_semester, IF(d.tahun_semester = '1', 'Gasal', IF(d.tahun_semester = '2', 'Genap', 'Data Lama')) AS semester FROM ab_anggota a LEFT JOIN ab_usulan b ON a.usulan_id=b.usulan_id LEFT JOIN ab_skema c ON b.skema_id=c.skema_id LEFT JOIN mst_tahun_akademik d ON b.id_tahun=d.id_tahun WHERE a.kode_user='$kode' AND a.anggota_posisi ='anggota'")->result();
+        return $sql;
+    }
+
+    public function detailanggota($id)
+    {
+        # code...
+    }
+
+    public function getanggotabyid($id)
+    {
+        $ids = $this->variasi->decode($id);
+        $sql = $this->db->query("SELECT * FROM ab_anggota WHERE `usulan_id` ='$ids' AND `anggota_posisi` ='anggota' ")->result();
+        return $sql;
+    }
+
+    public function getanggotaeksbyid($id)
+    {
+        $ids = $this->variasi->decode($id);
+        $a = $this->getbyid($id);
+        if ($a->status_kelengkapan = 'Menunggu') {
+            $sql = $this->db->query("SELECT * FROM ab_anggota_eks WHERE `usulan_id` ='$ids' ")->result();
+        } else {
+            $sql = $this->db->query("");
+        }
+        return $sql;
+    }
+
+    public function getbyid($id)
+    {
+        $ids = $this->variasi->decode($id);
+        $sql = $this->db->query("SELECT a.*, b.*, c.`skema_nama`, d.`tahun_ajaran`, e.`anggota_pangkat`, e.`anggota_jabatan`, e.`email` FROM `ab_usulan` a LEFT JOIN `ab_lembaga` b ON b.`usulan_id`=a.`usulan_id` 
+        LEFT JOIN `ab_skema` c ON a.`skema_id`=c.`skema_id` LEFT JOIN `mst_tahun_akademik` d ON a.`id_tahun`=d.`id_tahun` LEFT JOIN `ab_anggota` e ON a.`usulan_id`=e.`usulan_id` WHERE a.`usulan_id` = '$ids' AND e.`anggota_posisi`='ketua' 
+        ")->row();
+        return $sql;
     }
 
     // Untuk ambil data mahasiswa 

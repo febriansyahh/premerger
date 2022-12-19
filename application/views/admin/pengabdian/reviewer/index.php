@@ -82,6 +82,11 @@
                                     Hapus data berhasil
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
+
+                                    if ($this->session->flashdata('exist')) echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                                    Data reviewer yang dimasukkan telah tersedia
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
                                     ?>
                                     <h5 class="card-title text-primary">Reviewer</h5>
 

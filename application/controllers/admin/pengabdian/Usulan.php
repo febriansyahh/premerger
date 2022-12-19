@@ -125,13 +125,24 @@ class Usulan extends CI_Controller
             $res = $ws['result'];
             if ($ws['result']['data'] != NULL) {
                 $kode = $res['data'][0]['kode'];
-                // echo $kode;
-                $execute = $this->db->query("UPDATE `ab_anggota` SET `kode_user` = '$kode' WHERE anggota_nidn = '$value->anggota_nidn' ");
-                if ($execute) {
-                    echo 'Ubah Berhasil';
-                }else{
-                    echo 'Ubah Gagal';
-                }
+                $jabatan = $res['data'][0]['pangkat'];
+                $pangkat = $res['data'][0]['golongan'];
+                $email = $res['data'][0]['email'];
+                $prodi = $res['data'][0]['prodi'];
+                // echo '<pre>';
+                // var_dump($res['data'][0]);
+                // var_dump($jabatan);
+                // var_dump($pangkat);
+                // var_dump($email);
+                // var_dump($prodi);
+                // var_dump($kode);
+                // echo '</pre>';
+                // $execute = $this->db->query("UPDATE `ab_anggota` SET `anggota_pangkat` = '$pangkat', `anggota_jabatan` = '$jabatan', `email` = '$email', `anggota_experience` = '$prodi' WHERE kode_user = '$value->kode_user' ");
+                // if ($execute) {
+                //     echo 'Ubah Berhasil';
+                // }else{
+                //     echo 'Ubah Gagal';
+                // }
 
             }
 

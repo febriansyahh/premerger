@@ -92,16 +92,16 @@
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            foreach ($usulan as $data) {
+                                            foreach ($index as $data) {
                                             ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
                                                     <td><?= $data->usulan_judul ?></td>
-                                                    <td><?php if ($data->skema_nama == ''){
-                                                        echo 'Usulan Lama';
-                                                    }else{
-                                                        echo $data->skema_nama;
-                                                    } ?></td>
+                                                    <td><?php if ($data->skema_nama == '') {
+                                                            echo 'Usulan Lama';
+                                                        } else {
+                                                            echo $data->skema_nama;
+                                                        } ?></td>
                                                     <td><?= $data->usulan_tahun ?></td>
                                                     <td><?= $data->tahun_ajaran . ' ' . $data->semester ?></td>
                                                     <!-- <td>
@@ -112,7 +112,7 @@
                                                                 break;
 
                                                             case 'Ditolak':
-                                                                echo '<span class="badge bg-danger">Ditolak</span>';
+                                                                echo '<span class="badge bg-danger">Diterima</span>';
                                                                 break;
 
                                                             case 'Diterima':
@@ -197,7 +197,7 @@
                                                                 break;
 
                                                             case 'Ditolak':
-                                                                echo '<span class="badge bg-danger">Diterima</span>';
+                                                                echo '<span class="badge bg-danger">Ditolak</span>';
                                                                 break;
 
                                                             case 'Diterima':
@@ -211,10 +211,7 @@
                                                         ?>
                                                     </td>
                                                     <td width="15%">
-                                                        <a href="<?= site_url('dosen/pengabdian/usulan/detail/' . $this->variasi->encode($data->usulan_id)) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-detail"></i>Detail</a>
-                                                        <a style="margin-top: 4px; margin-bottom: 4px" href="<?= site_url('dosen/pengabdian/usulan/anggota/' . $this->variasi->encode($data->usulan_id)) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-user"></i>Anggota</a>
-                                                        <a href="<?php echo site_url('dosen/pengabdian/usulan/deleteusulan/' . $this->variasi->encode($data->usulan_id)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm"><i class="bx bxs-trash"></i>Hapus</a>
-
+                                                        <a href="<?= site_url('dosen/pengabdian/usulan/detailsbg/' . $this->variasi->encode($data->usulan_id)) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-detail"></i>Detail</a>
                                                     </td>
                                                 </tr>
                                             <?php

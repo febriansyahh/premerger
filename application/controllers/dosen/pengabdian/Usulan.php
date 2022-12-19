@@ -38,6 +38,8 @@ class Usulan extends CI_Controller
         $this->load->view('dosen/pengabdian/usulan/detail', $data);
     }
 
+    
+
     public function save()
     {
         $model = $this->Usulan_model;
@@ -159,6 +161,22 @@ class Usulan extends CI_Controller
         $data['isdone'] = $this->Usulan_model->isreviewdone($id);
         $data['aspek'] = $this->Usulan_model->aspek();
         $this->load->view('dosen/pengabdian/usulan/hasilreview', $data);
+    }
+
+      public function sbganggota()
+    {
+        $data['index'] = $this->Usulan_model->sbganggota();
+        $this->load->view('dosen/pengabdian/usulan/sbganggota', $data);
+    }
+
+    public function detailsbg($id)
+    {
+        $data['data'] = $this->Usulan_model->getbyid($id);
+        $data['anggota'] = $this->Usulan_model->getanggotabyid($id);
+        $data['anggotaeks'] = $this->Usulan_model->getanggotaeksbyid($id);
+        $data['pemeriksaan'] = $this->Usulan_model->pemeriksaan($id);
+        $data['cekis'] = $this->Usulan_model->is_pemeriksaan($id);
+        $this->load->view('dosen/pengabdian/usulan/detailsbg', $data);
     }
 
 }

@@ -11,6 +11,13 @@ class Reviewer_model extends CI_Model
     }
 
 
+    public function cek($kode)
+    {
+        $sql = $this->db->query("SELECT * FROM ab_reviewer WHERE kode = '$kode'")->num_rows();
+        return $sql;
+    }
+
+
     public function dosen()
     {
         $post = $this->input->post();
@@ -33,13 +40,21 @@ class Reviewer_model extends CI_Model
         $data = _wsgetdosen($dosen[0]);
         $res = $data['result']['data'][0];
         $identity = $res['nidn'] != '-' ? $res['nidn'] : $res['nis'];
-      
-        $this->nidn = $identity;
-        $this->nama_lengkap = $res['nama'];
-        $this->jabatan = $res['pangkat'];
-        $this->status = 'Active';
 
-        return $this->db->insert($this->_table, $this);
+        $ischeck = $this->cek($res['kode']);
+
+        if ($ischeck == '1') {
+            return 0;
+        }else{
+            $this->nidn = $identity;
+            $this->nama_lengkap = $res['nama'];
+            $this->jabatan = $res['pangkat'];
+            $this->status = 'Active';
+            $this->kode_user = $res['kode'];
+            return $this->db->insert($this->_table, $this);
+        }
+      
+
     }
 
     public function actived($id)

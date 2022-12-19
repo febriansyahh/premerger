@@ -534,7 +534,7 @@
                                     </div>
                                     <!-- </div> -->
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="<?= site_url('admin/pengabdian/usulan') ?>" class="btn btn-primary">Kembali</a>
+                                    <a href="<?= site_url('dosen/pengabdian/usulan/sbganggota') ?>" class="btn btn-primary">Kembali</a>
                                     <!-- </div> -->
                                 </div>
                             </div>
