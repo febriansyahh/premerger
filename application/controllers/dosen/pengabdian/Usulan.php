@@ -35,10 +35,9 @@ class Usulan extends CI_Controller
         $data['skema'] = $this->Usulan_model->skema();
         $data['cekpem'] = $this->Usulan_model->is_pemeriksaan($id);
         $data['pemeriksaan'] = $this->Usulan_model->pemeriksaan($id);
+        $data['tahap'] = $this->Usulan_model->tahaphibah($id);
         $this->load->view('dosen/pengabdian/usulan/detail', $data);
     }
-
-    
 
     public function save()
     {

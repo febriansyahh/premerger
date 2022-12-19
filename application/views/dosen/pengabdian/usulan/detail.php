@@ -515,6 +515,31 @@
                                                         <fieldset>
                                                             <div class="form">
                                                                 <h4 class="title" style="text-align: center">File Pendukung</h4>
+                                                                <?php
+                                                                if ($data->status_usulan != 'Menunggu') {
+                                                                ?>
+                                                                    <table width="100%" class="table table-hover">
+                                                                        <tr bgcolor="#F9F9F9">
+                                                                            <td width="18%"><strong>Tanggal</strong></td>
+                                                                            <td width="28%"><strong>Tahap</strong></td>
+                                                                            <td width="54%"><strong>File Download</strong></td>
+                                                                        </tr>
+                                                                        <?php
+                                                                        foreach ($tahap as $key => $value) {
+                                                                        ?>
+                                                                            <tr>
+                                                                                <td><?php echo date('d-m-Y', strtotime($value->tanggal)) ?></td>
+                                                                                <td><?php echo $data->status_tahap ?></td>
+                                                                                <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $data->file_usulan);  ?>" target="_blank" title="Download <?php echo $data->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($data->file_usulan, 0, 30) . '...'; ?></a></td>
+                                                                            </tr>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
+                                                                    </table>
+
+                                                            <?php
+                                                                } else {
+                                                            ?>
                                                                 <div class="row">
 
                                                                     <div class="col-md-6">
@@ -529,10 +554,11 @@
                                                                         <div class="row mb-3">
                                                                             <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Proposal</label>
                                                                             <?php
-                                                                                $filecek = base_url() . 'upload_file/pengabdian/file/' . $data->file_usulan;
-                                                                            if (file_exists($filecek)) {
+                                                                            $files = './upload_file/pengabdian/file/' . $data->file_usulan;
+                                                                            // echo $data->file_usulan;
+                                                                            if (file_exists($files)) {
                                                                                 $file = base_url() . 'upload_file/pengabdian/file/' . $data->file_usulan;
-                                                                            }else{
+                                                                            } else {
                                                                                 $file = base_url() . 'upload_file/pengabdian/file/default.pdf';
                                                                             }
                                                                             ?>
@@ -552,19 +578,23 @@
                                                                             <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Mitra</label>
                                                                             <?php
                                                                             if ($data->lembaga_file != '') {
-                                                                                ?>
+                                                                            ?>
                                                                                 <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/' . $data->lembaga_file; ?>" frameborder="0" width="420px" height="680px"></iframe>
-                                                                                <?php
-                                                                            }else{
-                                                                                ?>
+                                                                            <?php
+                                                                            } else {
+                                                                            ?>
                                                                                 <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/default.pdf'; ?>" frameborder="0" width="420px" height="680px"></iframe>
-                                                                                <?php
+                                                                            <?php
                                                                             }
                                                                             ?>
                                                                         </div>
                                                                     </div>
 
                                                                 </div>
+                                                            <?php
+                                                                }
+                                                            ?>
+
                                                             </div>
                                                             <button type="submit" style="float: right;" class="next action-button btn btn-primary">Update</button>
                                                             <input type="button" style="float: right;" name="previous" class="previous action-button-previous" value="Sebelumnya" />

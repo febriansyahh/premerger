@@ -39,6 +39,13 @@ class Usulan_model extends CI_Model
         return $sql;
     }
 
+    public function tahaphibah($id)
+    {
+        $ids = $this->variasi->decode($id);
+        $sql = $this->db->query("SELECT * FROM `ab_tahap_hibah` WHERE `usulan_id` = '$ids'")->result();
+        return $sql;
+    }
+
     public function skema()
     {
         $sql = $this->db->query("SELECT * FROM `ab_skema` WHERE `skema_parent` != '0' ORDER BY `skema_id` DESC")->result();
