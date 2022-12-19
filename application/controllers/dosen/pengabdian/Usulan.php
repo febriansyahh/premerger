@@ -99,7 +99,6 @@ class Usulan extends CI_Controller
         $id = $post['id_usulan'];
         $jenis = $post['jenis'];
 
-
         $model = $this->Usulan_model;
         $validation = $this->form_validation;
 
