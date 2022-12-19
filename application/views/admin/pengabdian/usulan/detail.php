@@ -228,7 +228,7 @@
                                             <td width="28%"><strong>Tahap</strong></td>
                                             <td width="54%"><strong>File Download</strong></td>
                                         </tr>
-
+                                        <!-- Untuk data dari tahap hibah  -->
                                         <tr>
                                             <td><?php echo date('d-m-Y', strtotime($data->created_at)) ?></td>
                                             <td><?php echo $data->status_usulan ?></td>
