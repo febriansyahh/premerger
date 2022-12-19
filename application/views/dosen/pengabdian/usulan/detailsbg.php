@@ -228,12 +228,17 @@
                                             <td width="28%"><strong>Tahap</strong></td>
                                             <td width="54%"><strong>File Download</strong></td>
                                         </tr>
-
-                                        <tr>
-                                            <td><?php echo date('d-m-Y', strtotime($data->created_at)) ?></td>
-                                            <td><?php echo $data->status_usulan ?></td>
-                                            <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $data->file_usulan);  ?>" target="_blank" title="Download <?php echo $data->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($data->file_usulan, 0, 30) . '...'; ?></a></td>
-                                        </tr>
+                                        <?php
+                                        foreach ($tahap as $key => $value) {
+                                        ?>
+                                            <tr>
+                                                <td><?php echo date('d-m-Y', strtotime($value->tanggal)) ?></td>
+                                                <td><?php echo $data->status_tahap ?></td>
+                                                <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $data->file_usulan);  ?>" target="_blank" title="Download <?php echo $data->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($data->file_usulan, 0, 30) . '...'; ?></a></td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
                                     </table>
                                     <br>
                                     <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
