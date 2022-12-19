@@ -6,9 +6,12 @@ if ($this->session->userdata('iduser') == NULL) {
 $link1 =  $this->uri->segment(1);
 $level = $this->session->userdata('level');
 
-// if ($level != $link1) {
-//     redirect($level .'/home');
-// }
+if ($level == 'dosen') {
+    if ($level != $link1) {
+        redirect($level .'/home');
+    }
+}
+
 ?>
 
 <head>
