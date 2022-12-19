@@ -640,7 +640,7 @@ class Usulan_model extends CI_Model
                 if ($status == 'Tugas Belajar') {
                     $this->session->set_flashdata('tugas', 'success');
                 }else{
-                    $this->db->query("INSERT INTO `ab_anggota` (`usulan_id`, `anggota_nidn`, `anggota_nama`, `anggota_pangkat`, `anggota_jabatan`, `email`, `anggota_experience`, `anggota_posisi`, `anggota_isconfirm`, `anggota_jobdesk`, `updated`) VALUES
+                    $this->db->query("INSERT INTO `ab_anggota` (`usulan_id`, `anggota_nidn`, `anggota_nama`, `anggota_pangkat`, `anggota_jabatan`, `email`, `anggota_experience`, `anggota_posisi`, `anggota_isconfirm`, `anggota_jobdesk`, `kode_user`, `updated`) VALUES
                     ('" . $ids . "',
                     '" . $identity . "',
                     '" . $res['nama'] . "',
@@ -651,6 +651,7 @@ class Usulan_model extends CI_Model
                     'anggota',
                     '0',
                     '" . $jobdesk . "',
+                    '" . $res['kode'] . "',
                     '" . $date . "'
                     )");
                     $this->session->set_flashdata('simpan', 'success');
@@ -709,6 +710,8 @@ class Usulan_model extends CI_Model
         $this->db->query("DELETE FROM `ab_usulan` WHERE `usulan_id` = '$ids' ");
         $this->db->query("DELETE FROM `ab_anggota` WHERE `usulan_id` = '$ids' ");
         $this->db->query("DELETE FROM `ab_anggota_eks` WHERE `usulan_id` = '$ids' ");
+        $this->db->query("DELETE FROM `ab_tahap_hibah` WHERE `usulan_id` = '$ids' ");
+        $this->db->query("DELETE FROM `ab_lembaga` WHERE `usulan_id` = '$ids' ");
     }
 
     public function deleteanggota($id)

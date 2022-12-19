@@ -127,7 +127,7 @@ class Laporan_model extends CI_Model
         $this->laporan_insert          = $date;
         $this->db->insert('ab_laporan_pengabdian', $this);
 
-        $this->db->query("UPDATE `ab_usulan` SET `status_tahap` = 'Laporan Akhir' WHERE `usulan_id` = '$usulan_id'");
+        // $this->db->query("UPDATE `ab_usulan` SET `status_tahap` = 'Laporan Akhir' WHERE `usulan_id` = '$usulan_id'");
     }
 
     public function deleteakhir($id)
