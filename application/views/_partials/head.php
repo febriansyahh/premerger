@@ -10,6 +10,10 @@ if ($level == 'dosen') {
     if ($level != $link1) {
         redirect($level .'/home');
     }
+}else{
+    if ($link1 == 'dosen') {
+        redirect($level .'/home');
+    }
 }
 
 ?>
