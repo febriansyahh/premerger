@@ -159,19 +159,24 @@
                                                     </td>
                                                     <td>
                                                         <?php
-                                                        switch ($data->hasil_nilai) {
-                                                            case 'Tidak Lolos':
-                                                                echo '<span class="badge bg-danger">Tidak Lolos</span>';
-                                                                break;
+                                                        if ($data->status_usulan == 'Ditolak') {
+                                                            echo '<span class="badge bg-danger">Usulan Ditolak</span>';
+                                                        }else{
+                                                            switch ($data->hasil_nilai) {
+                                                                case 'Tidak Lolos':
+                                                                    echo '<span class="badge bg-danger">Tidak Lolos</span>';
+                                                                    break;
 
-                                                            case 'Lolos':
-                                                                echo '<span class="badge bg-success">Lolos</span>';
-                                                                break;
+                                                                case 'Lolos':
+                                                                    echo '<span class="badge bg-success">Lolos</span>';
+                                                                    break;
 
-                                                            default:
-                                                                echo '<span class="badge bg-warning">Menunggu</span>';
-                                                                break;
+                                                                default:
+                                                                    echo '<span class="badge bg-warning">Menunggu</span>';
+                                                                    break;
+                                                            }
                                                         }
+                                                        
                                                         ?>
                                                     </td>
                                                     <td>
