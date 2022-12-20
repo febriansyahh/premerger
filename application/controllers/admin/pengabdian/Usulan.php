@@ -23,6 +23,7 @@ class Usulan extends CI_Controller
         $data['anggotaeks'] = $this->Usulan_model->getanggotaeksbyid($id);
         $data['pemeriksaan'] = $this->Usulan_model->pemeriksaan($id);
         $data['cekis'] = $this->Usulan_model->is_pemeriksaan($id);
+        $data['tahap'] = $this->Usulan_model->tahaphibah($id);
         $this->load->view('admin/pengabdian/usulan/detail', $data);
     }
 

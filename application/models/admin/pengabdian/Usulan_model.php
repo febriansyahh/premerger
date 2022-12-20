@@ -51,6 +51,13 @@ class Usulan_model extends CI_Model
         return $sql;
     }
 
+    public function tahaphibah($id)
+    {
+        $ids = $this->variasi->decode($id);
+        $sql = $this->db->query("SELECT tanggal, status_tahap, file_usulan as filetahap FROM `ab_tahap_hibah` WHERE `usulan_id` = '$ids'")->result();
+        return $sql;
+    }
+
     public function getanggotabyid($id)
     {
         $ids = $this->variasi->decode($id);
