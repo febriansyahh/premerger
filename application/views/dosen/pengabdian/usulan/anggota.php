@@ -88,7 +88,7 @@
                                                 <a data-bs-toggle="modal" data-bs-target="#anggotainter" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
                                             <?php
                                             }
-                                            if ($usulan->status_usulan == 'Diteriam' && $usulan->status_kelengkapan == 'Tidak Lengkap') {
+                                            if ($usulan->status_usulan == 'Diterima' && $usulan->status_kelengkapan == 'Tidak Lengkap') {
                                             ?>
                                                 <a data-bs-toggle="modal" data-bs-target="#anggotainter" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
                                             <?php
@@ -144,7 +144,7 @@
                                                 <a data-bs-toggle="modal" data-bs-target="#anggotamhs" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
                                             <?php
                                             }
-                                            if ($usulan->status_usulan == 'Diteriam' && $usulan->status_kelengkapan == 'Tidak Lengkap') {
+                                            if ($usulan->status_usulan == 'Diterima' && $usulan->status_kelengkapan == 'Tidak Lengkap') {
                                             ?>
                                                 <a data-bs-toggle="modal" data-bs-target="#anggotamhs" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
                                             <?php
@@ -200,7 +200,7 @@
                                                 <a data-bs-toggle="modal" data-bs-target="#anggotaeks" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
                                             <?php
                                             }
-                                            if ($usulan->status_usulan == 'Diteriam' && $usulan->status_kelengkapan == 'Tidak Lengkap') {
+                                            if ($usulan->status_usulan == 'Diterima' && $usulan->status_kelengkapan == 'Tidak Lengkap') {
                                             ?>
                                                 <a data-bs-toggle="modal" data-bs-target="#anggotaeks" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
                                             <?php
