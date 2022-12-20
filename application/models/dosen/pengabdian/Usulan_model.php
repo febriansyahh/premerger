@@ -637,7 +637,7 @@ class Usulan_model extends CI_Model
     public function ringkasan($id)
     {
         $ids = $this->variasi->decode($id);
-        return $this->db->query("SELECT a.`usulan_id`, a.`usulan_judul`, b.`skema_nama`, a.`jmlh_mahasiswa`, a.`status_usulan`, a.`hasil_nilai`  FROM ab_usulan a LEFT JOIN ab_skema b ON a.`skema_id`=b.`skema_id` WHERE a.`usulan_id`= '$ids'")->row();
+        return $this->db->query("SELECT a.`usulan_id`, a.`usulan_judul`, b.`skema_nama`, a.`jmlh_mahasiswa`, a.`status_usulan`, a.`hasil_nilai` , a.`status_kelengkapan` FROM ab_usulan a LEFT JOIN ab_skema b ON a.`skema_id`=b.`skema_id` WHERE a.`usulan_id`= '$ids'")->row();
     }
 
     public function saveanggota()
