@@ -361,7 +361,11 @@
                                                         if ($data->status_usulan == 'Menunggu') {
                                                             $disabled = '';
                                                         } else {
-                                                            $disabled = 'disabled';
+                                                            if ($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Tidak Lengkap') {
+                                                                $disabled = '';
+                                                            } else {
+                                                                $disabled = 'disabled';
+                                                            }
                                                         }
                                                         ?>
                                                         <!-- progressbar -->
@@ -516,7 +520,7 @@
                                                             <div class="form">
                                                                 <h4 class="title" style="text-align: center">File Pendukung</h4>
                                                                 <?php
-                                                                if ($data->status_usulan != 'Menunggu') {
+                                                                if ($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Lengkap' ) {
                                                                 ?>
                                                                     <table width="100%" class="table table-hover">
                                                                         <tr bgcolor="#F9F9F9">
@@ -537,67 +541,127 @@
                                                                         ?>
                                                                     </table>
 
-                                                                <?php
+                                                                    <?php
                                                                 } else {
-                                                                ?>
-                                                                    <div class="row">
+                                                                    if ($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Tidak Lengkap') {
+                                                                    ?>
+                                                                        <div class="row">
 
-                                                                        <div class="col-md-6">
-                                                                            <div class="row mb-3">
-                                                                                <label class="col-sm-4" for="basic-icon-default-fullname">File Proposal (.pdf)</label>
-                                                                                <div class="col-sm-8">
-                                                                                    <input type="file" class="form-control" name="fileproposal" accept=".pdf">
-                                                                                    <span class="mt-2">* <em>Maksimal ukuran file 2 MB</em> </span>
+                                                                            <div class="col-md-6">
+                                                                                <div class="row mb-3">
+                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">File Proposal (.pdf)</label>
+                                                                                    <div class="col-sm-8">
+                                                                                        <input type="file" class="form-control" name="fileproposal" accept=".pdf">
+                                                                                        <span class="mt-2">* <em>Maksimal ukuran file 2 MB</em> </span>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row mb-3">
+                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Proposal</label>
+                                                                                    <?php
+                                                                                    $files = './upload_file/pengabdian/file/' . $data->file_usulan;
+                                                                                    // echo $data->file_usulan;
+                                                                                    if (file_exists($files)) {
+                                                                                        $file = base_url() . 'upload_file/pengabdian/file/' . $data->file_usulan;
+                                                                                    } else {
+                                                                                        $file = base_url() . 'upload_file/pengabdian/file/default.pdf';
+                                                                                    }
+                                                                                    ?>
+                                                                                    <iframe class="mt-4" src="<?php echo $file ?>" frameborder="0" width="420px" height="680px"></iframe>
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Proposal</label>
-                                                                                <?php
-                                                                                $files = './upload_file/pengabdian/file/' . $data->file_usulan;
-                                                                                // echo $data->file_usulan;
-                                                                                if (file_exists($files)) {
-                                                                                    $file = base_url() . 'upload_file/pengabdian/file/' . $data->file_usulan;
-                                                                                } else {
-                                                                                    $file = base_url() . 'upload_file/pengabdian/file/default.pdf';
-                                                                                }
-                                                                                ?>
-                                                                                <iframe class="mt-4" src="<?php echo $file ?>" frameborder="0" width="420px" height="680px"></iframe>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-6">
-                                                                            <div class="row mb-3">
-                                                                                <label class="col-sm-4" for="basic-icon-default-fullname">File Persetujuan Mitra (.pdf)</label>
-                                                                                <div class="col-sm-8">
-                                                                                    <input type="file" class="form-control" name="filemitra" accept=".pdf">
-                                                                                    <span class="mt-2">* <em>Maksimal ukuran file 1 MB</em> </span>
+                                                                            <div class="col-md-6">
+                                                                                <div class="row mb-3">
+                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">File Persetujuan Mitra (.pdf)</label>
+                                                                                    <div class="col-sm-8">
+                                                                                        <input type="file" class="form-control" name="filemitra" accept=".pdf">
+                                                                                        <span class="mt-2">* <em>Maksimal ukuran file 1 MB</em> </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row mb-3">
+                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Mitra</label>
+                                                                                    <?php
+                                                                                    if ($data->lembaga_file != '') {
+                                                                                    ?>
+                                                                                        <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/' . $data->lembaga_file; ?>" frameborder="0" width="420px" height="680px"></iframe>
+                                                                                    <?php
+                                                                                    } else {
+                                                                                    ?>
+                                                                                        <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/default.pdf'; ?>" frameborder="0" width="420px" height="680px"></iframe>
+                                                                                    <?php
+                                                                                    }
+                                                                                    ?>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="row mb-3">
-                                                                                <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Mitra</label>
-                                                                                <?php
-                                                                                if ($data->lembaga_file != '') {
-                                                                                ?>
-                                                                                    <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/' . $data->lembaga_file; ?>" frameborder="0" width="420px" height="680px"></iframe>
-                                                                                <?php
-                                                                                } else {
-                                                                                ?>
-                                                                                    <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/default.pdf'; ?>" frameborder="0" width="420px" height="680px"></iframe>
-                                                                                <?php
-                                                                                }
-                                                                                ?>
-                                                                            </div>
-                                                                        </div>
 
-                                                                    </div>
+                                                                        </div>
+                                                                    <?php
+                                                                    } else {
+                                                                    ?>
+                                                                        <div class="row">
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="row mb-3">
+                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">File Proposal (.pdf)</label>
+                                                                                    <div class="col-sm-8">
+                                                                                        <input type="file" class="form-control" name="fileproposal" accept=".pdf">
+                                                                                        <span class="mt-2">* <em>Maksimal ukuran file 2 MB</em> </span>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row mb-3">
+                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Proposal</label>
+                                                                                    <?php
+                                                                                    $files = './upload_file/pengabdian/file/' . $data->file_usulan;
+                                                                                    // echo $data->file_usulan;
+                                                                                    if (file_exists($files)) {
+                                                                                        $file = base_url() . 'upload_file/pengabdian/file/' . $data->file_usulan;
+                                                                                    } else {
+                                                                                        $file = base_url() . 'upload_file/pengabdian/file/default.pdf';
+                                                                                    }
+                                                                                    ?>
+                                                                                    <iframe class="mt-4" src="<?php echo $file ?>" frameborder="0" width="420px" height="680px"></iframe>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="row mb-3">
+                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">File Persetujuan Mitra (.pdf)</label>
+                                                                                    <div class="col-sm-8">
+                                                                                        <input type="file" class="form-control" name="filemitra" accept=".pdf">
+                                                                                        <span class="mt-2">* <em>Maksimal ukuran file 1 MB</em> </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row mb-3">
+                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Mitra</label>
+                                                                                    <?php
+                                                                                    if ($data->lembaga_file != '') {
+                                                                                    ?>
+                                                                                        <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/' . $data->lembaga_file; ?>" frameborder="0" width="420px" height="680px"></iframe>
+                                                                                    <?php
+                                                                                    } else {
+                                                                                    ?>
+                                                                                        <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/default.pdf'; ?>" frameborder="0" width="420px" height="680px"></iframe>
+                                                                                    <?php
+                                                                                    }
+                                                                                    ?>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    <?php
+                                                                    }
+
+                                                                    ?>
+
                                                                 <?php
                                                                 }
                                                                 ?>
 
                                                             </div>
                                                             <?php
-                                                            if ($data->status_usulan != 'Menunggu') {
+                                                            if (($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Lengkap') OR $data->status_usulan == 'Ditolak') {
                                                             ?>
                                                                 <a href="<?php echo site_url('dosen/pengabdian/usulan') ?>" class="btn btn-warning action-button" style="float: right; text-align: center; background: warning;">Kembali</a>
                                                             <?php

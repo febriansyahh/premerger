@@ -69,7 +69,8 @@
                         </div>
                         ';
                     }
-                    if ($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Tidak Lengkap') {
+                    // echo $data->status_kelengkapan;
+                    if (($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Menunggu') OR ($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Tidak Lengkap')) {
                     ?>
                         <div class=" container-xxl flex-grow-1 container-p-y">
                             <div class="card">

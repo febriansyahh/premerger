@@ -270,11 +270,14 @@ class Usulan_model extends CI_Model
 
         $cek = $cekstatus->status_usulan;
         $tahap = $cekstatus->status_tahap;
+        $kelengkapan = $cekstatus->status_kelengkapan;
         $cekpem = $this->is_pemeriksaan($id);
         $filepropsal = $_FILES['fileproposal']['name'];
         $filemitra = $_FILES['filemitra']['name'];
 
-        if ($cek == 'Menunggu' && $tahap == 'Proposal' ) {
+        // if ($cek == 'Menunggu' && $tahap == 'Proposal' ) {
+        if ($tahap == 'Proposal' ) {
+           
             if (empty($filepropsal) && empty($filemitra)) {
                 $data = array(
                         'usulan_judul'              => $post['judul'],
@@ -294,6 +297,9 @@ class Usulan_model extends CI_Model
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_usulan', $data);
 
+                if ($kelengkapan == 'Tidak Lengkap') {
+                    $this->db->query("UPDATE ab_usulan SET `status_kelengkapan` = 'Menunggu' WHERE usulan_id = '$ids' ");
+                }
                 
                 $datalem = array(
                     'lembaga_nama' => $post['lembaga'],
@@ -328,6 +334,10 @@ class Usulan_model extends CI_Model
                 );
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_usulan', $data);
+
+                if ($kelengkapan == 'Tidak Lengkap') {
+                    $this->db->query("UPDATE ab_usulan SET `status_kelengkapan` = 'Menunggu' WHERE usulan_id = '$ids' ");
+                }
 
                 $nidn = $this->session->userdata('nidn');
                 $judul = $post['judul'];
@@ -374,6 +384,10 @@ class Usulan_model extends CI_Model
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_usulan', $data);
 
+                if ($kelengkapan == 'Tidak Lengkap') {
+                    $this->db->query("UPDATE ab_usulan SET `status_kelengkapan` = 'Menunggu' WHERE usulan_id = '$ids' ");
+                }
+
                 $nidn = $this->session->userdata('nidn');
                 $judul = $post['judul'];
 
@@ -416,6 +430,10 @@ class Usulan_model extends CI_Model
                 );
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_usulan', $data);
+
+                if ($kelengkapan == 'Tidak Lengkap') {
+                    $this->db->query("UPDATE ab_usulan SET `status_kelengkapan` = 'Menunggu' WHERE usulan_id = '$ids' ");
+                }
 
 
                 $datalem = array(
