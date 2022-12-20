@@ -101,21 +101,22 @@
                                                         $mengisi = $this->Atribut_model->mengisi($data->usulan_id);
                                                         if ($data->status_usulan == 'Ditolak') {
                                                             echo '<span class="badge bg-danger">Usulan Ditolak</span>';
-                                                        }
-                                                        if ($jmlh->jmlh > 0) {
-                                                            echo '<span class="badge bg-success">';
-                                                            echo $mengisi->jum  . ' / ' . $jmlh->jmlh;
-                                                            echo '</span>';
                                                         } else {
-                                                            echo '<span class="badge bg-warning">Belum Dipilih</span>';
-                                                        }
+                                                            if ($jmlh->jmlh > 0) {
+                                                                echo '<span class="badge bg-success">';
+                                                                echo $mengisi->jum  . ' / ' . $jmlh->jmlh;
+                                                                echo '</span>';
+                                                            } else {
+                                                                echo '<span class="badge bg-warning">Belum Dipilih</span>';
+                                                            }
                                                         ?>
-                                                        <a href="<?= site_url('admin/pengabdian/usulan/hslreview/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-zoom-in"></i> </a>
-                                                        <?php
-                                                        if ($data->hasil_nilai == '') {
-                                                            ?>
-                                                            <a href="<?= site_url('admin/pengabdian/usulan/reviewer/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-user"></i> </a>
+                                                            <a href="<?= site_url('admin/pengabdian/usulan/hslreview/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-zoom-in"></i> </a>
                                                             <?php
+                                                            if ($data->hasil_nilai == '') {
+                                                            ?>
+                                                                <a href="<?= site_url('admin/pengabdian/usulan/reviewer/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-user"></i> </a>
+                                                        <?php
+                                                            }
                                                         }
                                                         ?>
                                                     </td>
