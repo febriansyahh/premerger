@@ -99,6 +99,9 @@
                                                         <?php
                                                         $jmlh = $this->Atribut_model->jmlhreview($data->usulan_id);
                                                         $mengisi = $this->Atribut_model->mengisi($data->usulan_id);
+                                                        if ($data->status_usulan == 'Ditolak') {
+                                                            echo '<span class="badge bg-danger">Usulan Ditolak</span>';
+                                                        }
                                                         if ($jmlh->jmlh > 0) {
                                                             echo '<span class="badge bg-success">';
                                                             echo $mengisi->jum  . ' / ' . $jmlh->jmlh;
