@@ -271,10 +271,11 @@ class Usulan_model extends CI_Model
         $cek = $cekstatus->status_usulan;
         $tahap = $cekstatus->status_tahap;
         $cekpem = $this->is_pemeriksaan($id);
+        $filepropsal = $_FILES['fileproposal']['name'];
+        $filemitra = $_FILES['filemitra']['name'];
 
         if ($cek == 'Menunggu' && $tahap == 'Proposal' ) {
-            if (empty($_POST['fileproposal']) && empty($_POST['filemitra'])) {
-               
+            if (empty($filepropsal) && empty($filemitra)) {
                 $data = array(
                         'usulan_judul'              => $post['judul'],
                         'usulan_abstrak'            => $post['abstrak'],
@@ -305,8 +306,8 @@ class Usulan_model extends CI_Model
                 $this->db->update('ab_lembaga', $datalem);
 
 
-            }elseif (!empty($_POST['fileproposal'])&& !empty($_POST['filemitra'])) {
-
+            }elseif (!empty($filepropsal)&& !empty($filemitra)) {
+                
                 unlink('./upload_file/pengabdian/file/' . $fileprop);
                 unlink('./upload_file/pengabdian/lembaga/' . $filelem);
 
@@ -352,7 +353,8 @@ class Usulan_model extends CI_Model
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_lembaga', $datalem);
 
-            }elseif (!empty($_POST['fileproposal']) && empty($_POST['filemitra'])) {
+            }elseif (!empty($filepropsal) && empty($filemitra)) {
+                
                 unlink('./upload_file/pengabdian/file/' . $fileprop);
                 $data = array(
                     'usulan_judul'              => $post['judul'],
@@ -394,7 +396,8 @@ class Usulan_model extends CI_Model
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_lembaga', $datalem);
 
-            }elseif (!empty($_POST['filemitra']) && empty($_POST['fileproposal'])) {
+            }elseif (!empty($filemitra) && empty($filepropsal)) {
+                
                 unlink('./upload_file/pengabdian/lembaga/' . $filelem);
                 $data = array(
                     'usulan_judul'              => $post['judul'],
@@ -427,7 +430,8 @@ class Usulan_model extends CI_Model
                 $this->db->update('ab_lembaga', $datalem);
             }            
         }elseif ($cekpem > 0 ) {
-            if (empty($_POST['fileproposal']) && empty($_POST['filemitra'])) {
+            if (empty($filepropsal) && empty($filemitra)) {
+                
                 $data = array(
                     'usulan_judul'              => $post['judul'],
                     'usulan_abstrak'            => $post['abstrak'],
@@ -464,8 +468,8 @@ class Usulan_model extends CI_Model
                 );
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_lembaga', $datalem);
-            } elseif (!empty($_POST['fileproposal']) && !empty($_POST['filemitra'])) {
-
+            } elseif (!empty($filepropsal) && !empty($filemitra)) {
+                
                 unlink('./upload_file/pengabdian/lembaga/' . $filelem);
 
                 $data = array(
@@ -509,7 +513,8 @@ class Usulan_model extends CI_Model
 
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_lembaga', $datalem);
-            } elseif (!empty($_POST['fileproposal']) && empty($_POST['filemitra'])) {
+            } elseif (!empty($filepropsal) && empty($filemitra)) {
+                
                 $data = array(
                     'usulan_judul'              => $post['judul'],
                     'usulan_abstrak'            => $post['abstrak'],
@@ -549,7 +554,8 @@ class Usulan_model extends CI_Model
                 );
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_lembaga', $datalem);
-            } elseif (!empty($_POST['filemitra']) && empty($_POST['fileproposal'])) {
+            } elseif (!empty($filemitra) && empty($filepropsal)) {
+                
                 unlink('./upload_file/pengabdian/lembaga/' . $filelem);
                 $data = array(
                     'usulan_judul'              => $post['judul'],
