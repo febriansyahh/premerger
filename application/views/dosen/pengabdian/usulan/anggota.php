@@ -88,6 +88,11 @@
                                                 <a data-bs-toggle="modal" data-bs-target="#anggotainter" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
                                             <?php
                                             }
+                                            if ($usulan->status_usulan == 'Diteriam' && $usulan->status_kelengkapan == 'Tidak Lengkap') {
+                                            ?>
+                                                <a data-bs-toggle="modal" data-bs-target="#anggotainter" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
+                                            <?php
+                                            }
                                             ?>
                                         </h6>
                                         <table id="tableinternal" class="table table-bordered table-striped table-hover" style="width:100%;">
@@ -139,6 +144,11 @@
                                                 <a data-bs-toggle="modal" data-bs-target="#anggotamhs" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
                                             <?php
                                             }
+                                            if ($usulan->status_usulan == 'Diteriam' && $usulan->status_kelengkapan == 'Tidak Lengkap') {
+                                            ?>
+                                                <a data-bs-toggle="modal" data-bs-target="#anggotamhs" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
+                                            <?php
+                                            }
                                             ?>
                                         </h6>
                                         <table class="table table-bordered table-striped table-hover" style="width:100%;">
@@ -186,6 +196,11 @@
                                         <h6>Anggota Pengabdian Eksternal
                                             <?php
                                             if ($usulan->status_usulan == 'Menunggu' && $usulan->hasil_nilai == '') {
+                                            ?>
+                                                <a data-bs-toggle="modal" data-bs-target="#anggotaeks" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
+                                            <?php
+                                            }
+                                            if ($usulan->status_usulan == 'Diteriam' && $usulan->status_kelengkapan == 'Tidak Lengkap') {
                                             ?>
                                                 <a data-bs-toggle="modal" data-bs-target="#anggotaeks" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
                                             <?php
