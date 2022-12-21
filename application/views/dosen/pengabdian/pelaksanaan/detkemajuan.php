@@ -9,6 +9,7 @@ $iscatatan = $this->Header_model->catatanharian($this->variasi->encode($judul->u
 $usulan = $sts->status_usulan;
 $lengkap = $sts->status_kelengkapan;
 $tahap = $sts->status_tahap;
+$hasil = $sts->hasil_nilai;
 ?>
 
 <body>
@@ -35,7 +36,7 @@ $tahap = $sts->status_tahap;
                     <!-- Content -->
 
                     <?php
-                    if ($usulan == 'Diterima' && $lengkap == 'Lengkap' && $iscatatan > 0) {
+                    if ($usulan == 'Diterima' && $lengkap == 'Lengkap' && $iscatatan > 0 && $hasil == 'Lolos') {
                         ?>
                         <div class="container">
                             <div class="form-group mt-4">

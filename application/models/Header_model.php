@@ -84,7 +84,7 @@ class Header_model extends CI_Model {
     public function statususulan($id)
     {
         $ids = $this->variasi->decode($id);
-        $sql = $this->db->query("SELECT `status_usulan`, `status_kelengkapan`, `status_tahap` FROM `ab_usulan` WHERE `usulan_id` = '$ids' ")->row();
+        $sql = $this->db->query("SELECT `status_usulan`, `status_kelengkapan`, `status_tahap`, `hasil_nilai` FROM `ab_usulan` WHERE `usulan_id` = '$ids' ")->row();
         return $sql;
     }
 
