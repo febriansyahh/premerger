@@ -4,7 +4,11 @@
 
 <?php $this->load->view("_partials/head.php") ?>
 <?php
-$cektahap = $this->Header_model->statustahap($this->variasi->encode($judul->usulan_id));
+$sts = $this->Header_model->statususulan($this->variasi->encode($judul->usulan_id));
+$iscatatan = $this->Header_model->catatanharian($this->variasi->encode($judul->usulan_id));
+$usulan = $sts->status_usulan;
+$lengkap = $sts->status_kelengkapan;
+$tahap = $sts->status_tahap;
 ?>
 
 <body>
@@ -31,8 +35,7 @@ $cektahap = $this->Header_model->statustahap($this->variasi->encode($judul->usul
                     <!-- Content -->
 
                     <?php
-                    if ($cektahap != 'Proposal') {
-                        if ($cektahap != 'Revisi Proposal') {
+                    if ($usulan == 'Diterima' && $lengkap == 'Lengkap' && $iscatatan > 0) {
                         ?>
                         <div class="container">
                             <div class="form-group mt-4">
@@ -40,7 +43,6 @@ $cektahap = $this->Header_model->statustahap($this->variasi->encode($judul->usul
                             </div>
                         </div>
                         <?php
-                        }
                     }
                     ?>
 

@@ -131,7 +131,7 @@
                 <h5 class="modal-title" id="exampleModalLabel1"><?= $parent->skema_nama ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?php echo site_url('admin/pengabdian/Skema/savechild') ?>" method="post" enctype="multipart/form">
+            <form action="<?php echo site_url('admin/pengabdian/skema/savechild') ?>" method="post" enctype="multipart/form">
                 <div class="modal-body">
                     <div class="col mb-3">
                         <label for="nameBasic" class="form-label">Nama Skema</label>
@@ -177,7 +177,7 @@
                 <h5 class="modal-title" id="exampleModalLabel1">Edit <?= $parent->skema_nama ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?php echo site_url('admin/pengabdian/Skema/update') ?>" method="post" enctype="multipart/form">
+            <form action="<?php echo site_url('admin/pengabdian/skema/update') ?>" method="post" enctype="multipart/form">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col mb-0">

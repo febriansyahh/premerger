@@ -4,6 +4,13 @@
 
 <?php $this->load->view("_partials/head.php") ?>
 
+<?php
+$sts = $this->Header_model->statususulan($this->variasi->encode($judul->usulan_id));
+$usulan = $sts->status_usulan;
+$lengkap = $sts->status_kelengkapan;
+$tahap = $sts->status_tahap;
+?>
+
 <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
@@ -26,14 +33,17 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-
-                    <div class="container">
-                        <div class="form-group mt-4">
-                            <a data-bs-toggle="modal" data-bs-target="#basePemeriksaan" class="btn btn-primary" type="button" style="color: white;">Tambah Catatan Harian</a>
+                    <?php
+                    if ($usulan == 'Diterima' && $lengkap = 'Lengkap') {
+                        echo `
+                        <div class="container">
+                            <div class="form-group mt-4">
+                                <a data-bs-toggle="modal" data-bs-target="#basePemeriksaan" class="btn btn-primary" type="button" style="color: white;">Tambah Catatan Harian</a>
+                            </div>
                         </div>
-                    </div>
-
-
+                        `;
+                    }
+                    ?>
                     <div class=" container-xxl flex-grow-1 container-p-y">
                         <div class="card">
                             <div class="d-flex align-items-end row">
@@ -86,12 +96,12 @@
                                                     <td><?= $no++ ?></td>
                                                     <td><?= date("d-m-Y", strtotime($value->catatan_tanggal)) ?></td>
                                                     <td><?= $value->catatan_uraian ?></td>
-                                                    <td><?= $value->catatan_persentase .' %' ?></td>
+                                                    <td><?= $value->catatan_persentase . ' %' ?></td>
                                                     <td>
                                                         <a href="<?php echo base_url('/upload_file/pengabdian/pelaksanaan/' . $value->catatan_file);  ?>" target="_blank" title="Download <?php echo $value->catatan_file ?>"><i class="icon-download-alt"></i> <?php echo substr($value->catatan_file, 0, 30) . '...'; ?></a>
                                                     </td>
                                                     <td>
-                                                        <a href="<?= site_url('dosen/pengabdian/catatan/delete/' . $this->variasi->encode($value->catatan_id) .'~'. $this->uri->segment('5')) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm"><i class="bx bxs-trash"></i> Hapus</a>
+                                                        <a href="<?= site_url('dosen/pengabdian/catatan/delete/' . $this->variasi->encode($value->catatan_id) . '~' . $this->uri->segment('5')) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm"><i class="bx bxs-trash"></i> Hapus</a>
                                                     </td>
                                                 </tr>
                                             <?php

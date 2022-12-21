@@ -80,5 +80,26 @@ class Header_model extends CI_Model {
 
         return $sql->status_tahap;
     }
+
+    public function statususulan($id)
+    {
+        $ids = $this->variasi->decode($id);
+        $sql = $this->db->query("SELECT `status_usulan`, `status_kelengkapan`, `status_tahap` FROM `ab_usulan` WHERE `usulan_id` = '$ids' ")->row();
+        return $sql;
+    }
+
+    public function catatanharian($id)
+    {
+        $ids = $this->variasi->decode($id);
+        $sql = $this->db->query("SELECT `catatan_id` FROM `ab_catatan_harian` WHERE `usulan_id` = '$ids' ")->num_rows();
+        return $sql;
+    }
+
+    public function lapkemajuan($id)
+    {
+        $ids = $this->variasi->decode($id);
+        $sql = $this->db->query("SELECT `kemajuan_id` FROM `ab_laporan_kemajuan` WHERE `usulan_id` = '$ids' ")->num_rows();
+        return $sql;
+    }
 }
 ?>

@@ -17,7 +17,7 @@ class Catatan_model extends CI_Model{
     public function judul($id)
     {
         $ids = $this->variasi->decode($id);
-        $sql = $this->db->query("SELECT `usulan_judul` FROM `ab_usulan` WHERE `usulan_id` = '$ids' ")->row();
+        $sql = $this->db->query("SELECT `usulan_id`, `usulan_judul` FROM `ab_usulan` WHERE `usulan_id` = '$ids' ")->row();
         return $sql;
     }
     

@@ -397,6 +397,8 @@ function editableSkema(param) {
 function editableChild(param) {
 	let data = $(param).data("id");
 	let exp = data.split("~");
+	console.log("AAA");
+	console.log(data);
 	$("#editId").val(exp[0]);
 	$("#editNama").val(exp[1]);
 	$("#editBudget").val(exp[2]);
@@ -407,14 +409,14 @@ function editableChild(param) {
 	if (exp[5] == 'active') {
 		$('#status').html(`<div class="input-group input-group-merge">
 							<select name="status" class="form-control" id="">
-                                <option value="Active" selected>Active</option>
-								<option value="Non Active">Non Active</option>
+                                <option value="active" selected>Active</option>
+								<option value="nonactive">Non Active</option>
                             </select></div>`);
 	} else {
 		$('#status').html(`<div class="input-group input-group-merge">
 							<select name="status" class="form-control" id="">
-                                <option value="Active">Active</option>
-								<option value="Non Active" selected>Non Active</option>
+                                <option value="active">Active</option>
+								<option value="nonactive" selected>Non Active</option>
                             </select></div>`);
 	}
 }
