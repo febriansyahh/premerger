@@ -28,6 +28,7 @@ class Usulan extends CI_Controller
     {
         $data['data'] = $this->Usulan_model->review($id);
         $data['aspek'] = $this->Usulan_model->aspek();
+        $data['periode'] = $this->Usulan_model->periode();
         $this->load->view('reviewer/pengabdian/review', $data);
     }
 

@@ -43,6 +43,12 @@ class Usulan_model extends CI_Model
         return $sql;
     }
 
+    public function periode()
+    {
+        $sql = $this->db->query("SELECT * FROM `ab_periode` WHERE `setting_jenis` = 'periode_review' AND `keterangan` = 'active' ")->num_rows();
+        return $sql;
+    }
+
     public function review($id)
     {
         $ids = $this->variasi->decode($id);
