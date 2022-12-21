@@ -29,7 +29,7 @@ class Pemeriksaan_model extends CI_Model
         $materi = $post['materi'];
         $ids = $this->variasi->decode($id);
 
-        $this->db->query("UPDATE `ab_aspek_penilaian` SET `materi_pemeriksaan` = '$materi' WHERE `pemeriksaan_id` = '$ids' ");
+        $this->db->query("UPDATE `ab_pemeriksaan` SET `materi_pemeriksaan` = '$materi' WHERE `pemeriksaan_id` = '$ids' ");
     }
 
     public function delete($id)

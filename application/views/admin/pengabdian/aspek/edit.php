@@ -57,7 +57,7 @@
                                             <h5 class="mb-0">Ubah Aspek Penilaian</h5>
                                         </div>
                                         <div class="card-body">
-                                            <form action="<?php echo base_url('pengabdian/Aspek/update'); ?>" method="post" enctype="multipart/form">
+                                            <form action="<?php echo base_url('admin/pengabdian/aspek/update'); ?>" method="post" enctype="multipart/form">
                                                 <div class="row mb-3">
                                                     <input type="hidden" name="idaspek" class="form-control"  value="<?= $this->variasi->encode($edit->aspek_id) ?>">
                                                     <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Keterangan Penilaian</label>
