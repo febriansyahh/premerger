@@ -34,6 +34,10 @@ $tahap = $sts->status_tahap;
                 <div class="content-wrapper">
                     <!-- Content -->
                     <?php
+                    echo '<pre>';
+                    var_dump($usulan);
+                    var_dump($lengkap);
+                    echo '</pre>';
                     if ($usulan == 'Diterima' && $lengkap = 'Lengkap') {
                         echo `
                         <div class="container">
