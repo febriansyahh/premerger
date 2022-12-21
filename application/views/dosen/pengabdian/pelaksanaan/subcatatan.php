@@ -34,18 +34,14 @@ $tahap = $sts->status_tahap;
                 <div class="content-wrapper">
                     <!-- Content -->
                     <?php
-                    echo '<pre>';
-                    var_dump($usulan);
-                    var_dump($lengkap);
-                    echo '</pre>';
                     if ($usulan == 'Diterima' && $lengkap == 'Lengkap') {
-                        echo `
+                        ?>
                         <div class="container">
                             <div class="form-group mt-4">
                                 <a data-bs-toggle="modal" data-bs-target="#basePemeriksaan" class="btn btn-primary" type="button" style="color: white;">Tambah Catatan Harian</a>
                             </div>
                         </div>
-                        `;
+                        <?php
                     }
                     ?>
                     <div class=" container-xxl flex-grow-1 container-p-y">
