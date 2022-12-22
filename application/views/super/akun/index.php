@@ -28,7 +28,7 @@
                     <!-- Content -->
                     <div class="container mt-3">
                         <div class="form-group">
-                            <a href="<?= site_url('Akun/add') ?>" class="btn btn-primary">Tambah Pengguna</a>
+                            <a href="<?= site_url('admin/akun/add') ?>" class="btn btn-primary">Tambah Pengguna</a>
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@
                                                     </td>
                                                     <td>
                                                         <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#resetpass" onclick="resetPassword(this)" data-id="<?php echo $this->variasi->encode($value->id_user) . "~" . $value->username . "~" . $value->nama_user ?>" class="btn btn-outline-warning btn-sm"><i class="bx bx-key"></i>Reset</a>
-                                                        <a href="<?php echo site_url('Akun/delete/' . $this->variasi->encode($value->id_user)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm">Hapus</a>
+                                                        <a href="<?php echo site_url('admin/akun/delete/' . $this->variasi->encode($value->id_user)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm">Hapus</a>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -146,7 +146,7 @@
                 <h5 class="modal-title" id="exampleModalLabel1">Reset Password</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?php echo site_url('Akun/reset') ?>" method="post" enctype="multipart/form">
+            <form action="<?php echo site_url('admin/akun/reset') ?>" method="post" enctype="multipart/form">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col mb-3">

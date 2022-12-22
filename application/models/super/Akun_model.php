@@ -3,12 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Akun_model extends CI_Model {
 
-    private $_table = "pre_users";
+    private $_table = "mst_users";
 
     public function index()
     {
         // return $this->db->get($this->_table)->result();
-        return $this->db->query("SELECT * FROM `pre_users` WHERE `user_delete` = 0 ")->result();
+        return $this->db->query("SELECT * FROM `mst_users` WHERE `user_delete` = 0 ")->result();
     }
 
     public function save()
@@ -44,12 +44,12 @@ class Akun_model extends CI_Model {
         $pass = $post['password'];
         $password = hash('sha256', $pass);
 
-        $this->db->query("UPDATE `pre_users` SET `password` = '".$password."', `username` = '$username', `nama_user` = '$nama' WHERE `id_user` = '". $this->variasi->decode($id)."' ");
+        $this->db->query("UPDATE `mst_users` SET `password` = '".$password."', `username` = '$username', `nama_user` = '$nama' WHERE `id_user` = '". $this->variasi->decode($id)."' ");
     }
 
     public function delete($id)
     {
-        $this->db->query("UPDATE `pre_users` SET `user_delete` = '1', `user_active` = 'Nonactive' WHERE `id_user` = '$id' ");
+        $this->db->query("UPDATE `mst_users` SET `user_delete` = '1', `user_active` = 'Nonactive' WHERE `id_user` = '$id' ");
     }
     
 }

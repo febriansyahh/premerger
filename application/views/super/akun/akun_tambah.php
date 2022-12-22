@@ -47,7 +47,7 @@
                                             <h5 class="mb-0">Tambah Data Pengguna</h5>
                                         </div>
                                         <div class="card-body">
-                                            <form action="<?php echo base_url('Akun/save'); ?>" method="post" enctype="multipart/form">
+                                            <form action="<?php echo base_url('admin/akun/save'); ?>" method="post" enctype="multipart/form">
                                                 <div class="row mb-3">
                                                     <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Username</label>
                                                     <div class="col-sm-10">
@@ -105,7 +105,7 @@
                                                 </div>
                                                     <div class="row justify-content-end">
                                                         <div class="col-sm-10 mt-4">
-                                                            <a href="<?= site_url('Akun') ?> " class="btn btn-warning">Kembali</a>
+                                                            <a href="<?= site_url('admin/akun') ?> " class="btn btn-warning">Kembali</a>
                                                             <button type="submit" class="btn btn-primary">Simpan</button>
                                                         </div>
                                                     </div>
