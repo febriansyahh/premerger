@@ -190,7 +190,7 @@
                                             <td>Skim</td>
                                             <td>:</td>
                                             <td><?php echo $data->skema_nama ?></td>
-                                            <td>Tahun Pelaksanaan</td>
+                                            <td>Tahun Ajaran</td>
                                             <td>:</td>
                                             <td><?php echo $data->tahun_ajaran ?></td>
                                         </tr>
@@ -420,23 +420,22 @@
                                                     <td style="color:#F00">Maksimum Rp. <?php echo number_format($data->usulan_biaya, 0, '', '.') ?></td>
                                                 </tr>
 
-                                                <!-- <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td style="color:#F00">Maksimum Rp. <?php echo $data->usulan_biaya ?></td>
-                                </tr> -->
-
                                                 <tr>
                                                     <td>APB UMK</td>
                                                     <td>:</td>
-                                                    <td>Rp. <?php echo number_format($data->usulan_biaya, 0, '', '.')  ?></td>
+                                                    <td>Rp. <?php echo number_format($data->usulan_biaya_apb, 0, '', '.')  ?></td>
                                                 </tr>
 
-                                                <!-- <tr>
-                                    <td>Biaya dari lain</td>
-                                    <td>:</td>
-                                    <td>Rp. <?php echo $data->biaya_lain ?></td>
-                                </tr> -->
+                                                <tr>
+                                                    <td>Biaya Lain</td>
+                                                    <td>:</td>
+                                                    <td>Rp. <?php echo number_format($data->usulan_biaya_lain, 0, '', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Biaya Keseluruhan</td>
+                                                    <td>:</td>
+                                                    <td>Rp. <?php echo number_format($data->usulan_total_biaya,  0, '', '.') ?></td>
+                                                </tr>
                                             </table>
                                         </div>
 

@@ -58,15 +58,9 @@
                                         </div>
                                         <div class="card-body">
                                             <form action="<?php echo base_url('dosen/pengabdian/laporan/saveakhir'); ?>" method="post" enctype="multipart/form-data">
+                                                <input type="hidden" class="form-control" name="idusulan" value="<?= $this->variasi->encode($index->usulan_id) ?>">
                                                 <div class="row mb-3">
-                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tanggal Pelaporan</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="hidden" class="form-control" name="idusulan" value="<?= $this->variasi->encode($index->usulan_id) ?>">
-                                                        <input type="date" class="form-control" name="tanggal">
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Uraian Laporan Akhir</label>
+                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Abstrak Laporan Akhir</label>
                                                     <div class="col-sm-10">
                                                         <textarea name="uraian" class="form-control" id="content" cols="80" rows="30"></textarea>
                                                     </div>
@@ -84,8 +78,22 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                                <!-- <span>Luaran Pengabdian</span> -->
+                                                <span>Luaran Pengabdian</span>
                                                 <div class="row mb-3">
+                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Status Artikel Ilmiah</label>
+                                                    <div class="col-sm-10">
+                                                        <select name="status" id="stsartikel" class="form-control" onchange="Statusartikel()">
+                                                            <option value="" selected>-Pilih-</option>
+                                                            <option value="submit">Submit</option>
+                                                            <option value="review">Review</option>
+                                                            <option value="accept">Accept</option>
+                                                            <option value="publish">Publish</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div id="resstatus"></div>
+                                                <!-- <div class="row mb-3">
                                                     <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Artikel Ilmiah</label>
                                                     <div class="col-sm-10">
                                                         <input type="file" name="luaran1" class="form-control" id="" accept=".pdf">
@@ -102,12 +110,12 @@
                                                     <div class="col-sm-10">
                                                         <input type="file" name="luaran3" class="form-control" id="" accept=".pdf">
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 <div class="row justify-content-end">
                                                     <div class="col-sm-10 mt-4">
                                                         <a href="<?= site_url('dosen/pengabdian/laporan/detailakhir/' . $this->variasi->encode($index->usulan_id)) ?> " class="btn btn-warning">Kembali</a>
-                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                        <button type="submit" id="btnsimpan" class="btn btn-primary">Simpan</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -139,6 +147,38 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <?php $this->load->view("_partials/js.php") ?>
+
+    <script language="JavaScript" type="text/JavaScript">
+        function Statusartikel() {
+            var x           = document.getElementById("stsartikel").value;
+            if (x == 'publish') {
+                document.getElementById("resstatus").innerHTML = `
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Link Artikel Ilmiah</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="linkartikel" placeholder="Masukkan link artikel ilmiah yang telah terpublish" class="form-control" id="" accept=".pdf" required>
+                            </div>
+                    </div>
+                    `;
+            }else{
+                if (x != '') {
+                    document.getElementById("resstatus").innerHTML = `
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">File Atrikel Ilmiah</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="fileartikel" class="form-control" id="" accept=".pdf" required>
+                        </div>
+                    </div>
+                    `;
+                }else{
+                    document.getElementById("resstatus").innerHTML = "<small><em>* Silahkan pilih status artikel terlebih dahulu</em></small>";
+                }
+                
+            }
+
+        }
+
+    </script>
 
 </body>
 

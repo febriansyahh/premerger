@@ -39,12 +39,6 @@
                     }
                     ?>
 
-                    <div class="container">
-                        <div class="form-group mt-4">
-                            <a href="<?= site_url('dosen/pengabdian/laporan/addlaporan/' . $this->variasi->encode($judul->usulan_id)) ?>" class="btn btn-primary"><i class="bx bx-plus"></i> Laporan Akhir</a>
-                        </div>
-                    </div>
-                    
                     <div class=" container-xxl flex-grow-1 container-p-y">
                         <div class="card">
                             <div class="d-flex align-items-end row">

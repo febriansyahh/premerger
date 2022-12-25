@@ -73,16 +73,16 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
                                     ?>
-                                    <h5 class="card-title text-primary">Skema Pengabdian</h5>
+                                    <h5 class="card-title text-primary">Lembaga Pengabdian</h5>
 
-                                    <table id="tableskema" class="table table-bordered table-striped table-hover" style="width:100%">
+                                    <table id="tablelembaga" class="table table-bordered table-striped table-hover" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Skema</th>
-                                                <th>Biaya Min</th>
-                                                <th>Biaya Max</th>
-                                                <th>Kuota</th>
+                                                <th>Nama</th>
+                                                <th>Jabatan</th>
+                                                <th>Pimpinan</th>
+                                                <th>Pimpinan Id</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -90,23 +90,23 @@
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            foreach ($skema as $value) {
+                                            foreach ($lembaga as $value) {
                                             ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
-                                                    <td><?= $value->skema_nama ?></td>
-                                                    <td><?= $value->skema_biaya_min ?></td>
-                                                    <td><?= $value->skema_biaya_max ?></td>
-                                                    <td><?= $value->skema_kuota ?></td>
+                                                    <td><?= $value->lembaga_nama ?></td>
+                                                    <td><?= $value->lembaga_jabatan ?></td>
+                                                    <td><?= $value->lembaga_pimpinan ?></td>
+                                                    <td><?= $value->lembaga_idpimpinan ?></td>
                                                     <td><?php
-                                                        if ($value->skema_status == 'active') {
+                                                        if ($value->status == 'active') {
                                                             echo '<span class="badge bg-success">Active</span>';
                                                         } else {
                                                             echo '<span class="badge bg-danger">Non Active</span>';
                                                         }  ?></td>
                                                     <td>
-                                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editSkema" onclick="editableSkema(this)" data-id="<?php echo $this->variasi->encode($value->skema_id) . "~" . $value->skema_nama . "~" . $value->skema_biaya_min . "~" . $value->skema_biaya_max . "~" . $value->skema_kuota . "~" . $value->skema_status ?>" class="btn btn-outline-primary btn-sm"><i class='bx bxs-edit'></i> Edit</a>
-                                                        <a href="<?= site_url('admin/pengabdian/skema/delete/' . $this->variasi->encode($value->skema_id)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data skema ini ?');" class="btn btn-outline-danger btn-sm"><i class='bx bxs-trash'></i> Hapus</a>
+                                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editSkema" onclick="editablelembaga(this)" data-id="<?php echo $this->variasi->encode($value->id_lembaga) . "~" . $value->lembaga_nama . "~" . $value->lembaga_jabatan . "~" . $value->lembaga_pimpinan . "~" . $value->lembaga_idpimpinan . "~" . $value->lokasi . "~" . $value->status ?>" class="btn btn-outline-primary btn-sm"><i class='bx bxs-edit'></i> Edit</a>
+                                                        <a href="<?= site_url('admin/pengabdian/lembaga/delete/' . $this->variasi->encode($value->id_lembaga)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data skema ini ?');" class="btn btn-outline-danger btn-sm"><i class='bx bxs-trash'></i> Hapus</a>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -136,29 +136,45 @@
 
     <!-- Modal -->
     <div class="modal fade" id="baseJabatan" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel1">Skema Pengabdian Kepada Masyarakat</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="<?php echo site_url('admin/pengabdian/skema/save') ?>" method="post" enctype="multipart/form">
+                <form action="<?php echo site_url('admin/pengabdian/lembaga/save') ?>" method="post" enctype="multipart/form">
                     <div class="modal-body">
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Nama Skema</label>
-                            <input type="text" class="form-control" placeholder="Masukkan nama Skim" name="nama">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Nama Lembaga</label>
+                                    <input type="text" class="form-control" placeholder="Masukkan Nama Lembaga" name="nama">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Jabatan Lembaga</label>
+                                    <input type="text" class="form-control" placeholder="Masukkan Jabatan" name="jabatan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Pimpinan</label>
+                                    <input type="text" class="form-control" placeholder="Masukkan Nama Pimpinan" name="pimpinan">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Id Pimpinan</label>
+                                    <input type="text" class="form-control" placeholder="Masukkan No. Id Pimpinan" name="idpimpinan">
+                                </div>
+                            </div>
                         </div>
                         <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Biaya Min</label>
-                            <input type="text" class="form-control" placeholder="Masukkan Biaya Min" name="biayamin">
-                        </div>
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Biaya Max</label>
-                            <input type="text" class="form-control" placeholder="Masukkan Biaya Max" name="biayamax">
-                        </div>
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Kuota Skim</label>
-                            <input type="text" class="form-control" placeholder="Masukkan Kuota" name="kuota">
+                            <label for="nameBasic" class="form-label">Lokasi Lembaga</label>
+                            <textarea name="lokasi" id="" class="form-control" rows="3"></textarea>
                         </div>
                         <div class="col mb-3">
                             <label for="nameBasic" class="form-label">Status Skim</label>
@@ -181,42 +197,51 @@
     </div>
 
     <div class="modal fade" id="editSkema" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel1">Edit Skema</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="<?php echo site_url('admin/pengabdian/skema/update') ?>" method="post" enctype="multipart/form">
+                <form action="<?php echo site_url('admin/pengabdian/lembaga/update') ?>" method="post" enctype="multipart/form">
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col mb-0">
-                                <input type="hidden" name="id" id="editId" class="form-control" />
-                                <label for="emailBasic" class="form-label">Nama Skema</label>
-                                <input type="text" name="nama" id="editNama" class="form-control" />
+                            <div class="col-md-6">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Nama Lembaga</label>
+                                    <input type="hidden" id="editId" class="form-control" name="id">
+                                    <input type="text" id="editNama" class="form-control" placeholder="Masukkan Nama Lembaga" name="nama">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Jabatan Lembaga</label>
+                                    <input type="text" id="editJabatan" class="form-control" placeholder="Masukkan Jabatan" name="jabatan">
+                                </div>
                             </div>
                         </div>
-
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Biaya Minimal Skema</label>
-                            <input type="text" class="form-control" id="editBudgetmin" placeholder="Masukkan kuota lolos skim" name="biayamin" maxlength="10">
-                        </div>
-
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Biaya Maksimal Skema</label>
-                            <input type="text" class="form-control" id="editBudget" placeholder="Masukkan kuota lolos skim" name="biayamax" maxlength="10">
-                        </div>
-
-                        <div class="col mb-3">
-                            <label for="nameBasic" class="form-label">Kuota Skema</label>
-                            <input type="text" class="form-control" id="editKuota" placeholder="Masukkan kuota lolos skim" name="kuota" maxlength="3">
-                        </div>
-
                         <div class="row">
-                            <div class="col mb-0">
-                                <label for="emailBasic" class="form-label">Status Skema</label>
-                                <div id="status"></div>
+                            <div class="col-md-6">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Pimpinan</label>
+                                    <input type="text" id="editPimpinan" class="form-control" placeholder="Masukkan Nama Pimpinan" name="pimpinan">
+                                </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="col mb-3">
+                                    <label for="nameBasic" class="form-label">Id Pimpinan</label>
+                                    <input type="text" id="editPimpinanId" class="form-control" placeholder="Masukkan No. Id Pimpinan" name="idpimpinan">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="nameBasic" class="form-label">Lokasi Lembaga</label>
+                            <textarea name="lokasi" id="editLokasi" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="col mb-3">
+                            <label for="emailBasic" class="form-label">Status Skema</label>
+                            <div id="status"></div>
                         </div>
                     </div>
                     <div class="modal-footer">

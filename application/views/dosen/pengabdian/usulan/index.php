@@ -156,36 +156,20 @@
                                                             echo '<span class="badge bg-warning">Belum Dipilih</span>';
                                                         }
                                                         ?>
-                                                        <br>
-                                                        <?php
-                                                        switch ($data->hasil_nilai) {
-                                                            case 'Tidak Lolos':
-                                                                echo '<span class="badge bg-danger">Tidak Lolos</span>';
-                                                                break;
-
-                                                            case 'Lolos':
-                                                                echo '<span class="badge bg-success">Lolos</span>';
-                                                                break;
-
-                                                            default:
-                                                                echo '<span class="badge bg-warning">Menunggu</span>';
-                                                                break;
-                                                        }
-                                                        ?>
                                                     </td>
                                                     <td>
                                                         <?php
                                                         switch ($data->status_kelengkapan) {
                                                             case 'Menunggu':
-                                                                echo '<span class="badge bg-warning">Menunggu</span>';
+                                                                echo '<span class="badge bg-warning">Administrasi Menunggu</span>';
                                                                 break;
 
                                                             case 'Tidak Lengkap':
-                                                                echo '<span class="badge bg-danger">Tidak Lengkap</span>';
+                                                                echo '<span class="badge bg-danger">Administrasi Tidak Lengkap</span>';
                                                                 break;
 
                                                             case 'Lengkap':
-                                                                echo '<span class="badge bg-primary">Lengkap</span>';
+                                                                echo '<span class="badge bg-primary">Administrasi Lengkap</span>';
                                                                 break;
                                                         }
                                                         ?>
@@ -193,19 +177,19 @@
                                                         <?php
                                                         switch ($data->status_usulan) {
                                                             case 'Menunggu':
-                                                                echo '<span class="badge bg-warning">Menunggu</span>';
+                                                                echo '<span class="badge bg-warning">Usulan Menunggu</span>';
                                                                 break;
 
                                                             case 'Ditolak':
-                                                                echo '<span class="badge bg-danger">Diterima</span>';
+                                                                echo '<span class="badge bg-danger">Usulan Diterima</span>';
                                                                 break;
 
                                                             case 'Diterima':
-                                                                echo '<span class="badge bg-primary">Diterima</span>';
+                                                                echo '<span class="badge bg-primary">Usulan Diterima</span>';
                                                                 break;
 
                                                             case 'Selesai':
-                                                                echo '<span class="badge bg-success">Selesai</span>';
+                                                                echo '<span class="badge bg-success">Usulan Selesai</span>';
                                                                 break;
                                                         }
                                                         ?>

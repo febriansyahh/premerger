@@ -96,15 +96,15 @@
                                                         <?php
                                                         switch ($data->status_kelengkapan) {
                                                             case 'Menunggu':
-                                                                echo '<span class="badge bg-warning">Menunggu</span>';
+                                                                echo '<span class="badge bg-warning">Administrasi Menunggu</span>';
                                                                 break;
 
                                                             case 'Tidak Lengkap':
-                                                                echo '<span class="badge bg-danger">Tidak Lengkap</span>';
+                                                                echo '<span class="badge bg-danger">Administrasi Tidak Lengkap</span>';
                                                                 break;
 
                                                             case 'Lengkap':
-                                                                echo '<span class="badge bg-success">Lengkap</span>';
+                                                                echo '<span class="badge bg-success">Administrasi Lengkap</span>';
                                                                 break;
                                                         }
                                                         ?>

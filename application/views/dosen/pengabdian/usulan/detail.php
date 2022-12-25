@@ -380,6 +380,7 @@
                                                                 <h4 class="title" style="text-align: center">Identitas Ajuan</h4>
                                                                 <input type="hidden" name="id" value="<?= $this->variasi->encode($data->usulan_id) ?>">
                                                                 <input type="hidden" name="budget" value="<?= $data->usulan_biaya ?>" id="budget">
+                                                                <input type="hidden" name="biayaall" value="<?= $data->usulan_total_biaya ?>" id="totalbiayakeseluruhan">
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Judul</label>
                                                                     <div class="col-sm-10">
@@ -439,15 +440,36 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
-                                                                    <label class="col-sm-2" for="basic-icon-default-fullname">Usulan Anggaran Dana</label>
+                                                                    <label class="col-sm-2" for="basic-icon-default-fullname">Usulan Anggaran Max</label>
                                                                     <div class="col-sm-10">
                                                                         <input type="text" value="<?= $data->usulan_biaya ?>" class="form-control" name="batasanusulan" id="batasan" maxlength="10" disabled>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
+                                                                    <label class="col-sm-2" for="basic-icon-default-fullname">Usulan Anggaran APB</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" value="<?= $data->usulan_biaya_apb ?>" class="form-control" name="apb" id="totbiaya" onkeyup="CekBiaya()" maxlength="10" placeholder="Total Biaya Pengabdian" <?= $disabled ?>>
+                                                                        <span id="lebihan" style="color: red; font-style: italic;"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2" for="basic-icon-default-fullname">Biaya Lain</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="biayalain" id="biayalain" value="<?= $data->usulan_biaya_lain ?>" onkeyup="TotalBiaya()" maxlength="10" placeholder="Biaya Lain">
+                                                                        <span id="lebihan" style="color: red; font-style: italic;"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <label class="col-sm-2" for="basic-icon-default-fullname">Sumber Biaya Lain</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="text" class="form-control" name="sumberlain" value="<?= $data->sumber_biaya_lain ?>" placeholder="Sumber Biaya Lain Pengabdian">
+                                                                        <span id="lebihan" style="color: red; font-style: italic;"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Usulan Total Biaya</label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" value="<?= $data->usulan_total_biaya ?>" class="form-control" name="total" id="totbiaya" onkeyup="CekBiaya()" maxlength="10" placeholder="Total Biaya Pengabdian" <?= $disabled ?>>
+                                                                        <input type="text" value="<?= $data->usulan_total_biaya ?>" class="form-control" name="total" id="biayatotal" maxlength="10" placeholder="Total Biaya Pengabdian" readonly>
                                                                         <span id="lebihan" style="color: red; font-style: italic;"></span>
                                                                     </div>
                                                                 </div>
@@ -482,31 +504,31 @@
                                                                 <div class=" row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Nama Lembaga</label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" value="<?= $data->lembaga_nama ?>" name="lembaga" class="form-control" placeholder="Masukkan Lembaga Usulan Pengabdian" <?= $disabled ?>>
+                                                                        <input type="text" value="<?= $data->lembaga_nama ?>" name="lembaga" class="form-control" placeholder="Masukkan Lembaga Usulan Pengabdian" readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Jenis Lembaga</label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" value="<?= $data->lembaga_jabatan ?>" name="jns_lembaga" class="form-control" placeholder="Masukkan Jenis Lembaga" <?= $disabled ?>>
+                                                                        <input type="text" value="<?= $data->lembaga_jabatan ?>" name="jns_lembaga" class="form-control" placeholder="Masukkan Jenis Lembaga" readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Nama Pimpinan Lembaga</label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" value="<?= $data->lembaga_pimpinan ?>" name="pimpinan" class="form-control" placeholder="Masukkan Pimpinan Lembaga" <?= $disabled ?>>
+                                                                        <input type="text" value="<?= $data->lembaga_pimpinan ?>" name="pimpinan" class="form-control" placeholder="Masukkan Pimpinan Lembaga" readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">NIP / NIS Pimpinan</label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" value="<?= $data->lembaga_pimpinan_id ?>" name="nopim" class="form-control" placeholder="Masukkan NIP / NIS Pimpinan" <?= $disabled ?>>
+                                                                        <input type="text" value="<?= $data->lembaga_pimpinan_id ?>" name="nopim" class="form-control" placeholder="Masukkan NIP / NIS Pimpinan" readonly>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Titik Lokasi</label>
                                                                     <div class="col-sm-10">
-                                                                        <textarea name="titiklokasi" rows="5" class="form-control" <?= $disabled ?>><?= $data->lembaga_lokasi ?></textarea>
+                                                                        <textarea name="titiklokasi" rows="5" class="form-control" readonly><?= $data->lembaga_lokasi ?></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -520,7 +542,7 @@
                                                             <div class="form">
                                                                 <h4 class="title" style="text-align: center">File Pendukung</h4>
                                                                 <?php
-                                                                if ($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Lengkap' ) {
+                                                                if ($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Lengkap') {
                                                                 ?>
                                                                     <table width="100%" class="table table-hover">
                                                                         <tr bgcolor="#F9F9F9">
@@ -661,7 +683,7 @@
 
                                                             </div>
                                                             <?php
-                                                            if (($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Lengkap') OR $data->status_usulan == 'Ditolak') {
+                                                            if (($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Lengkap') or $data->status_usulan == 'Ditolak') {
                                                             ?>
                                                                 <a href="<?php echo site_url('dosen/pengabdian/usulan') ?>" class="btn btn-warning action-button" style="float: right; text-align: center; background: warning;">Kembali</a>
                                                             <?php
@@ -711,7 +733,6 @@
         }
 
         function TampilBudget() {
-            console.log("AAA");
             var x           = document.getElementById("lstSkim");
             var budget      = x.options[(x.selectedIndex)].getAttribute('data-budget');
             var batasan     = formatNumber(budget);
@@ -728,10 +749,22 @@
             if (parseInt(total) > parseInt(limit)) {
                 document.getElementById("lebihan").innerHTML = "Maaf, Total Budget melebihi batasan";
                 document.getElementById("next1").style.display = "none";
+                document.getElementById("biayalain").readOnly = true;
             }else{
                 document.getElementById("lebihan").innerHTML = "";
                 document.getElementById("next1").style.display = "block";
+                document.getElementById("biayalain").readOnly = false;
             }
+        }
+
+        function TotalBiaya() {
+            var apbu = document.getElementById("totbiaya").value;
+            var lain = document.getElementById("biayalain").value;
+
+            var totalbiaya = parseInt(apbu) + parseInt(lain);
+
+            document.getElementById("biayatotal").value = formatNumber(totalbiaya);
+            document.getElementById("totalbiayakeseluruhan").value = totalbiaya;
         }
     </script>
 

@@ -236,50 +236,50 @@
                                         </tr>
                                     </table>
                                     <br>
-                                        <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
-                                            <li class="nav-item">
-                                                <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-usulan" aria-controls="navs-usulan" aria-selected="true">
-                                                    <i class="tf-icons bx bx-file"></i> Identitas Usulan
-                                                </button>
-                                            </li>
-                                            <li class="nav-item">
-                                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-atribut" aria-controls="navs-atribut" aria-selected="false">
-                                                    <i class="tf-icons bx bx-file"></i> Atribut Usulan
-                                                </button>
-                                            </li>
-                                            <li class="nav-item">
-                                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-anggota" aria-controls="navs-anggota" aria-selected="false">
-                                                    <i class="tf-icons bx bx-user"></i> Anggota Pengabdian
-                                                </button>
-                                            </li>
-                                            <li class="nav-item">
-                                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-biaya" aria-controls="navs-biaya" aria-selected="false">
-                                                    <i class="tf-icons bx bx-money"></i> Biaya usulan
-                                                </button>
-                                            </li>
-                                            <li class="nav-item">
-                                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-isian" aria-controls="navs-isian" aria-selected="false">
-                                                    <i class="tf-icons bx bxs-report"></i> Isian Pengesahan
-                                                </button>
-                                            </li>
-                                            <li class="nav-item">
-                                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-lembaga" aria-controls="navs-lembaga" aria-selected="false">
-                                                    <i class="tf-icons bx bxs-building"></i> Lembaga Pengabdian
-                                                </button>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade show active" id="navs-usulan" role="tabpanel">
-                                                <p>
-                                                </p>
-                                                <table width="100%" class="table" border="0">
-                                                    <tr>
-                                                        <td width="12%">Judul</td>
-                                                        <td width="4%">:</td>
-                                                        <td width="84%"><input type="text" name="judul" class="form-control" value="<?php echo $data->usulan_judul ?>" readonly></td>
-                                                    </tr>
+                                    <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-usulan" aria-controls="navs-usulan" aria-selected="true">
+                                                <i class="tf-icons bx bx-file"></i> Identitas Usulan
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-atribut" aria-controls="navs-atribut" aria-selected="false">
+                                                <i class="tf-icons bx bx-file"></i> Atribut Usulan
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-anggota" aria-controls="navs-anggota" aria-selected="false">
+                                                <i class="tf-icons bx bx-user"></i> Anggota Pengabdian
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-biaya" aria-controls="navs-biaya" aria-selected="false">
+                                                <i class="tf-icons bx bx-money"></i> Biaya usulan
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-isian" aria-controls="navs-isian" aria-selected="false">
+                                                <i class="tf-icons bx bxs-report"></i> Isian Pengesahan
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-lembaga" aria-controls="navs-lembaga" aria-selected="false">
+                                                <i class="tf-icons bx bxs-building"></i> Lembaga Pengabdian
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="navs-usulan" role="tabpanel">
+                                            <p>
+                                            </p>
+                                            <table width="100%" class="table" border="0">
+                                                <tr>
+                                                    <td width="12%">Judul</td>
+                                                    <td width="4%">:</td>
+                                                    <td width="84%"><input type="text" name="judul" class="form-control" value="<?php echo $data->usulan_judul ?>" readonly></td>
+                                                </tr>
 
-                                                    <!-- <tr>
+                                                <!-- <tr>
                                     <td>Abstrak</td>
                                     <td>:</td>
                                     <td><textarea name="abstrak" id="content" rows="5" value="<?php echo $data->abstrak ?>"><?php echo $data->abstrak ?></textarea></td>
@@ -291,43 +291,43 @@
                                     <td><input type="text" name="keyword" class="form-control" value="<?php echo $data->keyword ?>"></td>
                                 </tr> -->
 
-                                                    <tr>
-                                                        <td>Surel (e-mail)</td>
-                                                        <td>:</td>
-                                                        <td><input type="text" name="email" class="form-control" value="<?php echo $data->email ?>" readonly></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>Surel (e-mail)</td>
+                                                    <td>:</td>
+                                                    <td><input type="text" name="email" class="form-control" value="<?php echo $data->email ?>" readonly></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td>Nomor HP</td>
-                                                        <td>:</td>
-                                                        <td><input type="text" name="" class="form-control" value="" readonly></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>Nomor HP</td>
+                                                    <td>:</td>
+                                                    <td><input type="text" name="" class="form-control" value="" readonly></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td>Alamat</td>
-                                                        <td>:</td>
-                                                        <td><input type="text" name="" class="form-control" value="" readonly></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>Alamat</td>
+                                                    <td>:</td>
+                                                    <td><input type="text" name="" class="form-control" value="" readonly></td>
+                                                </tr>
 
-                                                </table>
-                                            </div>
+                                            </table>
+                                        </div>
 
-                                            <div class=" tab-pane fade" id="navs-atribut" role="tabpanel">
-                                                <p></p>
-                                                <table width="100%" class="table" border="0">
-                                                    <tr>
-                                                        <td width="24%">Program Studi</td>
-                                                        <td width="3%">:</td>
-                                                        <td width="73%"><?php echo $data->program_studi ?></td>
-                                                    </tr>
+                                        <div class=" tab-pane fade" id="navs-atribut" role="tabpanel">
+                                            <p></p>
+                                            <table width="100%" class="table" border="0">
+                                                <tr>
+                                                    <td width="24%">Program Studi</td>
+                                                    <td width="3%">:</td>
+                                                    <td width="73%"><?php echo $data->program_studi ?></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td>Lama Pengabdian</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->usulan_lama_pengabdian ?></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>Lama Pengabdian</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->usulan_lama_pengabdian ?></td>
+                                                </tr>
 
-                                                    <!-- <tr>
+                                                <!-- <tr>
 
                                     <td>Sifat Kegiatan</td>
 
@@ -337,200 +337,199 @@
 
                                 </tr> -->
 
+                                                <tr>
+                                                    <td>Bidang Keahlian</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->skema_nama ?></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="navs-anggota" role="tabpanel">
+                                            <p>Anggota Internal</p>
+                                            <table class="table" border="0">
+                                                <tr>
+                                                    <td style="width: 30%;"><strong>Nama Lengkap</strong></td>
+                                                    <td style="width: 20%;"><strong>NIS / NIDN</strong></td>
+                                                    <td style="width: 25%;"><strong>Pangkat</strong></td>
+                                                    <td style="width: 25%;"><strong>Jabatan</strong></td>
+                                                </tr>
+
+                                                <?php
+                                                foreach ($anggota as $value) {
+                                                ?>
                                                     <tr>
-                                                        <td>Bidang Keahlian</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->skema_nama ?></td>
+                                                        <td><?php echo $value->anggota_nama ?></td>
+                                                        <td><?php echo $value->anggota_nidn ?></td>
+                                                        <td><?php echo $value->anggota_pangkat ?></td>
+                                                        <td><?php echo $value->anggota_jabatan ?></td>
                                                     </tr>
-                                                </table>
-                                            </div>
+                                                <?php
+                                                }
+                                                ?>
+                                            </table>
+                                            <br><br>
+                                            <p>Anggota Eksternal</p>
+                                            <table class="table" border="0">
+                                                <tr>
+                                                    <td style="width: 30%;"><strong>Nama Lengkap</strong></td>
+                                                    <td style="width: 20%;"><strong>No Identitas</strong></td>
+                                                    <td style="width: 25%;"><strong>Instansi</strong></td>
+                                                    <td style="width: 25%;"><strong>Jenis</strong></td>
+                                                </tr>
 
-                                            <div class="tab-pane fade" id="navs-anggota" role="tabpanel">
-                                                <p>Anggota Internal</p>
-                                                <table class="table" border="0">
+                                                <?php
+                                                foreach ($anggotaeks as $value) {
+                                                    $jenis = $value->anggota_eks_instansi != 'Mahasiswa' ? 'Eksternal' : 'Mahasiswa';
+                                                ?>
                                                     <tr>
-                                                        <td style="width: 30%;"><strong>Nama Lengkap</strong></td>
-                                                        <td style="width: 20%;"><strong>NIS / NIDN</strong></td>
-                                                        <td style="width: 25%;"><strong>Pangkat</strong></td>
-                                                        <td style="width: 25%;"><strong>Jabatan</strong></td>
+                                                        <td><?php echo $value->anggota_eks_nama ?></td>
+                                                        <td><?php echo $value->anggota_eks_kode ?></td>
+                                                        <td><?php echo $value->anggota_eks_instansi ?></td>
+                                                        <td><?php echo $jenis ?></td>
                                                     </tr>
+                                                <?php
+                                                }
+                                                ?>
+                                            </table>
+                                        </div>
 
-                                                    <?php
-                                                    foreach ($anggota as $value) {
-                                                    ?>
-                                                        <tr>
-                                                            <td><?php echo $value->anggota_nama ?></td>
-                                                            <td><?php echo $value->anggota_nidn ?></td>
-                                                            <td><?php echo $value->anggota_pangkat ?></td>
-                                                            <td><?php echo $value->anggota_jabatan ?></td>
-                                                        </tr>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </table>
-                                                <br><br>
-                                                <p>Anggota Eksternal</p>
-                                                <table class="table" border="0">
-                                                    <tr>
-                                                        <td style="width: 30%;"><strong>Nama Lengkap</strong></td>
-                                                        <td style="width: 20%;"><strong>No Identitas</strong></td>
-                                                        <td style="width: 25%;"><strong>Instansi</strong></td>
-                                                        <td style="width: 25%;"><strong>Jenis</strong></td>
-                                                    </tr>
+                                        <div class="tab-pane fade" id="navs-biaya" role="tabpanel">
+                                            <p></p>
+                                            <table width="100%" class="table" border="0">
+                                                <tr>
+                                                    <td width="30%">Biaya total diusulkan dalam 1 Tahun</td>
+                                                    <td width="4%">:</td>
+                                                    <!-- <td width="66%">Rp. <?php echo $data->usulan_total_biaya ?></td> -->
+                                                    <td width="66%">Rp. <?php echo number_format($data->usulan_total_biaya, 0, '', '.') ?></td>
+                                                </tr>
 
-                                                    <?php
-                                                    foreach ($anggotaeks as $value) {
-                                                        $jenis = $value->anggota_eks_instansi != 'Mahasiswa' ? 'Eksternal' : 'Mahasiswa';
-                                                    ?>
-                                                        <tr>
-                                                            <td><?php echo $value->anggota_eks_nama ?></td>
-                                                            <td><?php echo $value->anggota_eks_kode ?></td>
-                                                            <td><?php echo $value->anggota_eks_instansi ?></td>
-                                                            <td><?php echo $jenis ?></td>
-                                                        </tr>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </table>
-                                            </div>
+                                                <tr>
+                                                    <td colspan="3"><strong>Biaya Tahun berjalan</strong></td>
+                                                </tr>
 
-                                            <div class="tab-pane fade" id="navs-biaya" role="tabpanel">
-                                                <p></p>
-                                                <table width="100%" class="table" border="0">
-                                                    <tr>
-                                                        <td width="30%">Biaya total diusulkan dalam 1 Tahun</td>
-                                                        <td width="4%">:</td>
-                                                        <!-- <td width="66%">Rp. <?php echo $data->usulan_total_biaya ?></td> -->
-                                                        <td width="66%">Rp. <?php echo number_format($data->usulan_total_biaya, 0, '', '.') ?></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>Pagu Biaya</td>
+                                                    <td>:</td>
+                                                    <td style="color:#F00">Maksimum Rp. <?php echo number_format($data->usulan_biaya, 0, '', '.') ?></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td colspan="3"><strong>Biaya Tahun berjalan</strong></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>APB UMK</td>
+                                                    <td>:</td>
+                                                    <td>Rp. <?php echo number_format($data->usulan_biaya_apb, 0, '', '.')  ?></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td>Pagu Biaya</td>
-                                                        <td>:</td>
-                                                        <td style="color:#F00">Maksimum Rp. <?php echo number_format($data->usulan_biaya, 0, '', '.') ?></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>Biaya Lain</td>
+                                                    <td>:</td>
+                                                    <td>Rp. <?php echo number_format($data->usulan_biaya_lain, 0, '', '.') ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Biaya Keseluruhan</td>
+                                                    <td>:</td>
+                                                    <td>Rp. <?php echo number_format($data->usulan_total_biaya,  0, '', '.') ?></td>
+                                                </tr>
+                                            </table>
+                                        </div>
 
-                                                    <!-- <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td style="color:#F00">Maksimum Rp. <?php echo $data->usulan_biaya ?></td>
-                                </tr> -->
-
-                                                    <tr>
-                                                        <td>APB UMK</td>
-                                                        <td>:</td>
-                                                        <td>Rp. <?php echo number_format($data->usulan_biaya, 0, '', '.')  ?></td>
-                                                    </tr>
-
-                                                    <!-- <tr>
-                                    <td>Biaya dari lain</td>
-                                    <td>:</td>
-                                    <td>Rp. <?php echo $data->biaya_lain ?></td>
-                                </tr> -->
-                                                </table>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="navs-isian" role="tabpanel">
-                                                <p></p>
-                                                <table width="100%" class="table" border="0">
-                                                    <!-- <tr>
+                                        <div class="tab-pane fade" id="navs-isian" role="tabpanel">
+                                            <p></p>
+                                            <table width="100%" class="table" border="0">
+                                                <!-- <tr>
                                     <td width="30%">Kota Usulan</td>
                                     <td width="4%">:</td>
                                     <td width="66%"><?php echo $data->kota_usulan ?></td>
                                 </tr> -->
-                                                    <tr>
-                                                        <td colspan="3"><strong>Ketua LPM</strong></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td colspan="3"><strong>Ketua LPM</strong></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td width="22%">Nama yang mengetahui</td>
-                                                        <td width="4%">:</td>
-                                                        <td width="74%"><?php echo $data->lpm_nama ?></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td width="22%">Nama yang mengetahui</td>
+                                                    <td width="4%">:</td>
+                                                    <td width="74%"><?php echo $data->lpm_nama ?></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td>NIP / NIK yang mengetahui</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->lpm_nidn ?></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>NIP / NIK yang mengetahui</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->lpm_nidn ?></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td colspan="3"><strong>Dekan</strong></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td colspan="3"><strong>Dekan</strong></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td>Nama yang mengetahui</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->dekan_nama ?></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>Nama yang mengetahui</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->dekan_nama ?></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td>NIP / NIK yang mengetahui</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->dekan_nidn ?></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>NIP / NIK yang mengetahui</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->dekan_nidn ?></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td colspan="3"><strong>Rektor</strong></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td colspan="3"><strong>Rektor</strong></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td>Nama yang menyetujui</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->rektor_nama ?></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>Nama yang menyetujui</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->rektor_nama ?></td>
+                                                </tr>
 
-                                                    <tr>
-                                                        <td>NIP / NIK yang menyetujui</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->rektor_nidn ?></td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="navs-lembaga" role="tabpanel">
-                                                <p></p>
-                                                <table width="100%" class="table" border="0">
-                                                    <tr>
-                                                        <td width="22%">Nama Lembaga</td>
-                                                        <td width="4%">:</td>
-                                                        <td width="74%"><?php echo $data->lembaga_nama ?></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>Kategori Lembaga</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->lembaga_jabatan ?></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>Nama Pimpinan Lembaga</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->lembaga_pimpinan ?></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>NIP / NIK Pimpinan</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->lembaga_pimpinan_id ?></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>Lokasi</td>
-                                                        <td>:</td>
-                                                        <td><?php echo $data->lembaga_lokasi ?></td>
-                                                    </tr>
-                                                </table>
-                                            </div>
+                                                <tr>
+                                                    <td>NIP / NIK yang menyetujui</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->rektor_nidn ?></td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                        <!-- </div> -->
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="<?= site_url('reviewer/usulan') ?>" class="btn btn-primary">Kembali</a>
-                                        <!-- </div> -->
+
+                                        <div class="tab-pane fade" id="navs-lembaga" role="tabpanel">
+                                            <p></p>
+                                            <table width="100%" class="table" border="0">
+                                                <tr>
+                                                    <td width="22%">Nama Lembaga</td>
+                                                    <td width="4%">:</td>
+                                                    <td width="74%"><?php echo $data->lembaga_nama ?></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Kategori Lembaga</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->lembaga_jabatan ?></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Nama Pimpinan Lembaga</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->lembaga_pimpinan ?></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>NIP / NIK Pimpinan</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->lembaga_pimpinan_id ?></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Lokasi</td>
+                                                    <td>:</td>
+                                                    <td><?php echo $data->lembaga_lokasi ?></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="<?= site_url('reviewer/usulan') ?>" class="btn btn-primary">Kembali</a>
+                                    <!-- </div> -->
                                 </div>
                             </div>
                         </div>

@@ -38,8 +38,56 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php
+                        <?php
                         } else {
+                        ?>
+                            <div class="card mb-3">
+                                <div class="d-flex align-items-end row">
+                                    <div class="card-body">
+                                        <?php
+                                        if ($this->session->flashdata('simpan')) echo '<div class="alert alert-success alert-dismissible" role="alert">
+                                        Biaya Usulan Berhasil Disetujui
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>';
+
+                                        if ($this->session->flashdata('gglsimpan')) echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                                            Biaya Usulan Gagal Disetujui
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>';
+                                        ?>
+                                        <p>Biaya yang disetujui</p>
+                                        <form action="<?= site_url('admin/pengabdian/usulan/accbiaya') ?>" enctype="multipart/form-data" method="post">
+                                            <?php
+                                            $no = 1;
+                                            foreach ($reviewer as $key => $data) {
+                                            ?>
+                                                <div class="row mb-3">
+                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Biaya Disetujui Reviewer <?= $no++ ?></label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" value="<?php echo number_format($data->dana_ajuan, 0, '', '.')  ?>" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
+                                            <div class="row mb-3">
+                                                <input type="hidden" name="id" value="<?= $this->uri->segment(5) ?>" class="form-control" id="">
+                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Setujui Biaya</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="biayaacc" value="<?= $biaya->setujui_biaya ?>" class="form-control" id="">
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-sm-10 mt-4">
+                                                    <a href="<?= site_url('admin/pengabdian/usulan/') ?> " class="btn btn-warning">Kembali</a>
+                                                    <button type="submit" id="btnsimpan" class="btn btn-primary">Simpan</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
                             foreach ($reviewer as $key => $data) {
                             ?>
                                 <div class="card">

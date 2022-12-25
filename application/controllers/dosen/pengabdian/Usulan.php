@@ -26,6 +26,7 @@ class Usulan extends CI_Controller
         $data['skema'] = $this->Usulan_model->skema();
         $data['status'] = $res['status'];
         $data['periode'] = $this->Usulan_model->periode();
+        $data['lembaga'] = $this->Usulan_model->lembaga();
         $this->load->view('dosen/pengabdian/usulan/add', $data);
     }
 
@@ -177,6 +178,7 @@ class Usulan extends CI_Controller
         $data['tahap'] = $this->Usulan_model->tahaphibah($id);
         $this->load->view('dosen/pengabdian/usulan/detailsbg', $data);
     }
+
 
 }
 ?>

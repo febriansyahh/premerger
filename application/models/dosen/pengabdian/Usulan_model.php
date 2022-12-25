@@ -48,7 +48,7 @@ class Usulan_model extends CI_Model
 
     public function skema()
     {
-        $sql = $this->db->query("SELECT * FROM `ab_skema` WHERE `skema_parent` != '0' ORDER BY `skema_id` DESC")->result();
+        $sql = $this->db->query("SELECT * FROM `ab_skema` WHERE `skema_status` = 'active' ORDER BY `skema_id` DESC")->result();
         return $sql;
     }
     
@@ -112,6 +112,11 @@ class Usulan_model extends CI_Model
         return $sql;
     }
 
+    public function lembaga()
+    {
+        return $this->db->query("SELECT * FROM `ab_master_lembaga` WHERE `status` = 'active' ")->row();
+    }
+
     public function save()
     {
         $post = $this->input->post();
@@ -145,7 +150,10 @@ class Usulan_model extends CI_Model
         $this->usulan_tahun_pelaksanaan   = $post['tahun_pelaksanaan'];
         $this->usulan_lama_pengabdian = $post['lama'];
         $this->usulan_biaya           = $post['budget'];
-        $this->usulan_total_biaya     = $post['total'];
+        $this->usulan_biaya_apb       = $post['total'];
+        $this->usulan_biaya_lain      = $post['biayalain'];
+        $this->sumber_biaya_lain      = $post['sumberlain'];
+        $this->usulan_total_biaya     = $post['biayaall'];
         $this->target_luaran          = $post['luaran'];
         $this->jmlh_mahasiswa         = $post['jmlmhs'];
         $this->usulan_kota            = $post['kota'];
@@ -162,7 +170,7 @@ class Usulan_model extends CI_Model
         $this->id_tahun               = $tahun;
         $this->kode_user              = $this->session->userdata('kode');
         $this->created_at             = $date;
-     
+
         $this->db->insert('ab_usulan', $this);
 
         $lembaga = $post['lembaga'];
@@ -288,7 +296,10 @@ class Usulan_model extends CI_Model
                         'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
                         'usulan_lama_pengabdian'    => $post['lama'],
                         'usulan_biaya'              => $post['budget'],
-                        'usulan_total_biaya'        => $post['total'],
+                        'usulan_biaya_apb'          => $post['apb'],
+                        'usulan_biaya_lain'         => $post['biayalain'],
+                        'sumber_biaya_lain'         => $post['sumberlain'],
+                        'usulan_total_biaya'        => $post['biayaall'],
                         'target_luaran'             => $post['luaran'],
                         'usulan_kota'               => $post['kota'],
                         'jmlh_mahasiswa'            => $post['jmlmhs'],
@@ -326,7 +337,10 @@ class Usulan_model extends CI_Model
                     'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
                     'usulan_lama_pengabdian'    => $post['lama'],
                     'usulan_biaya'              => $post['budget'],
-                    'usulan_total_biaya'        => $post['total'],
+                    'usulan_biaya_apb'          => $post['apb'],
+                    'usulan_biaya_lain'         => $post['biayalain'],
+                    'sumber_biaya_lain'         => $post['sumberlain'],
+                    'usulan_total_biaya'        => $post['biayaall'],
                     'target_luaran'             => $post['luaran'],
                     'usulan_kota'               => $post['kota'],
                     'jmlh_mahasiswa'            => $post['jmlmhs'],
@@ -375,7 +389,10 @@ class Usulan_model extends CI_Model
                     'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
                     'usulan_lama_pengabdian'    => $post['lama'],
                     'usulan_biaya'              => $post['budget'],
-                    'usulan_total_biaya'        => $post['total'],
+                    'usulan_biaya_apb'          => $post['apb'],
+                    'usulan_biaya_lain'         => $post['biayalain'],
+                    'sumber_biaya_lain'         => $post['sumberlain'],
+                    'usulan_total_biaya'        => $post['biayaall'],
                     'target_luaran'             => $post['luaran'],
                     'usulan_kota'               => $post['kota'],
                     'jmlh_mahasiswa'            => $post['jmlmhs'],
@@ -422,7 +439,10 @@ class Usulan_model extends CI_Model
                     'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
                     'usulan_lama_pengabdian'    => $post['lama'],
                     'usulan_biaya'              => $post['budget'],
-                    'usulan_total_biaya'        => $post['total'],
+                    'usulan_biaya_apb'          => $post['apb'],
+                    'usulan_biaya_lain'         => $post['biayalain'],
+                    'sumber_biaya_lain'         => $post['sumberlain'],
+                    'usulan_total_biaya'        => $post['biayaall'],
                     'target_luaran'             => $post['luaran'],
                     'usulan_kota'               => $post['kota'],
                     'jmlh_mahasiswa'            => $post['jmlmhs'],
@@ -459,7 +479,10 @@ class Usulan_model extends CI_Model
                     'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
                     'usulan_lama_pengabdian'    => $post['lama'],
                     'usulan_biaya'              => $post['budget'],
-                    'usulan_total_biaya'        => $post['total'],
+                    'usulan_biaya_apb'          => $post['apb'],
+                    'usulan_biaya_lain'         => $post['biayalain'],
+                    'sumber_biaya_lain'         => $post['sumberlain'],
+                    'usulan_total_biaya'        => $post['biayaall'],
                     'target_luaran'             => $post['luaran'],
                     'usulan_kota'               => $post['kota'],
                     'jmlh_mahasiswa'            => $post['jmlmhs'],
@@ -499,7 +522,10 @@ class Usulan_model extends CI_Model
                     'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
                     'usulan_lama_pengabdian'    => $post['lama'],
                     'usulan_biaya'              => $post['budget'],
-                    'usulan_total_biaya'        => $post['total'],
+                    'usulan_biaya_apb'          => $post['apb'],
+                    'usulan_biaya_lain'         => $post['biayalain'],
+                    'sumber_biaya_lain'         => $post['sumberlain'],
+                    'usulan_total_biaya'        => $post['biayaall'],
                     'target_luaran'             => $post['luaran'],
                     'usulan_kota'               => $post['kota'],
                     'jmlh_mahasiswa'            => $post['jmlmhs'],
@@ -542,7 +568,10 @@ class Usulan_model extends CI_Model
                     'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
                     'usulan_lama_pengabdian'    => $post['lama'],
                     'usulan_biaya'              => $post['budget'],
-                    'usulan_total_biaya'        => $post['total'],
+                    'usulan_biaya_apb'          => $post['apb'],
+                    'usulan_biaya_lain'         => $post['biayalain'],
+                    'sumber_biaya_lain'         => $post['sumberlain'],
+                    'usulan_total_biaya'        => $post['biayaall'],
                     'target_luaran'             => $post['luaran'],
                     'usulan_kota'               => $post['kota'],
                     'jmlh_mahasiswa'            => $post['jmlmhs'],
@@ -584,7 +613,10 @@ class Usulan_model extends CI_Model
                     'usulan_tahun_pelaksanaan'  => $post['tahun_pelaksanaan'],
                     'usulan_lama_pengabdian'    => $post['lama'],
                     'usulan_biaya'              => $post['budget'],
-                    'usulan_total_biaya'        => $post['total'],
+                    'usulan_biaya_apb'          => $post['apb'],
+                    'usulan_biaya_lain'         => $post['biayalain'],
+                    'sumber_biaya_lain'         => $post['sumberlain'],
+                    'usulan_total_biaya'        => $post['biayaall'],
                     'target_luaran'             => $post['luaran'],
                     'usulan_kota'               => $post['kota'],
                     'jmlh_mahasiswa'            => $post['jmlmhs'],

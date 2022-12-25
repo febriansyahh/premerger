@@ -58,7 +58,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
                                     ?>
-                                    <h5 class="card-title text-primary">Catatan Harian Pengabdian</h5>
+                                    <h5 class="card-title text-primary">Laporan Monitoring & Evaluasi Pengabdian</h5>
 
                                     <table id="tablecatatanadm" class="table table-bordered table-striped table-hover" style="width:100%">
                                         <thead>
@@ -105,7 +105,7 @@
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <a href="<?= site_url('admin/pengabdian/catatan/detail/' . $this->variasi->encode($value->usulan_id)) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-detail"></i> Detail</a>
+                                                        <a href="<?= site_url('admin/pengabdian/laporan/detailmonev/' . $this->variasi->encode($value->usulan_id)) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-detail"></i> Detail</a>
                                                     </td>
                                                 </tr>
                                             <?php

@@ -174,7 +174,7 @@ class Usulan_model extends CI_Model
     public function reviewernya($id)
     {
         $ids = $this->variasi->decode($id);
-        $sql = $this->db->query("SELECT catatan,review_id, ab_review_proposal.user_id, tanggal_review, ab_reviewer.nama_lengkap
+        $sql = $this->db->query("SELECT catatan,review_id, dana_ajuan, ab_review_proposal.user_id, tanggal_review, ab_reviewer.nama_lengkap
 						FROM ab_review_proposal, ab_usulan, ab_reviewer
 						WHERE ab_reviewer.reviewer_id = ab_review_proposal.user_id
 						AND ab_review_proposal.usulan_id = '$ids'
@@ -198,11 +198,26 @@ class Usulan_model extends CI_Model
         return $this->db->get("ab_aspek_penilaian")->result();
     }
 
-    public function migrasi()
+    public function biayaacc($id)
     {
-        // return $this->db->query("SELECT usulan_id, nidn_pengusul, nama, kode_user FROM `ab_usulans` WHERE kode_user = '0' AND nidn_pengusul != '0610713020001009' ")->result();
-        // return $this->db->query("SELECT nidn, nama_lengkap, kode FROM `ab_reviewer` WHERE kode ='' ")->result();
-        return $this->db->query("SELECT * FROM `ab_anggota` WHERE kode_user !='0' ")->result();
+        $ids = $this->variasi->decode($id);
+
+        return $this->db->query("SELECT `setujui_biaya` FROM `ab_usulan` WHERE `usulan_id` = '$ids' ")->row();
     }
+
+    public function updatebiaya()
+    {
+        $ids = $this->variasi->decode($_POST['id']);
+        $post = $this->input->post();
+
+        $this->db->query("UPDATE `ab_usulan` SET `setujui_biaya` = '".$post['biayaacc']."' WHERE `usulan_id` = '$ids' ");
+    }
+
+    // public function migrasi()
+    // {
+    //     // return $this->db->query("SELECT usulan_id, nidn_pengusul, nama, kode_user FROM `ab_usulans` WHERE kode_user = '0' AND nidn_pengusul != '0610713020001009' ")->result();
+    //     // return $this->db->query("SELECT nidn, nama_lengkap, kode FROM `ab_reviewer` WHERE kode ='' ")->result();
+    //     return $this->db->query("SELECT * FROM `ab_anggota` WHERE kode_user !='0' ")->result();
+    // }
     
 }

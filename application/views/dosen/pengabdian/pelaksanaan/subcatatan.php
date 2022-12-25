@@ -144,11 +144,11 @@ $hasil = $sts->hasil_nilai;
                 <form action="<?php echo site_url('dosen/pengabdian/catatan/add') ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col mb-3">
+                            <input type="hidden" class="form-control" name="id" value="<?= $this->uri->segment('5') ?>">
+                            <!-- <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Tanggal</label>
-                                <input type="hidden" class="form-control" name="id" value="<?= $this->uri->segment('5') ?>">
                                 <input type="date" class="form-control" name="tanggal">
-                            </div>
+                            </div> -->
                         </div>
                         <div class="row">
                             <div class="col mb-3">
@@ -160,7 +160,8 @@ $hasil = $sts->hasil_nilai;
                             <div class="col-md-6">
                                 <div class="col mb-3">
                                     <label for="nameBasic" class="form-label">Persentase</label>
-                                    <input type="text" class="form-control" name="persentase" maxlength="3" placeholder="Masukkan dengan format angka tanpa %, contoh : 80">
+                                    <input type="text" class="form-control" name="persentase" maxlength="3" placeholder="Masukkan dengan angka tanpa %, contoh : 20">
+                                    <small><em>* Cukup tuliskan angka saja tanpa %</em></small>
                                 </div>
                             </div>
                             <div class="col-md-6">

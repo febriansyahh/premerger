@@ -34,7 +34,7 @@
                                 <div class="d-flex align-items-end row">
                                     <div class="card-body">
                                         <div class="alert alert-warning" role="alert">Maaf, reviewer belum dipilih silahkan pilih reviewer terlebih dahulu</div>
-                                        <a href="<?= site_url('admin/pengabdian/usulan') ?>" class="btn btn-primary mt-3">Kembali</a>
+                                        <a href="<?= site_url('dosen/pengabdian/usulan') ?>" class="btn btn-primary mt-3">Kembali</a>
                                     </div>
                                 </div>
                             </div>
@@ -45,14 +45,14 @@
                                 <div class="card">
                                     <div class="d-flex align-items-end row">
                                         <div class="card-body">
-                                            <p class="card-title"><?= 'Tanggal Review : '.date('d-m-Y', strtotime($data->tanggal_review)) ?></p>
+                                            <p class="card-title"><?= 'Tanggal Review : ' . date('d-m-Y', strtotime($data->tanggal_review)) ?></p>
                                             <?php
                                             if ($data->tanggal_review == '0000-00-00') {
                                                 echo '<span class="badge bg-warning">Belum mereview</span>';
                                             } else {
                                                 echo '<span class="badge bg-success">Sudah mereview</span>';
                                             } ?> &nbsp;
-                                            <table width="100%" class="table table-hover table-bordered mt-2 ">
+                                            <!-- <table width="100%" class="table table-hover table-bordered mt-2 ">
                                                 <tr bgcolor="#F9F9F9">
                                                     <td width="5%"><strong>No.</strong></td>
                                                     <td width="71%"><strong>Aspek Penilaian</strong></td>
@@ -86,7 +86,7 @@
                                                     <td colspan="2"><strong>Total Nilai</strong></td>
                                                     <td colspan="3"><strong><?php echo $nilai; ?></strong></td>
                                                 </tr>
-                                            </table>
+                                            </table> -->
 
                                             <table width="100%" class="table">
                                                 <tr>
@@ -104,6 +104,7 @@
                             }
                         }
                         ?>
+                        <a href="<?= site_url('dosen/pengabdian/usulan') ?>" class="btn btn-warning mt-1">Kembali</a>
                     </div>
 
 

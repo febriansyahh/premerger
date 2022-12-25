@@ -48,6 +48,43 @@ $(document).ready(function () {
 	],
 	});
 
+	$('#tablecatatanadm').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "15%" }, // NIDN
+      { width: "20%" }, // Nama
+      { width: "25%" }, // Judul
+      { width: "15%" }, // Skim
+      { width: "10%" }, // Status
+      { width: "10%" }, // Action
+	],
+	});
+
+	$('#tablesubmonevadm').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "15%" }, // tgl
+      { width: "30%" }, // berita
+      { width: "20%" }, // reviewer1
+      { width: "20%" }, // reviewer2
+      { width: "10%" }, // download
+			
+	],
+	});
+
+	$('#tablesubmonev').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "15%" }, // tanggal
+      { width: "25%" }, // Berita acara
+      { width: "15%" }, // review 1
+      { width: "15%" }, // review 2
+      { width: "15%" }, // Jabatan
+      { width: "10%" }, // check
+			
+	],
+	});
+
 	$('#tablesubcatatan').DataTable({
 	columns: [
       { width: "5%" }, // No
@@ -85,8 +122,22 @@ $(document).ready(function () {
 	$('#tableskema').DataTable({
 	columns: [
       { width: "5%" }, // No
-      { width: "55%" }, // Nama
-      { width: "20%" }, // kuota
+      { width: "20%" }, // Nama
+      { width: "13%" }, // min
+      { width: "15%" }, // max
+      { width: "12%" }, // kuota
+      { width: "15%" }, // status
+      { width: "20%" }, // action
+	],
+	});
+	$('#tablelembaga').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "20%" }, // Nama
+      { width: "13%" }, // jabatan
+      { width: "15%" }, // pimpinan
+      { width: "12%" }, // pimpinanid
+      { width: "15%" }, // lokasi
       { width: "20%" }, // action
 	],
 	});
@@ -116,18 +167,29 @@ $(document).ready(function () {
 			
 	// ],
 	// });
-	$('#tableusulan').DataTable();
+	$('#tableusulan').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "25%" }, // Judul
+      { width: "15%" }, // skema
+      { width: "10%" }, // Tahun usulan
+      { width: "10%" }, // Tahun Ajaran
+      { width: "10%" }, // review
+      { width: "10%" }, // kelengkapan
+      { width: "15%" }, // action
+			
+	],
+	});
 
 	$('#tableusulanadmin').DataTable({
 	columns: [
       { width: "5%" }, // No
       { width: "15%" }, // NIDN
       { width: "25%" }, // Judul
-      { width: "6%" }, // Tahun usulan
-    //   { width: "8%" }, // lama
+    //   { width: "6%" }, // Tahun usulan
       { width: "18%" }, // review
-      { width: "8%" }, // kelengkapan
-      { width: "10%" }, // hasilnilai
+      { width: "10%" }, // kelengkapan
+      { width: "8%" }, // hasilnilai
       { width: "18%" }, // action
 			
 	],
@@ -372,24 +434,25 @@ function editableSkim(param) {
 function editableSkema(param) {
 	let data = $(param).data("id");
 	let exp = data.split("~");
+	console.log(exp);
 	$("#editId").val(exp[0]);
 	$("#editNama").val(exp[1]);
-	$("#editBudget").val(exp[2]);
-	$("#editKuota").val(exp[3]);
-	$("#editParent").val(exp[4]);
+	$("#editBudgetmin").val(exp[2]);
+	$("#editBudget").val(exp[3]);
+	$("#editKuota").val(exp[4]);
 	$("#editStatus").val(exp[5]);
 
 	if (exp[5] == 'active') {
 		$('#status').html(`<div class="input-group input-group-merge">
 							<select name="status" class="form-control" id="">
-                                <option value="Active" selected>Active</option>
-								<option value="Non Active">Non Active</option>
+                                <option value="active" selected>Active</option>
+								<option value="nonactive">Non Active</option>
                             </select></div>`);
 	} else {
 		$('#status').html(`<div class="input-group input-group-merge">
 							<select name="status" class="form-control" id="">
-                                <option value="Active">Active</option>
-								<option value="Non Active" selected>Non Active</option>
+                                <option value="active">Active</option>
+								<option value="nonactive" selected>Non Active</option>
                             </select></div>`);
 	}
 }
@@ -435,6 +498,32 @@ function editableStatus(param) {
 	let exp = data.split("~");
 	$("#editId").val(exp[0]);
 	$("#editNama").val(exp[1]);
+}
+
+function editablelembaga(param) {
+	let data = $(param).data("id");
+	let exp = data.split("~");
+	$("#editId").val(exp[0]);
+	$("#editNama").val(exp[1]);
+	$("#editJabatan").val(exp[2]);
+	$("#editPimpinan").val(exp[3]);
+	$("#editPimpinanId").val(exp[4]);
+	$("#editLokasi").val(exp[5]);
+	$("#editStatus").val(exp[6]);
+
+	if (exp[6] == 'active') {
+		$('#status').html(`<div class="input-group input-group-merge">
+							<select name="status" class="form-control" id="">
+                                <option value="active" selected>Active</option>
+								<option value="nonactive">Non Active</option>
+                            </select></div>`);
+	} else {
+		$('#status').html(`<div class="input-group input-group-merge">
+							<select name="status" class="form-control" id="">
+                                <option value="active">Active</option>
+								<option value="nonactive" selected>Non Active</option>
+                            </select></div>`);
+	}
 }
 
 // function editableAspek(param) {

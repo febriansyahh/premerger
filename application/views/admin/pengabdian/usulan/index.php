@@ -76,8 +76,7 @@
                                                 <th>No</th>
                                                 <th>Pengusul</th>
                                                 <th>Judul</th>
-                                                <th>Tahun Usulan</th>
-                                                <!-- <th>Lama Pengabdian</th> -->
+                                                <!-- <th>Tahun Usulan</th> -->
                                                 <th>Reviewer</th>
                                                 <th>Kelengkapan</th>
                                                 <th>Review</th>
@@ -93,7 +92,7 @@
                                                     <td><?= $no++ ?></td>
                                                     <td><?= $data->nidn_pengusul . ' - ' . $data->nama ?></td>
                                                     <td><?= $data->usulan_judul ?></td>
-                                                    <td><?= $data->usulan_tahun ?></td>
+                                                    <!-- <td><?= $data->usulan_tahun ?></td> -->
                                                     <!-- <td><?= $data->usulan_lama_pengabdian ?></td> -->
                                                     <td>
                                                         <?php
@@ -106,16 +105,26 @@
                                                                 echo '<span class="badge bg-success">';
                                                                 echo $mengisi->jum  . ' / ' . $jmlh->jmlh;
                                                                 echo '</span>';
+                                                                echo '<br>';
+                                                                if ($mengisi->jum == $jmlh->jmlh && $data->setujui_biaya == 0) {
+                                                                    echo '<span class="badge bg-warning">Setujui Biaya</span>';
+                                                                }elseif ($data->setujui_biaya != 0) {
+                                                                    echo '<span class="badge bg-success">Biaya Disetujui</span>';
+                                                                }
+                                                                    ?>
+                                                                        <a href="<?= site_url('admin/pengabdian/usulan/hslreview/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-zoom-in"></i> </a>
+                                                                    <?php
                                                             } else {
                                                                 echo '<span class="badge bg-warning">Belum Dipilih</span>';
                                                             }
-                                                        ?>
-                                                            <a href="<?= site_url('admin/pengabdian/usulan/hslreview/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-zoom-in"></i> </a>
-                                                            <?php
-                                                            if ($data->hasil_nilai == '') {
                                                             ?>
-                                                                <a href="<?= site_url('admin/pengabdian/usulan/reviewer/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-user"></i> </a>
+                                                            <?php
+                                                            if ($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Lengkap') {
+                                                                if ($data->hasil_nilai == '') {
+                                                            ?>
+                                                                    <a href="<?= site_url('admin/pengabdian/usulan/reviewer/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-user"></i> </a>
                                                         <?php
+                                                                }
                                                             }
                                                         }
                                                         ?>
@@ -124,19 +133,19 @@
                                                         <?php
                                                         switch ($data->status_usulan) {
                                                             case 'Menunggu':
-                                                                echo '<span class="badge bg-warning">Menunggu</span>';
+                                                                echo '<span class="badge bg-warning">Usulan Menunggu</span>';
                                                                 break;
 
                                                             case 'Ditolak':
-                                                                echo '<span class="badge bg-danger">Diterima</span>';
+                                                                echo '<span class="badge bg-danger">Usulan Diterima</span>';
                                                                 break;
 
                                                             case 'Diterima':
-                                                                echo '<span class="badge bg-primary">Diterima</span>';
+                                                                echo '<span class="badge bg-primary">Usulan Diterima</span>';
                                                                 break;
 
                                                             case 'Selesai':
-                                                                echo '<span class="badge bg-success">Selesai</span>';
+                                                                echo '<span class="badge bg-success">Usulan Selesai</span>';
                                                                 break;
                                                         }
                                                         ?>
@@ -144,15 +153,15 @@
                                                         <?php
                                                         switch ($data->status_kelengkapan) {
                                                             case 'Menunggu':
-                                                                echo '<span class="badge bg-warning">Menunggu</span>';
+                                                                echo '<span class="badge bg-warning">Adm Menunggu</span>';
                                                                 break;
 
                                                             case 'Tidak Lengkap':
-                                                                echo '<span class="badge bg-danger">Tidak Lengkap</span>';
+                                                                echo '<span class="badge bg-danger">Adm Tidak Lengkap</span>';
                                                                 break;
 
                                                             case 'Lengkap':
-                                                                echo '<span class="badge bg-primary">Lengkap</span>';
+                                                                echo '<span class="badge bg-primary">Adm Lengkap</span>';
                                                                 break;
                                                         }
                                                         ?>
@@ -161,7 +170,7 @@
                                                         <?php
                                                         if ($data->status_usulan == 'Ditolak') {
                                                             echo '<span class="badge bg-danger">Usulan Ditolak</span>';
-                                                        }else{
+                                                        } else {
                                                             switch ($data->hasil_nilai) {
                                                                 case 'Tidak Lolos':
                                                                     echo '<span class="badge bg-danger">Tidak Lolos</span>';
@@ -176,7 +185,7 @@
                                                                     break;
                                                             }
                                                         }
-                                                        
+
                                                         ?>
                                                     </td>
                                                     <td>

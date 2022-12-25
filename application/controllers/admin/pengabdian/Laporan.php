@@ -35,4 +35,17 @@ class Laporan extends CI_Controller
         $data['judul'] = $this->Laporan_model->judul($id);
         $this->load->view('admin/pengabdian/laporan/detakhir', $data);
     }
+
+    public function monev()
+    {
+        $data['index'] = $this->Laporan_model->index();
+        $this->load->view('admin/pengabdian/laporan/monev', $data);
+    }
+
+    public function detailmonev($id)
+    {
+        $data['detail'] = $this->Laporan_model->subindexmonev($id);
+        $data['judul'] = $this->Laporan_model->judul($id);
+        $this->load->view('admin/pengabdian/laporan/detmonev', $data);
+    }
 }

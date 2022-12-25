@@ -110,7 +110,25 @@ class Usulan extends CI_Controller
         $data['reviewer'] = $this->Usulan_model->reviewernya($id);
         $data['isdone'] = $this->Usulan_model->isreviewdone($id);
         $data['aspek'] = $this->Usulan_model->aspek();
+        $data['biaya'] = $this->Usulan_model->biayaacc($id);
         $this->load->view('admin/pengabdian/usulan/hasilreview', $data);
+    }
+
+
+    public function accbiaya()
+    {
+        $id = $_POST['id'];
+        $model = $this->Usulan_model;
+        $validation = $this->form_validation;
+
+        if ($validation) {
+            $model->updatebiaya();
+            $this->session->set_flashdata('simpan', 'success');
+        } else {
+            $this->session->set_flashdata('gglsimpan', 'failed');
+        }
+
+        redirect('admin/pengabdian/usulan/hslreview/' . $id);
     }
 
     public function migrasi()

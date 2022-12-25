@@ -20,6 +20,7 @@ class Laporan extends CI_Controller
     {
         $data['detail'] = $this->Laporan_model->subindexkemajuan($id);
         $data['judul'] = $this->Laporan_model->judul($id);
+        $data['cek'] = $this->Laporan_model->cekkemajuan($id);
         $this->load->view('dosen/pengabdian/pelaksanaan/detkemajuan', $data);
     }
 
@@ -106,6 +107,58 @@ class Laporan extends CI_Controller
             $this->session->set_flashdata('terhapus', 'success');
 
             redirect('dosen/pengabdian/laporan/detailakhir/' . $idrec);
+        }
+    }
+
+    public function monev()
+    {
+        $data['index'] = $this->Laporan_model->index();
+        $this->load->view('dosen/pengabdian/pelaksanaan/monev', $data);
+    }
+
+    public function detailmonev($id)
+    {
+        $data['judul'] = $this->Laporan_model->judul($id);
+        $data['cek'] = $this->Laporan_model->iskemajuan($id);
+        $data['ismonev'] = $this->Laporan_model->ismonev($id);
+        $data['detail'] = $this->Laporan_model->monev($id);
+        $this->load->view('dosen/pengabdian/pelaksanaan/submonev', $data);
+    }
+
+    public function addmonev($id)
+    {
+        $data['index'] = $this->Laporan_model->judul($id);
+        $data['reviewer'] = $this->Laporan_model->reviewer();
+        $this->load->view('dosen/pengabdian/pelaksanaan/addmonev', $data);
+    }
+
+    public function savemonev()
+    {
+        $id = $_POST['idusulan'];
+        $model = $this->Laporan_model;
+        $validation = $this->form_validation;
+
+        if ($validation) {
+            $model->savemonev();
+            $this->session->set_flashdata('simpan', 'success');
+        } else {
+            $this->session->set_flashdata('gglsimpan', 'failed');
+        }
+
+        redirect('dosen/pengabdian/laporan/detailmonev/' . $id);
+    }
+
+    public function deletemonev($id)
+    {
+        $params = explode('~', $id);
+        $id = $params[0];
+        $idrec = $params[1];
+
+        if (!isset($id)) show_404();
+        if ($this->Laporan_model->deletemonev($id)) {
+            $this->session->set_flashdata('terhapus', 'success');
+
+            redirect('dosen/pengabdian/laporan/detailmonev/' . $idrec);
         }
     }
 }

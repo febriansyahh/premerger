@@ -32,13 +32,14 @@ class Catatan_model extends CI_Model{
     {
         $post = $this->input->post();
         $date = date("Y-m-d H:i:s");
+        $tgl = date("Y-m-d");
         $usulan_id = $this->variasi->decode($post['id']);
 
         $this->usulan_id                = $usulan_id;
-        $this->catatan_tanggal          = $post['tanggal'];
+        $this->catatan_tanggal          = $tgl;
         $this->catatan_uraian           = $post['uraian'];
         $this->catatan_persentase       = $post['persentase'];
-        $this->catatan_file             = $this->_uploadFile($usulan_id, $post['tanggal']);
+        $this->catatan_file             = $this->_uploadFile($usulan_id, $tgl);
         $this->catatan_updated          = $date;
 
         $this->db->insert('ab_catatan_harian', $this);

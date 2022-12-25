@@ -27,7 +27,6 @@
                 <div class="content-wrapper">
                     <!-- Content -->
 
-
                     <div class=" container-xxl flex-grow-1 container-p-y">
                         <div class="card">
                             <div class="d-flex align-items-end row">
@@ -58,54 +57,32 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
                                     ?>
-                                    <h5 class="card-title text-primary">Catatan Harian Pengabdian</h5>
+                                    <h6 class="card-title text-primary">Judul : <?= $judul->usulan_judul ?></h6>
 
-                                    <table id="tablecatatanadm" class="table table-bordered table-striped table-hover" style="width:100%">
+                                    <table id="tablesubmonevadm" class="table table-bordered table-striped table-hover" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>NIDN</th>
-                                                <th>Nama</th>
-                                                <th>Judul</th>
-                                                <th>Skim</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th>Tanggal</th>
+                                                <th>Uraian</th>
+                                                <th>Reviwer 1</th>
+                                                <th>Reviwer 2</th>
+                                                <th>Download</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            foreach ($index as $value) {
+                                            foreach ($detail as $value) {
                                             ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
-                                                    <td><?= $value->nidn_pengusul ?></td>
-                                                    <td><?= $value->nama ?></td>
-                                                    <td><?= $value->usulan_judul ?></td>
-                                                    <td><?= $value->skema_nama ?></td>
+                                                    <td><?= date("d-m-Y", strtotime($value->tanggal)) ?></td>
+                                                    <td><?= $value->berita_acara ?></td>
+                                                    <td><?= $value->nama_reviewer_1 ?></td>
+                                                    <td><?= $value->nama_reviewer_2 ?></td>
                                                     <td>
-                                                        <?php
-                                                        switch ($value->status_usulan) {
-                                                            case 'Selesai':
-                                                                echo '<span class="badge bg-success">Selesai</span>';
-                                                                break;
-
-                                                            case 'Diterima':
-                                                                echo '<span class="badge bg-primary">Diterima</span>';
-                                                                break;
-
-                                                            case 'Menunggu':
-                                                                echo '<span class="badge bg-warning">Menunggu</span>';
-                                                                break;
-
-                                                            case 'Ditolak':
-                                                                echo '<span class="badge bg-danger">Ditolak</span>';
-                                                                break;
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td>
-                                                        <a href="<?= site_url('admin/pengabdian/catatan/detail/' . $this->variasi->encode($value->usulan_id)) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-detail"></i> Detail</a>
+                                                        <a href="<?php echo base_url('/upload_file/pengabdian/pelaksanaan/' . $value->file_monev);  ?>" target="_blank" title="Download <?php echo $value->file_monev ?>"><span class="badge bg-primary"><?php echo substr($value->file_monev, 0, 15) . '...'; ?></span></a>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -136,6 +113,7 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
+
     <?php $this->load->view("_partials/js.php") ?>
 
 </body>

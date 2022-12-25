@@ -60,10 +60,12 @@
                                     ?>
                                     <h5 class="card-title text-primary">Laporan Akhir Pengabdian</h5>
 
-                                    <table id="tablecatatan" class="table table-bordered table-striped table-hover" style="width:100%">
+                                    <table id="tablecatatanadm" class="table table-bordered table-striped table-hover" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
+                                                <th>NIDN</th>
+                                                <th>Nama</th>
                                                 <th>Judul</th>
                                                 <th>Skim</th>
                                                 <th>Status</th>
@@ -77,6 +79,8 @@
                                             ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
+                                                    <td><?= $value->nidn_pengusul ?></td>
+                                                    <td><?= $value->nama ?></td>
                                                     <td><?= $value->usulan_judul ?></td>
                                                     <td><?= $value->skema_nama ?></td>
                                                     <td>

@@ -58,50 +58,59 @@
                                             <h6 class="card-title text-primary">Judul : <?= $index->usulan_judul ?></h6>
                                         </div>
                                         <div class="card-body">
-                                            <form action="<?php echo base_url('dosen/pengabdian/laporan/savekemajuan'); ?>" method="post" enctype="multipart/form-data">
+                                            <form action="<?php echo base_url('dosen/pengabdian/laporan/savemonev'); ?>" method="post" enctype="multipart/form-data">
                                                 <input type="hidden" class="form-control" name="idusulan" value="<?= $this->variasi->encode($index->usulan_id) ?>">
                                                 <div class="row mb-3">
-                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Uraian Kemajuan</label>
+                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Berita Acara</label>
                                                     <div class="col-sm-10">
                                                         <textarea name="uraian" class="form-control" id="content" cols="80" rows="30"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Keyword Kemajuan</label>
+                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Reviewer 1 Monev</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" name="keyword" class="form-control" id="" placeholder="Masukkan keyword kemajuan">
+                                                        <select name="pemonev1" class="form-control" id="">
+                                                            <option value="" selected>- Pilih -</option>
+                                                            <?php
+                                                            foreach ($reviewer as $value) {
+                                                            ?>
+                                                                <option value=" <?= $value->reviewer_id ?>"> <?= $value->nama_lengkap ?> </option>;
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">File Kemajuan</label>
+                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Reviewer 2 Monev</label>
                                                     <div class="col-sm-10">
-                                                        <input type="file" name="filekemajuan" class="form-control" id="" accept=".pdf">
-                                                    </div>
-                                                </div>
-                                                <!-- <hr> -->
-                                                <!-- <span>Luaran Pengabdian</span> -->
-                                                <!-- <div class="row mb-3">
-                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Artikel Ilmiah</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="file" name="luaran1" class="form-control" id="" accept=".pdf">
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Prosiding/ Seminar Nasional</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="file" name="luaran2" class="form-control" id="" accept=".pdf">
+                                                        <select name="pemonev2" class="form-control" id="">
+                                                            <option value="" selected>- Pilih -</option>
+                                                            <?php
+                                                            foreach ($reviewer as $value) {
+                                                            ?>
+                                                                <option value=" <?= $value->reviewer_id ?>"> <?= $value->nama_lengkap ?> </option>;
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Media Massa</label>
+                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tanggal Pelaksanaan Monev</label>
                                                     <div class="col-sm-10">
-                                                        <input type="file" name="luaran3" class="form-control" id="" accept=".pdf">
+                                                        <input type="date" name="tanggal" class="form-control" id="">
                                                     </div>
-                                                </div> -->
-
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">File Monev</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="file" name="filemonev" class="form-control" id="" accept=".pdf">
+                                                    </div>
+                                                </div>
                                                 <div class="row justify-content-end">
                                                     <div class="col-sm-10 mt-4">
-                                                        <a href="<?= site_url('dosen/pengabdian/laporan/detailkemajuan/' . $this->variasi->encode($index->usulan_id)) ?> " class="btn btn-warning">Kembali</a>
+                                                        <a href="<?= site_url('dosen/pengabdian/laporan/detailmonev/' . $this->variasi->encode($index->usulan_id)) ?> " class="btn btn-warning">Kembali</a>
                                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                                     </div>
                                                 </div>

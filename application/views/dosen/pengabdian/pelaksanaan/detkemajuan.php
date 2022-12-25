@@ -36,18 +36,16 @@ $hasil = $sts->hasil_nilai;
                     <!-- Content -->
 
                     <?php
-                    if ($usulan == 'Diterima' && $lengkap == 'Lengkap' && $iscatatan > 0 && $hasil == 'Lolos') {
-                        ?>
+                    if ($usulan == 'Diterima' && $lengkap == 'Lengkap' && $cek->persentase >= 70 && $hasil == 'Lolos') {
+                    ?>
                         <div class="container">
                             <div class="form-group mt-4">
                                 <a href="<?= site_url('dosen/pengabdian/laporan/addkemajuan/' . $this->variasi->encode($judul->usulan_id)) ?>" class="btn btn-primary"><i class="bx bx-plus"></i> Laporan Kemajuan</a>
                             </div>
                         </div>
-                        <?php
+                    <?php
                     }
                     ?>
-
-
 
                     <div class=" container-xxl flex-grow-1 container-p-y">
                         <div class="card">

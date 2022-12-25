@@ -71,6 +71,11 @@
                                     <div data-i18n="Container">Batas Minimal</div>
                                 </a>
                             </li>
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/lembaga') ?>" class="menu-link">
+                                    <div data-i18n="Without menu">Lembaga Pengabdian</div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
@@ -109,6 +114,11 @@
                             <li class="menu-item">
                                 <a href="<?= site_url('admin/pengabdian/laporan/kemajuan') ?>" class="menu-link">
                                     <div data-i18n="Without navbar">Laporan Kemajuan</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/laporan/monev') ?>" class="menu-link">
+                                    <div data-i18n="Without navbar">Laporan Monev</div>
                                 </a>
                             </li>
                             <li class="menu-item">
@@ -477,6 +487,11 @@
                     <li class="menu-item">
                         <a href="<?= site_url('dosen/pengabdian/laporan/kemajuan') ?>" class="menu-link">
                             <div data-i18n="Without navbar">Laporan Kemajuan</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?= site_url('dosen/pengabdian/laporan/monev') ?>" class="menu-link">
+                            <div data-i18n="Without navbar">Laporan Monev</div>
                         </a>
                     </li>
                     <li class="menu-item">

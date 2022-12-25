@@ -54,7 +54,7 @@ class Usulan_model extends CI_Model
         $ids = $this->variasi->decode($id);
         $id = $this->getId();
         // return $this->db->query("SELECT a.`usulan_id`, a.`nidn_pengusul`, a.`nama`, a.`usulan_judul`, a.`target_luaran`, a.`file_usulan`, b.`skema_nama` FROM `ab_usulan` a LEFT JOIN `ab_skema` b ON a.`skema_id`=b.`skema_id` WHERE a.`usulan_id`='$ids'")->row();
-        return $this->db->query("SELECT a.`usulan_id`, a.`nidn_pengusul`, a.`nama`, a.`usulan_judul`, a.`target_luaran`, a.`file_usulan`, b.`skema_nama`, c.`review_id` FROM `ab_usulan` a LEFT JOIN `ab_skema` b ON a.`skema_id`=b.`skema_id` LEFT JOIN `ab_review_proposal` c ON a.`usulan_id`=c.`usulan_id` WHERE a.`usulan_id`='$ids' AND c.`user_id`='$id->reviewer_id'")->row();
+        return $this->db->query("SELECT a.`usulan_id`, a.`nidn_pengusul`, a.`nama`, a.`usulan_judul`, a.usulan_biaya, a.usulan_biaya_apb, a.usulan_biaya_lain, a.usulan_total_biaya, a.`target_luaran`, d.file_usulan, b.`skema_nama`, c.`review_id` FROM `ab_usulan` a LEFT JOIN `ab_skema` b ON a.`skema_id`=b.`skema_id` LEFT JOIN `ab_review_proposal` c ON a.`usulan_id`=c.`usulan_id` LEFT JOIN `ab_tahap_hibah` d ON a.usulan_id=d.usulan_id WHERE a.`usulan_id`='$ids' AND c.`user_id`='$id->reviewer_id'")->row();
     }
 
     public function aspek()
@@ -66,7 +66,7 @@ class Usulan_model extends CI_Model
     {
         $reviewid = $this->variasi->decode($_POST['review_id']);
         $date = date("Y-m-d");
-        $this->db->query("UPDATE `ab_review_proposal` SET tanggal_review = '$date', `catatan` = '". $_POST['catatan'] ."' WHERE `review_id` = '$reviewid' ");
+        $this->db->query("UPDATE `ab_review_proposal` SET tanggal_review = '$date', `catatan` = '". $_POST['catatan'] ."', `dana_ajuan` = '". $_POST['dana']."' WHERE `review_id` = '$reviewid' ");
 
         for ($i = 1; $i < $_POST['jumlah']; $i++) {
             $this->db->insert("ab_skor_aspek", array(
