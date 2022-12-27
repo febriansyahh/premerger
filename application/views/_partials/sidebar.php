@@ -128,6 +128,27 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-file"></i>
+                            <div data-i18n="Layouts">Report</div>
+                        </a>
+
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/report') ?>" class="menu-link">
+                                    <div data-i18n="Without menu">Report Usulan</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/report') ?>" class="menu-link">
+                                    <div data-i18n="Without menu">Report Dana</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                 </ul>
             <?php
@@ -497,6 +518,20 @@
                     <li class="menu-item">
                         <a href="<?= site_url('dosen/pengabdian/laporan/akhir') ?>" class="menu-link">
                             <div data-i18n="Without navbar">Laporan Akhir</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bxs-layer"></i>
+                    <div data-i18n="Layouts">Report</div>
+                </a>
+
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="<?= site_url('dosen/pengabdian/catatan') ?>" class="menu-link">
+                            <div data-i18n="Without menu">Report pengajuan</div>
                         </a>
                     </li>
                 </ul>
