@@ -671,7 +671,7 @@
                                                                                 <tr>
                                                                                     <td><?php echo date('d-m-Y', strtotime($value->tanggal)) ?></td>
                                                                                     <td><?php echo $value->status_tahap ?></td>
-                                                                                    <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $value->file_usulan);  ?>" target="_blank" title="Download <?php echo $value->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($value->file_usulan, 0, 30) . '...'; ?></a></td>
+                                                                                    <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $value->file_usulan);  ?>" target="_blank" title="Download <?php echo $data->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($value->file_usulan, 0, 30) . '...'; ?></a></td>
                                                                                 </tr>
                                                                             <?php
                                                                             }
