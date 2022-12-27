@@ -202,7 +202,7 @@ class Usulan_model extends CI_Model
     {
         $ids = $this->variasi->decode($id);
 
-        return $this->db->query("SELECT `setujui_biaya` FROM `ab_usulan` WHERE `usulan_id` = '$ids' ")->row();
+        return $this->db->query("SELECT  `usulan_biaya` ,`setujui_biaya` FROM `ab_usulan` WHERE `usulan_id` = '$ids' ")->row();
     }
 
     public function updatebiaya()
@@ -211,6 +211,19 @@ class Usulan_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->query("UPDATE `ab_usulan` SET `setujui_biaya` = '".$post['biayaacc']."' WHERE `usulan_id` = '$ids' ");
+    }
+
+    public function deletereview($id)
+    {
+        $ids = $this->variasi->decode($id);
+        $cek = $this->db->query("SELECT `usulan_id` FROM `ab_review_proposal` WHERE `review_id` = '$ids'")->row();
+        
+        // Update hasil review menjadi kosong
+        $this->db->query("UPDATE `ab_review_proposal` SET `catatan` = '', `dana_ajuan` = '', `tanggal_review` ='0000-00-00' WHERE `review_id` ='$ids' ");
+        // Hapus skor yang telah diberikan reviewer terhadap proposal
+        $this->db->query("DELETE FROM `ab_skor_aspek` WHERE `review_id` = '$ids' ");
+        // Update hasil nilai usulan menjadi kosong, nilai rata 0
+        $this->db->query("UPDATE `ab_usulan` SET `hasil_nilai` = '', `nilai_rata` = '0' WHERE usulan_id = '$cek->usulan_id' ");
     }
 
     // public function migrasi()

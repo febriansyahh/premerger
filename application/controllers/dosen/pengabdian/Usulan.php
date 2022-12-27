@@ -91,6 +91,7 @@ class Usulan extends CI_Controller
         $data['mahasiswa'] = $this->Usulan_model->anggotamahasiswa($id);
         $data['eksternal'] = $this->Usulan_model->anggotaeksternal($id);
         $data['usulan'] = $this->Usulan_model->ringkasan($id);
+        $data['jmlmhs'] = $this->Usulan_model->jmlmhs($id);
         $this->load->view('dosen/pengabdian/usulan/anggota', $data);
     }
 
@@ -179,6 +180,21 @@ class Usulan extends CI_Controller
         $this->load->view('dosen/pengabdian/usulan/detailsbg', $data);
     }
 
+    public function revisiproposal()
+    {
+        $id = $_POST['id'];
 
+        $model = $this->Usulan_model;
+        $validation = $this->form_validation;
+
+        if ($validation) {
+            $model->tahaprevprop();
+            $this->session->set_flashdata('simpanrev', 'succes');
+        } else {
+            $this->session->set_flashdata('gglsimpanrev', 'failed');
+        }
+
+        redirect('dosen/pengabdian/usulan/detail/' . $id);
+    }
 }
 ?>

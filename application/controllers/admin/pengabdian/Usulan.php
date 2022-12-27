@@ -131,54 +131,59 @@ class Usulan extends CI_Controller
         redirect('admin/pengabdian/usulan/hslreview/' . $id);
     }
 
-    public function migrasi()
+    public function delrev($id)
     {
-        $data = $this->Usulan_model->migrasi();
+        $exp = explode('~', $id);
+        $ids = $exp[0];
+        $idredirect = $exp[1];
+
+        $model = $this->Usulan_model;
+        $validation = $this->form_validation;
+
+        if ($validation) {
+            $model->deletereview($ids);
+            $this->session->set_flashdata('terhapus', 'success');
+        } else {
+            $this->session->set_flashdata('terhapus', 'failed');
+        }
+
+        redirect('admin/pengabdian/usulan/hslreview/' .$idredirect);
+    }
+
+    // public function migrasi()
+    // {
+    //     $data = $this->Usulan_model->migrasi();
 
     
 
-        foreach ($data as $key => $value){
+    //     foreach ($data as $key => $value){
 
 
-            $ws = _wsgetdosen($value->anggota_nidn);
-            $res = $ws['result'];
-            if ($ws['result']['data'] != NULL) {
-                $kode = $res['data'][0]['kode'];
-                $jabatan = $res['data'][0]['pangkat'];
-                $pangkat = $res['data'][0]['golongan'];
-                $email = $res['data'][0]['email'];
-                $prodi = $res['data'][0]['prodi'];
-                // echo '<pre>';
-                // var_dump($res['data'][0]);
-                // var_dump($jabatan);
-                // var_dump($pangkat);
-                // var_dump($email);
-                // var_dump($prodi);
-                // var_dump($kode);
-                // echo '</pre>';
-                // $execute = $this->db->query("UPDATE `ab_anggota` SET `anggota_pangkat` = '$pangkat', `anggota_jabatan` = '$jabatan', `email` = '$email', `anggota_experience` = '$prodi' WHERE kode_user = '$value->kode_user' ");
-                // if ($execute) {
-                //     echo 'Ubah Berhasil';
-                // }else{
-                //     echo 'Ubah Gagal';
-                // }
+    //         $ws = _wsgetdosen($value->anggota_nidn);
+    //         $res = $ws['result'];
+    //         if ($ws['result']['data'] != NULL) {
+    //             $kode = $res['data'][0]['kode'];
+    //             $jabatan = $res['data'][0]['pangkat'];
+    //             $pangkat = $res['data'][0]['golongan'];
+    //             $email = $res['data'][0]['email'];
+    //             $prodi = $res['data'][0]['prodi'];
 
-            }
+    //         }
 
-            // if ($ws['result']['data'] != NULL) {
-            //     $kode = $res['data'][0]['kode'];
+    //         // if ($ws['result']['data'] != NULL) {
+    //         //     $kode = $res['data'][0]['kode'];
 
-            //     $execute = $this->db->query("UPDATE `ab_reviewer` SET `kode` = '$kode' WHERE nidn = '$value->nidn' ");
-            //     if ($execute) {
-            //         echo 'Ubah Berhasil';
-            //     }else{
-            //         echo 'Ubah Gagal';
-            //     }
+    //         //     $execute = $this->db->query("UPDATE `ab_reviewer` SET `kode` = '$kode' WHERE nidn = '$value->nidn' ");
+    //         //     if ($execute) {
+    //         //         echo 'Ubah Berhasil';
+    //         //     }else{
+    //         //         echo 'Ubah Gagal';
+    //         //     }
 
-            // }
-        }
-        exit;
-    }
+    //         // }
+    //     }
+    //     exit;
+    // }
 
     function _wsgetdosen($nidn)
     {

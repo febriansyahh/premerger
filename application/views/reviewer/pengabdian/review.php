@@ -86,6 +86,7 @@
                                         ?>
                                         <h5 class="card-title text-primary">Isikan penilaian usulan</h5>
                                         <form action="<?= site_url('reviewer/usulan/addreview') ?>" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" id="maxbiaya" value="<?= $data->usulan_biaya ?>">
                                             <table border="0" class="table">
                                                 <tr>
                                                     <td>Judul</td>
@@ -119,8 +120,10 @@
                                                     <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $data->file_usulan);  ?>" target="_blank" title="Download <?php echo $data->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($data->file_usulan, 0, 40) . '...'; ?></a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Dana yang disetujui</td>
-                                                    <td><input type="text" name="dana" class="form-control" placeholder="Masukkan dana review yang disetujui"></td>
+                                                    <td><b>Dana yang direkomendasikan</b></td>
+                                                    <td><input type="text" name="dana" id="rekomendasi" onkeyup="CekRekomen()" class="form-control" placeholder="Masukkan dana review yang direkomendasikan" required>
+                                                        <span id="lebihan" style="color: red; font-style: italic;"></span>
+                                                    </td>
                                                 </tr>
                                             </table>
 
@@ -158,7 +161,7 @@
                                             <textarea name="catatan" class="form-control span12" id="content" cols="80" rows="30" style="margin-top: 3px;">Catatan....</textarea>
 
                                             <a href="<?= site_url('reviewer/usulan') ?>" style="float: left; margin-right: 10px" class="btn btn-primary mt-3">Kembali</a>
-                                            <button name="simpan" type="submit" style="float: left;" class="btn btn-success mt-3" onclick="return confirm('Apakah yakin untuk mengkonfirmasi usulan ini ?');">Simpan</button>
+                                            <button name="simpan" type="submit" id="btnsimpan" style="float: left;" class="btn btn-success mt-3" onclick="return confirm('Apakah yakin untuk mengkonfirmasi usulan ini ?');">Simpan</button>
 
                                         </form>
                                     </div>
@@ -191,6 +194,24 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <?php $this->load->view("_partialreviewer/js.php") ?>
+
+    <script language="JavaScript" type="text/JavaScript">
+
+        function CekRekomen() {
+            var biaya = document.getElementById("maxbiaya").value;
+            var budget = document.getElementById("rekomendasi").value;
+
+
+            if (parseInt(budget) > parseInt(biaya)) {
+                document.getElementById("lebihan").innerHTML = "Maaf, Dana yang direkomendasi melebihi batasan";
+                document.getElementById("btnsimpan").style.display = "none";
+            }else{
+                document.getElementById("lebihan").innerHTML = "";
+                document.getElementById("btnsimpan").style.display = "block";
+            }
+
+        }
+    </script>
 
 </body>
 

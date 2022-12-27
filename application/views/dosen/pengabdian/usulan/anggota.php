@@ -139,7 +139,7 @@
                                     <div class="col-xxl" style="margin-top: 40px">
                                         <h6>Anggota Pengabdian Mahasiswa
                                             <?php
-                                            if ($usulan->status_usulan == 'Menunggu' && $usulan->hasil_nilai == '') {
+                                            if ($usulan->status_usulan == 'Menunggu' && $usulan->hasil_nilai == '' && $jmlmhs < $usulan->jmlh_mahasiswa) {
                                             ?>
                                                 <a data-bs-toggle="modal" data-bs-target="#anggotamhs" class="btn btn-primary btn-sm" type="button" style="color: white;"><i class="bx bx-plus"></i>Anggota</a>
                                             <?php
@@ -313,7 +313,7 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameBasic" class="form-label">Jobdesk Anggota</label>
-                            <textarea name="jobdesk" rows="3" class="form-control"></textarea>
+                            <textarea name="jobdesk" rows="3" class="form-control" required></textarea>
                         </div>
                     </div>
 
@@ -352,7 +352,7 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameBasic" class="form-label">Jobdesk Anggota</label>
-                            <textarea name="jobdesk" rows="3" class="form-control"></textarea>
+                            <textarea name="jobdesk" rows="3" class="form-control" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -382,35 +382,35 @@
                             <label for="nameBasic" class="form-label">Identitas Anggota</label>
                             <input type="hidden" name="id_usulan" class="form-control" value="<?= $this->uri->segment('5') ?>">
                             <input type="hidden" name="jenis" class="form-control" value="eksternal">
-                            <input type="text" name="kodeeks" class="form-control" placeholder="Masukkan Nomor Identitas KTP/SIM">
+                            <input type="text" name="kodeeks" class="form-control" placeholder="Masukkan Nomor Identitas KTP/SIM" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameBasic" class="form-label">Nama Anggota</label>
-                            <input type="text" name="nama" class="form-control" placeholder="Masukkkan nama anggota">
+                            <input type="text" name="nama" class="form-control" placeholder="Masukkkan nama anggota" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameBasic" class="form-label">Nama Instansi</label>
-                            <input type="text" name="instansi" class="form-control" placeholder="Masukkkan instansi anggota">
+                            <input type="text" name="instansi" class="form-control" placeholder="Masukkkan instansi anggota" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameBasic" class="form-label">Email Anggota</label>
-                            <input type="text" name="email" class="form-control" placeholder="Masukkkan email anggota">
+                            <input type="text" name="email" class="form-control" placeholder="Masukkkan email anggota" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nameBasic" class="form-label">Jobdesk Anggota</label>
-                            <textarea name="jobdesk" rows="3" class="form-control"></textarea>
+                            <textarea name="jobdesk" rows="3" class="form-control" required></textarea>
                         </div>
                     </div>
 

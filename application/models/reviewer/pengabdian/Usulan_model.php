@@ -18,8 +18,8 @@ class Usulan_model extends CI_Model
     public function getbyid($id)
     {
         $ids = $this->variasi->decode($id);
-        $sql = $this->db->query("SELECT a.*, b.*, c.`skema_nama`, d.`tahun_ajaran`, e.`anggota_pangkat`, e.`anggota_jabatan`, e.`email` FROM `ab_usulan` a LEFT JOIN `ab_lembaga` b ON b.`usulan_id`=a.`usulan_id` 
-        LEFT JOIN `ab_skema` c ON a.`skema_id`=c.`skema_id` LEFT JOIN `mst_tahun_akademik` d ON a.`id_tahun`=d.`id_tahun` LEFT JOIN `ab_anggota` e ON a.`usulan_id`=e.`usulan_id` WHERE a.`usulan_id` = '$ids' AND e.`anggota_posisi`='ketua' 
+        $sql = $this->db->query("SELECT a.*, b.*, c.`skema_nama`, d.`tahun_ajaran`, d.`tahun_semester` , e.`anggota_pangkat`, e.`anggota_jabatan`, e.`email`, f.file_usulan AS fileusulan FROM `ab_usulan` a LEFT JOIN `ab_lembaga` b ON b.`usulan_id`=a.`usulan_id` 
+        LEFT JOIN `ab_skema` c ON a.`skema_id`=c.`skema_id` LEFT JOIN `mst_tahun_akademik` d ON a.`id_tahun`=d.`id_tahun` LEFT JOIN `ab_anggota` e ON a.`usulan_id`=e.`usulan_id` LEFT JOIN `ab_tahap_hibah` f ON a.usulan_id=f.usulan_id WHERE a.`usulan_id` = '$ids' AND e.`anggota_posisi`='ketua' 
         ")->row();
         return $sql;
     }

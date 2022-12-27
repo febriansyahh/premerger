@@ -492,13 +492,6 @@ class Usulan_model extends CI_Model
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_usulan', $data);
 
-                $this->db->query("INSERT INTO `ab_tahap_hibah`(`usulan_id`, `status_tahap`, `tanggal`, `file_usulan`, `inserted`) VALUES
-                ('" . $ids . "',
-                'Proposal Revisi',
-                '" . date('Y-m-d') . "',
-                '" . $fileprop . "',
-                '" . date('Y-m-d H:i:s') . "')
-                ");
 
                 $datalem = array(
                     'lembaga_nama' => $post['lembaga'],
@@ -538,13 +531,6 @@ class Usulan_model extends CI_Model
                 $nidn = $this->session->userdata('nidn');
                 $judul = $post['judul'];
                 
-                $this->db->query("INSERT INTO `ab_tahap_hibah`(`usulan_id`, `status_tahap`, `tanggal`, `file_usulan`, `inserted`) VALUES
-                ('" . $ids . "',
-                'Proposal Revisi',
-                '" . date('Y-m-d') . "',
-                '" . $this->_uploadFile($nidn, $judul) . "',
-                '" . date('Y-m-d H:i:s') . "')
-                ");
 
                 $datalem = array(
                     'lembaga_nama' => $post['lembaga'],
@@ -584,13 +570,7 @@ class Usulan_model extends CI_Model
                 $nidn = $this->session->userdata('nidn');
                 $judul = $post['judul'];
                 
-                $this->db->query("INSERT INTO `ab_tahap_hibah`(`usulan_id`, `status_tahap`, `tanggal`, `file_usulan`, `inserted`) VALUES
-                ('" . $ids . "',
-                'Proposal Revisi',
-                '" . date('Y-m-d') . "',
-                '" . $this->_uploadFile($nidn, $judul) . "',
-                '" . date('Y-m-d H:i:s') . "')
-                ");
+               
 
                 $datalem = array(
                     'lembaga_nama' => $post['lembaga'],
@@ -626,14 +606,7 @@ class Usulan_model extends CI_Model
                 $this->db->where('usulan_id', $ids);
                 $this->db->update('ab_usulan', $data);
 
-                $this->db->query("INSERT INTO `ab_tahap_hibah`(`usulan_id`, `status_tahap`, `tanggal`, `file_usulan`, `inserted`) VALUES
-                ('" . $ids . "',
-                'Proposal Revisi',
-                '" . date('Y-m-d') . "',
-                '" . $fileprop . "',
-                '" . date('Y-m-d H:i:s') . "')
-                ");
-
+                
                 $datalem = array(
                     'lembaga_nama' => $post['lembaga'],
                     'lembaga_jabatan' => $post['jns_lembaga'],
@@ -658,6 +631,12 @@ class Usulan_model extends CI_Model
     {
         $ids = $this->variasi->decode($id);
         return $this->db->query("SELECT * FROM `ab_anggota_eks` WHERE usulan_id = '$ids' AND `anggota_eks_instansi` = 'Mahasiswa' ")->result();
+    }
+
+    public function jmlmhs($id)
+    {
+        $ids = $this->variasi->decode($id);
+        return $this->db->query("SELECT * FROM `ab_anggota_eks` WHERE usulan_id = '$ids' AND `anggota_eks_instansi` = 'Mahasiswa' ")->num_rows();
     }
 
     public function anggotaeksternal($id)
@@ -863,11 +842,6 @@ class Usulan_model extends CI_Model
         return $sql;
     }
 
-    public function detailanggota($id)
-    {
-        # code...
-    }
-
     public function getanggotabyid($id)
     {
         $ids = $this->variasi->decode($id);
@@ -894,6 +868,46 @@ class Usulan_model extends CI_Model
         LEFT JOIN `ab_skema` c ON a.`skema_id`=c.`skema_id` LEFT JOIN `mst_tahun_akademik` d ON a.`id_tahun`=d.`id_tahun` LEFT JOIN `ab_anggota` e ON a.`usulan_id`=e.`usulan_id` WHERE a.`usulan_id` = '$ids' AND e.`anggota_posisi`='ketua' 
         ")->row();
         return $sql;
+    }
+
+    private function _uploadRevProp($a, $b)
+    {
+        $judul = str_replace(' ', '_', $b);
+        $date = date('d-m-Y');
+        $c = $date . '_Pengabdian_Revisi_Proposal_' . $a. '_' . $judul;
+
+        $config['upload_path']          = './upload_file/pengabdian/file/';
+        $config['allowed_types']        = 'pdf|jpg|png';
+        $config['file_name']            = $c;
+        $config['overwrite']            = true;
+        $config['max_size']             = 2048;
+
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
+        // return $c;
+        if ($this->upload->do_upload('fileproposal')) {
+            return $this->upload->data("file_name");
+        }
+    }
+
+    public function tahaprevprop()
+    {
+        $post = $this->input->post();
+        $date = date("Y-m-d H:i:s");
+
+        $nidn = $this->session->userdata('nidn');
+        $judul = $post['judul'];
+        $ids = $this->variasi->decode($post['id']);
+
+        $this->usulan_id    = $ids;
+        $this->status_tahap = 'Revisi Proposal';
+        $this->tanggal      = date('Y-m-d');
+        $this->file_usulan  = $this->_uploadRevProp($nidn, $judul);
+        $this->inserted     = $date;
+    
+        $this->db->insert('ab_tahap_hibah', $this);
+        
     }
 
     // Untuk ambil data mahasiswa 

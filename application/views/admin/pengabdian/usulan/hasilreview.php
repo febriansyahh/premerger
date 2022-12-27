@@ -54,9 +54,19 @@
                                             Biaya Usulan Gagal Disetujui
                                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>';
+                                        if ($this->session->flashdata('terhapus')) echo '<div class="alert alert-success alert-dismissible" role="alert">
+                                            Hapus data hasil reviewer berhasil
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>';
                                         ?>
                                         <p>Biaya yang disetujui</p>
                                         <form action="<?= site_url('admin/pengabdian/usulan/accbiaya') ?>" enctype="multipart/form-data" method="post">
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Biaya Max Skim</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" value="<?= number_format($biaya-> usulan_biaya, 0, '', '.') ?>" class="form-control" id="" readonly>
+                                                </div>
+                                            </div>
                                             <?php
                                             $no = 1;
                                             foreach ($reviewer as $key => $data) {
@@ -100,7 +110,8 @@
                                             } else {
                                                 echo '<span class="badge bg-success">Sudah mereview</span>';
                                             } ?> &nbsp;
-                                            <a href="<?= site_url('admin/pengabdian/usulan/delrev/' . $this->variasi->encode($data->review_id)) ?>" onclick="return confirm('Apakah yakin untuk menghapus review ini ?');"><i class="bx bx-message-square-x bx-sm" style="color: red;"></i></a>
+
+                                            <a href="<?= site_url('admin/pengabdian/usulan/delrev/' . $this->variasi->encode($data->review_id)) . '~' . $this->uri->segment(5) ?>" onclick="return confirm('Apakah yakin untuk menghapus review ini ?');"><i class="bx bx-message-square-x bx-sm" style="color: red;"></i></a>
                                             <table width="100%" class="table table-hover table-bordered mt-2 ">
                                                 <tr bgcolor="#F9F9F9">
                                                     <td width="5%"><strong>No.</strong></td>
@@ -121,7 +132,7 @@
                                                         <td><?php echo $data1->keterangan ?></td>
                                                         <td><?php echo $data1->nilai ?></td>
                                                         <td><?php if ($skor == null) {
-                                                                echo '~';
+                                                                echo '-';
                                                             } else {
                                                                 echo $skor;
                                                             } ?></td>

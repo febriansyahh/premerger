@@ -348,25 +348,25 @@
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Judul</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" name="judul" class="form-control" placeholder="Masukkan Judul Usulan Pengabdian">
+                                                                            <input type="text" name="judul" class="form-control" placeholder="Masukkan Judul Usulan Pengabdian" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Abstrak</label>
                                                                         <div class="col-sm-10">
-                                                                            <textarea name="abstrak" class="form-control" id="content" cols="80" rows="10"></textarea>
+                                                                            <textarea name="abstrak" class="form-control" id="content" cols="80" rows="10" required></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Keyword</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" name="keyword" class="form-control" placeholder="Masukkan Keyword sesuai dengan judul yang diajukan">
+                                                                            <input type="text" name="keyword" class="form-control" placeholder="Masukkan Keyword sesuai dengan judul yang diajukan" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Kategori Pengabdian (Skim)</label>
                                                                         <div class="col-sm-10">
-                                                                            <select name="skim" id="lstSkim" class="form-control" onchange="TampilBudget()">
+                                                                            <select name="skim" id="lstSkim" class="form-control" onchange="TampilBudget()" required>
                                                                                 <option selected>- Pilih -</option>
                                                                                 <?php
                                                                                 foreach ($skema as $value) {
@@ -381,19 +381,19 @@
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Tahun Usulan</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" name="tahun_usulan" class="form-control" placeholder="<?= date('Y') ?>" maxlength="4">
+                                                                            <input type="text" name="tahun_usulan" class="form-control" placeholder="<?= date('Y') ?>" maxlength="4" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Tahun Pelaksanaan</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" name="tahun_pelaksanaan" class="form-control" placeholder="<?= date('Y') ?>" maxlength="4">
+                                                                            <input type="text" name="tahun_pelaksanaan" class="form-control" placeholder="<?= date('Y') ?>" maxlength="4" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Lama Pengabdian</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" name="lama" class="form-control" placeholder="Masukkan Lama Penelitian Pengabdian">
+                                                                            <input type="text" name="lama" class="form-control" placeholder="Masukkan Lama Penelitian Pengabdian" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
@@ -405,14 +405,14 @@
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Usulan Biaya APBU</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" class="form-control" name="total" id="totbiaya" onkeyup="CekBiaya()" maxlength="10" placeholder="Total Biaya Pengabdian">
+                                                                            <input type="text" class="form-control" name="total" id="totbiaya" onkeyup="CekBiaya()" maxlength="10" placeholder="Total Biaya Pengabdian" required>
                                                                             <span id="lebihan" style="color: red; font-style: italic;"></span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Biaya Lain</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" class="form-control" name="biayalain" id="biayalain" onkeyup="TotalBiaya()" maxlength="10" placeholder="Biaya Lain">
+                                                                            <input type="text" class="form-control" name="biayalain" id="biayalain" onkeyup="TotalBiaya()" maxlength="10" placeholder="Biaya Lain" required>
                                                                             <span id="lebihan" style="color: red; font-style: italic;"></span>
                                                                         </div>
                                                                     </div>
@@ -432,19 +432,19 @@
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Target Luaran</label>
                                                                         <div class="col-sm-10">
-                                                                            <textarea name="luaran" id="" rows="3" class="form-control" style="resize: none;" placeholder="Masukkan Target Luaran"></textarea>
+                                                                            <textarea name="luaran" id="" rows="3" class="form-control" style="resize: none;" placeholder="Masukkan Target Luaran" required></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Kota Usulan Pengabdian</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="text" name="kota" class="form-control" placeholder="Masukkan Kota Pengabdian">
+                                                                            <input type="text" name="kota" class="form-control" placeholder="Masukkan Kota Pengabdian" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Jumlah Mahasiswa</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="number" name="jmlmhs" class="form-control" placeholder="Masukkan Anggaran yang diusulkan">
+                                                                            <input type="number" name="jmlmhs" class="form-control" placeholder="Masukkan Anggaran yang diusulkan" required>
                                                                         </div>
                                                                     </div>
 
@@ -497,7 +497,7 @@
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">File Proposal (.pdf)</label>
                                                                         <div class="col-sm-10">
-                                                                            <input type="file" class="form-control" name="fileproposal" accept=".pdf">
+                                                                            <input type="file" class="form-control" name="fileproposal" accept=".pdf" required>
                                                                             <span class="mt-2">* <em>Maksimal ukuran file 2 MB</em> </span>
                                                                         </div>
                                                                     </div>

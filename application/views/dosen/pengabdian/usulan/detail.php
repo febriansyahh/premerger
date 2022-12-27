@@ -324,6 +324,43 @@
                     }
                     ?>
 
+                    <?php
+                    if ($data->hasil_nilai == 'Lolos' && $data->setujui_biaya != '0' && $data->created_at != '0000-00-00' && $data->status_usulan != 'Selesai') {
+                    ?>
+                        <div class=" container-xxl flex-grow-1 container-p-y">
+                            <div class="card">
+                                <div class="d-flex align-items-end row">
+                                    <div class="card-body">
+                                        <?php
+                                        if ($this->session->flashdata('simpanrev')) echo '<div class="alert alert-success alert-dismissible" role="alert">
+                                    Berhasil mengunggah file revisi proposal
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+
+                                        if ($this->session->flashdata('gglsimpanrev')) echo '<div class="alert alert-danger alert-dismissible" role="alert">
+                                        Gagal mengunggah file revisi proposal
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+                                        ?>
+                                        <form action="<?= site_url('dosen/pengabdian/usulan/revisiproposal') ?>" method="post" enctype="multipart/form-data">
+                                            <div class="mb-3">
+                                                <input type="hidden" name="id" class="form-control" value="<?= $this->uri->segment(5) ?>">
+                                                <input type="hidden" name="judul" class="form-control" value="<?= $data->usulan_judul ?>">
+                                                <label class="col-sm-3" for="basic-icon-default-fullname"><b>File Revisi Proposal (.pdf)</b></label>
+                                                <input type="file" class="form-control mt-3" name="fileproposal" accept=".pdf">
+                                                <span class="mt-2">* <em>Maksimal ukuran file 2 MB</em> </span>
+                                            </div>
+                                            <a href="<?php echo site_url('dosen/pengabdian/usulan') ?>" class="btn btn-warning action-button" style="float: left; text-align: center; background: warning; margin-right: 3px;">Kembali</a>
+                                            <button type="submit" class="btn btn-primary action-button">Simpan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
+
                     <div class=" container-xxl flex-grow-1 container-p-y">
                         <div class="card">
                             <div class="d-flex align-items-end row">
@@ -349,6 +386,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
                                     ?>
+
                                     <div class="col-xxl">
                                         <div class="card-header d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0">Detail Usulan Pengabdian</h5>
@@ -455,21 +493,21 @@
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Biaya Lain</label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" class="form-control" name="biayalain" id="biayalain" value="<?= $data->usulan_biaya_lain ?>" onkeyup="TotalBiaya()" maxlength="10" placeholder="Biaya Lain">
+                                                                        <input type="text" class="form-control" name="biayalain" id="biayalain" value="<?= $data->usulan_biaya_lain ?>" onkeyup="TotalBiaya()" maxlength="10" placeholder="Biaya Lain" <?= $disabled ?>>
                                                                         <span id="lebihan" style="color: red; font-style: italic;"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Sumber Biaya Lain</label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" class="form-control" name="sumberlain" value="<?= $data->sumber_biaya_lain ?>" placeholder="Sumber Biaya Lain Pengabdian">
+                                                                        <input type="text" class="form-control" name="sumberlain" value="<?= $data->sumber_biaya_lain ?>" placeholder="Sumber Biaya Lain Pengabdian" <?= $disabled ?>>
                                                                         <span id="lebihan" style="color: red; font-style: italic;"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mb-3">
                                                                     <label class="col-sm-2" for="basic-icon-default-fullname">Usulan Total Biaya</label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" value="<?= $data->usulan_total_biaya ?>" class="form-control" name="total" id="biayatotal" maxlength="10" placeholder="Total Biaya Pengabdian" readonly>
+                                                                        <input type="text" value="<?= $data->usulan_total_biaya ?>" class="form-control" name="total" id="biayatotal" maxlength="10" placeholder="Total Biaya Pengabdian" readonly <?= $disabled ?>>
                                                                         <span id="lebihan" style="color: red; font-style: italic;"></span>
                                                                     </div>
                                                                 </div>
@@ -555,8 +593,8 @@
                                                                         ?>
                                                                             <tr>
                                                                                 <td><?php echo date('d-m-Y', strtotime($value->tanggal)) ?></td>
-                                                                                <td><?php echo $data->status_tahap ?></td>
-                                                                                <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $data->file_usulan);  ?>" target="_blank" title="Download <?php echo $data->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($data->file_usulan, 0, 30) . '...'; ?></a></td>
+                                                                                <td><?php echo $value->status_tahap ?></td>
+                                                                                <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $value->file_usulan);  ?>" target="_blank" title="Download <?php echo $value->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($value->file_usulan, 0, 30) . '...'; ?></a></td>
                                                                             </tr>
                                                                         <?php
                                                                         }
@@ -621,57 +659,24 @@
                                                                     <?php
                                                                     } else {
                                                                     ?>
-                                                                        <div class="row">
-
-                                                                            <div class="col-md-6">
-                                                                                <div class="row mb-3">
-                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">File Proposal (.pdf)</label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <input type="file" class="form-control" name="fileproposal" accept=".pdf">
-                                                                                        <span class="mt-2">* <em>Maksimal ukuran file 2 MB</em> </span>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="row mb-3">
-                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Proposal</label>
-                                                                                    <?php
-                                                                                    $files = './upload_file/pengabdian/file/' . $data->file_usulan;
-                                                                                    // echo $data->file_usulan;
-                                                                                    if (file_exists($files)) {
-                                                                                        $file = base_url() . 'upload_file/pengabdian/file/' . $data->file_usulan;
-                                                                                    } else {
-                                                                                        $file = base_url() . 'upload_file/pengabdian/file/default.pdf';
-                                                                                    }
-                                                                                    ?>
-                                                                                    <iframe class="mt-4" src="<?php echo $file ?>" frameborder="0" width="420px" height="680px"></iframe>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="col-md-6">
-                                                                                <div class="row mb-3">
-                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">File Persetujuan Mitra (.pdf)</label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <input type="file" class="form-control" name="filemitra" accept=".pdf">
-                                                                                        <span class="mt-2">* <em>Maksimal ukuran file 1 MB</em> </span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="row mb-3">
-                                                                                    <label class="col-sm-4" for="basic-icon-default-fullname">Preview File Mitra</label>
-                                                                                    <?php
-                                                                                    if ($data->lembaga_file != '') {
-                                                                                    ?>
-                                                                                        <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/' . $data->lembaga_file; ?>" frameborder="0" width="420px" height="680px"></iframe>
-                                                                                    <?php
-                                                                                    } else {
-                                                                                    ?>
-                                                                                        <iframe class="mt-4" src="<?php echo base_url() . 'upload_file/pengabdian/lembaga/default.pdf'; ?>" frameborder="0" width="420px" height="680px"></iframe>
-                                                                                    <?php
-                                                                                    }
-                                                                                    ?>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
+                                                                        <table width="100%" class="table table-hover">
+                                                                            <tr bgcolor="#F9F9F9">
+                                                                                <td width="18%"><strong>Tanggal</strong></td>
+                                                                                <td width="28%"><strong>Tahap</strong></td>
+                                                                                <td width="54%"><strong>File Download</strong></td>
+                                                                            </tr>
+                                                                            <?php
+                                                                            foreach ($tahap as $key => $value) {
+                                                                            ?>
+                                                                                <tr>
+                                                                                    <td><?php echo date('d-m-Y', strtotime($value->tanggal)) ?></td>
+                                                                                    <td><?php echo $value->status_tahap ?></td>
+                                                                                    <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $value->file_usulan);  ?>" target="_blank" title="Download <?php echo $value->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($value->file_usulan, 0, 30) . '...'; ?></a></td>
+                                                                                </tr>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+                                                                        </table>
                                                                     <?php
                                                                     }
 
@@ -686,6 +691,11 @@
                                                             if (($data->status_usulan == 'Diterima' && $data->status_kelengkapan == 'Lengkap') or $data->status_usulan == 'Ditolak') {
                                                             ?>
                                                                 <a href="<?php echo site_url('dosen/pengabdian/usulan') ?>" class="btn btn-warning action-button" style="float: right; text-align: center; background: warning;">Kembali</a>
+                                                            <?php
+                                                            } elseif ($data->status_usulan == 'Selesai') {
+                                                            ?>
+                                                                <a href="<?php echo site_url('dosen/pengabdian/usulan') ?>" class="btn btn-warning action-button" style="float: right; text-align: center; background: warning;">Kembali</a>
+
                                                             <?php
                                                             } else {
                                                             ?>

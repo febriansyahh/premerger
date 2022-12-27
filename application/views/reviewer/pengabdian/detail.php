@@ -158,67 +158,58 @@
                                     <h5 class="card-title text-primary">Detail Pengabdian</h5>
 
                                     <table width="100%" border="0" class="table">
-                                        <tr>
-                                            <td width="16%">Nama Dosen</td>
-                                            <td width="3%">:</td>
-                                            <td width="31%"><?php echo $data->nama ?></td>
-                                            <td width="16%">NIP</td>
-                                            <td width="3%">:</td>
-                                            <td width="34%"><?php echo $data->nidn_pengusul ?></td>
-                                        </tr>
 
                                         <tr>
-                                            <td>Jabatan Fungsional</td>
-                                            <td>:</td>
-                                            <td><?php echo $data->anggota_jabatan ?></td>
-                                            <td>Fakultas</td>
-                                            <td>:</td>
-                                            <td><?php echo $data->fakultas ?></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Tahun Usulan</td>
-                                            <td>:</td>
-                                            <td><?php echo $data->usulan_tahun ?></td>
-                                            <td>Program Studi</td>
-                                            <td>:</td>
-                                            <td><?php echo $data->program_studi ?></td>
+                                            <td width="16%">Tahun Usulan</td>
+                                            <td width="3%">:</td>
+                                            <td width="31%"><?php echo $data->usulan_tahun ?></td>
+                                            <td width="16%">Tahun Pelaksanaan</td>
+                                            <td width="3%">:</td>
+                                            <td width="34%"><?php echo $data->usulan_tahun_pelaksanaan ?></td>
                                         </tr>
 
                                         <tr>
                                             <td>Skim</td>
                                             <td>:</td>
                                             <td><?php echo $data->skema_nama ?></td>
-                                            <td>Tahun Pelaksanaan</td>
+                                            <td>Tahun Ajaran</td>
                                             <td>:</td>
-                                            <td><?php echo $data->tahun_ajaran ?></td>
+                                            <td><?php echo $data->tahun_ajaran ?>
+                                                <?php
+                                                if ($data->tahun_semester == 1) {
+                                                    echo ' Gasal';
+                                                } elseif ($data->tahun_semester == 2) {
+                                                    echo ' Genap';
+                                                }
+                                                ?>
+                                            </td>
                                         </tr>
 
-                                        <!-- <tr>
-                            <td>Kelengkapan</td>
-                            <td>:</td>
-                            <td><?php echo $data->status_kelengkapan ?></td>
-                            <td>Pengesahan</td>
-                            <td>:</td>
-                            <td><?php if ($data->status_kelengkapan == 'Lengkap') {
-                                    echo '<a href="" title="Download Pengesahan"><i class="icon-download-alt"></i> Pengesahan.pdf</a>';
-                                } else {
-                                    echo '<label class="label label-info">Menunggu</label>';
-                                } ?>
-                            </td>
-                        </tr>
+                                        <tr>
+                                            <td>Kelengkapan</td>
+                                            <td>:</td>
+                                            <td><?php echo $data->status_kelengkapan ?></td>
+                                            <td>Pengesahan</td>
+                                            <td>:</td>
+                                            <td><?php if ($data->status_kelengkapan == 'Lengkap') {
+                                                    echo '<a href="" title="Download Pengesahan"><i class="icon-download-alt"></i> Pengesahan.pdf</a>';
+                                                } else {
+                                                    echo '<label class="label label-info">Menunggu</label>';
+                                                } ?>
+                                            </td>
+                                        </tr>
 
-                        <?Php if ($data->nilai_rata > 0) { ?>
-                            <tr>
-                                <td>Nilai Reviewer</td>
-                                <td>:</td>
-                                <td><b><?php echo $data->nilai_rata; ?></b></td>
-                                <td>Hasil Reviewer</td>
-                                <td>:</td>
-                                <td><b><?php echo $data->hasil_nilai; ?></b></td>
+                                        <?Php if ($data->nilai_rata > 0) { ?>
+                                            <tr>
+                                                <td>Nilai Reviewer</td>
+                                                <td>:</td>
+                                                <td><b><?php echo $data->nilai_rata; ?></b></td>
+                                                <td>Hasil Reviewer</td>
+                                                <td>:</td>
+                                                <td><b><?php echo $data->hasil_nilai; ?></b></td>
 
-                            </tr>
-                        <?Php } ?> -->
+                                            </tr>
+                                        <?Php } ?>
 
                                     </table>
 
@@ -232,7 +223,7 @@
                                         <tr>
                                             <td><?php echo date('d-m-Y', strtotime($data->created_at)) ?></td>
                                             <td><?php echo $data->status_usulan ?></td>
-                                            <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $data->file_usulan);  ?>" target="_blank" title="Download <?php echo $data->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($data->file_usulan, 0, 30) . '...'; ?></a></td>
+                                            <td><a href="<?php echo base_url('/upload_file/pengabdian/file/' . $data->fileusulan);  ?>" target="_blank" title="Download <?php echo $data->fileusulan ?>"><i class="icon-download-alt"></i> <?php echo substr($data->fileusulan, 0, 30) . '...'; ?></a></td>
                                         </tr>
                                     </table>
                                     <br>
@@ -279,34 +270,16 @@
                                                     <td width="84%"><input type="text" name="judul" class="form-control" value="<?php echo $data->usulan_judul ?>" readonly></td>
                                                 </tr>
 
-                                                <!-- <tr>
-                                    <td>Abstrak</td>
-                                    <td>:</td>
-                                    <td><textarea name="abstrak" id="content" rows="5" value="<?php echo $data->abstrak ?>"><?php echo $data->abstrak ?></textarea></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Keywords</td>
-                                    <td>:</td>
-                                    <td><input type="text" name="keyword" class="form-control" value="<?php echo $data->keyword ?>"></td>
-                                </tr> -->
-
                                                 <tr>
-                                                    <td>Surel (e-mail)</td>
+                                                    <td>Abstrak</td>
                                                     <td>:</td>
-                                                    <td><input type="text" name="email" class="form-control" value="<?php echo $data->email ?>" readonly></td>
+                                                    <td><textarea name="abstrak" id="content" rows="1" value="<?php echo $data->usulan_abstrak ?>"><?php echo $data->usulan_abstrak ?></textarea></td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td>Nomor HP</td>
+                                                    <td>Keywords</td>
                                                     <td>:</td>
-                                                    <td><input type="text" name="" class="form-control" value="" readonly></td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>Alamat</td>
-                                                    <td>:</td>
-                                                    <td><input type="text" name="" class="form-control" value="" readonly></td>
+                                                    <td><input type="text" name="keyword" class="form-control" value="<?php echo $data->usulan_keyword ?>"></td>
                                                 </tr>
 
                                             </table>
@@ -398,14 +371,13 @@
                                             <p></p>
                                             <table width="100%" class="table" border="0">
                                                 <tr>
-                                                    <td width="30%">Biaya total diusulkan dalam 1 Tahun</td>
+                                                    <td width="30%">Biaya Total diusulkan dalam <?php echo $data->usulan_lama_pengabdian ?></td>
                                                     <td width="4%">:</td>
-                                                    <!-- <td width="66%">Rp. <?php echo $data->usulan_total_biaya ?></td> -->
                                                     <td width="66%">Rp. <?php echo number_format($data->usulan_total_biaya, 0, '', '.') ?></td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td colspan="3"><strong>Biaya Tahun berjalan</strong></td>
+                                                    <td colspan="3"><strong>Rincian Biaya</strong></td>
                                                 </tr>
 
                                                 <tr>
