@@ -15,6 +15,12 @@ class Usulan_model extends CI_Model
         return $this->db->query("SELECT a.*, b.`skema_nama`, c.* FROM `ab_usulan` a LEFT JOIN `ab_skema` b ON a.`skema_id`=b.`skema_id` LEFT JOIN ab_review_proposal c ON a.usulan_id=c.usulan_id  WHERE c.user_id='$id->reviewer_id' ORDER BY a.`usulan_id` DESC")->result();
     }
 
+    public function jmlhindex()
+    {
+        $id = $this->getId();
+        return $this->db->query("SELECT a.*, b.`skema_nama`, c.* FROM `ab_usulan` a LEFT JOIN `ab_skema` b ON a.`skema_id`=b.`skema_id` LEFT JOIN ab_review_proposal c ON a.usulan_id=c.usulan_id  WHERE c.user_id='$id->reviewer_id' ORDER BY a.`usulan_id` DESC")->num_rows();
+    }
+
     public function getbyid($id)
     {
         $ids = $this->variasi->decode($id);
