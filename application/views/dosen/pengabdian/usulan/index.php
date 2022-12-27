@@ -149,6 +149,9 @@
                                                             echo '<span class="badge bg-success">';
                                                             echo $mengisi->jum  . ' / ' . $jmlh->jmlh;
                                                             echo '</span>';
+                                                            if ($data->setujui_biaya != '0') {
+                                                               echo '<span class="badge bg-success">Biaya Disetujui</span>';
+                                                            }
                                                         ?>
                                                             <a href="<?= site_url('dosen/pengabdian/usulan/hslreview/' . $this->variasi->encode($data->usulan_id)) ?>"><i class="bx bxs-zoom-in"></i> </a>
                                                         <?php

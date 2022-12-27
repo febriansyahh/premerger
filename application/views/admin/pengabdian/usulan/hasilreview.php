@@ -64,7 +64,8 @@
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Biaya Max Skim</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" value="<?= number_format($biaya-> usulan_biaya, 0, '', '.') ?>" class="form-control" id="" readonly>
+                                                    <input type="hidden" value="<?= $biaya->usulan_biaya ?>" class="form-control" id="biayamax" readonly>
+                                                    <input type="text" value="<?= number_format($biaya->usulan_biaya, 0, '', '.') ?>" class="form-control" id="" readonly>
                                                 </div>
                                             </div>
                                             <?php
@@ -84,14 +85,13 @@
                                                 <input type="hidden" name="id" value="<?= $this->uri->segment(5) ?>" class="form-control" id="">
                                                 <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Setujui Biaya</label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" name="biayaacc" value="<?= $biaya->setujui_biaya ?>" class="form-control" id="">
+                                                    <input type="text" name="biayaacc" value="<?= $biaya->setujui_biaya ?>" class="form-control" id="setujui" onkeyup="Setujui()">
+                                                    <span id="lebihan" style="color: red; font-style: italic;"></span>
                                                 </div>
                                             </div>
-                                            <div class="row justify-content-end">
-                                                <div class="col-sm-10 mt-4">
-                                                    <a href="<?= site_url('admin/pengabdian/usulan/') ?> " class="btn btn-warning">Kembali</a>
-                                                    <button type="submit" id="btnsimpan" class="btn btn-primary">Simpan</button>
-                                                </div>
+                                            <div class="col-sm-10 mt-4" id="btnsimpan">
+                                                <a href="<?= site_url('admin/pengabdian/usulan/') ?> " class="btn btn-warning">Kembali</a>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -188,6 +188,24 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <?php $this->load->view("_partials/js.php") ?>
+
+    <script language="JavaScript" type="text/JavaScript">
+
+        function Setujui() {
+            var biaya = document.getElementById("biayamax").value;
+            var budget = document.getElementById("setujui").value;
+
+
+            if (parseInt(budget) > parseInt(biaya)) {
+                document.getElementById("lebihan").innerHTML = "Maaf, Dana yang disetujui melebihi batasan";
+                document.getElementById("btnsimpan").style.display = "none";
+            }else{
+                document.getElementById("lebihan").innerHTML = "";
+                document.getElementById("btnsimpan").style.display = "block";
+            }
+
+        }
+    </script>
 
 </body>
 

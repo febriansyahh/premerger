@@ -529,9 +529,21 @@
                                                                         <input type="number" name="jmlmhs" value="<?= $data->jmlh_mahasiswa ?>" class="form-control" <?= $disabled ?>>
                                                                     </div>
                                                                 </div>
+                                                                <?php
+                                                                if ($data->setujui_biaya != '0') {
+                                                                ?>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-sm-2" for="basic-icon-default-fullname" style="font-weight: bold;">Usulan Biaya Disetujui</label>
+                                                                        <div class="col-sm-10">
+                                                                            <input type="text" value="Rp. <?php echo number_format($data->setujui_biaya, 0, '', '.') ?>" style="font-weight: bold;" class="form-control" maxlength="10" readonly <?= $disabled ?>>
+                                                                            <span id="lebihan" style="color: red; font-style: italic;"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php
+                                                                }
+                                                                ?>
 
                                                             </div>
-                                                            <!-- <input type="button" name="next" class="next action-button" value="Next Step" /> -->
                                                             <button type="button" style="float: right;" id="next1" class="next action-button btn btn-success">Selanjutnya</button>
                                                             <a href="<?php echo site_url('dosen/pengabdian/usulan') ?>" class="btn btn-warning action-button" style="float: right; text-align: center; background: warning;">Kembali</a>
                                                         </fieldset>
