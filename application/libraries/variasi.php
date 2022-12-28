@@ -3,7 +3,6 @@
 class Variasi
 {
 
-    //var $skey = "LoVe_iS_@2014_DH_Sn";
     var $skey = "p3ng4bdianU_M_K";
 
     public function safe_b64encode($string)

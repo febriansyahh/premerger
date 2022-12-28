@@ -21,9 +21,9 @@
 
 
                 <!-- / Navbar -->
-            
-                
-                
+
+
+
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
@@ -80,14 +80,18 @@
                                         </form>
                                     </div>
                                 </div>
-                                
+
                                 <?php
                                 // var_dump($show);
                                 if ($show == true) { ?>
-
                                     <div class="card-body">
                                         <h5 class="card-title text-primary">Report Usulan</h5>
-                                        <a href="<?php echo site_url('admin/pengabdian/report/excel'); ?>" class="btn btn-success waves-effect" target="_blank"><i class="material-icons"></i> Excel
+                                        <form action="<?php echo site_url('admin/pengabdian/report/export'); ?>" method="post" enctype="multipart/form" class="mb-3" target="_blank">
+                                            <input type="hidden" name='ta' value="<?= $report['tanggal1'] ?>">
+                                            <input type="hidden" name='tk' value="<?= $report['tanggal2'] ?>">
+                                            <input type="hidden" name='status' value="<?= $report['status'] ?>">
+                                            <button type="submit" name="export" class="btn btn-success">Export Excel</button>
+                                        </form>
                                         </a>
                                         <!-- <a target="_blank" href="export_excel.php">EXPORT KE EXCEL</a> -->
                                         <table id="tablereport" class="table table-bordered table-striped table-hover" style="width:100%">
