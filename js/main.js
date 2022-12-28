@@ -264,6 +264,15 @@ $(document).ready(function () {
 			
 	],
 	});
+	$('#tablereport').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "15%" }, // pengusul
+      { width: "37%" }, // Judul
+      { width: "10%" }, // Tanggal
+     	
+	],
+	});
 });
 
 
