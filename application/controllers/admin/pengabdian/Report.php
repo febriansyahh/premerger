@@ -63,10 +63,10 @@ class Report extends CI_Controller
         $tk = $_POST['tk'];
         $sts = $_POST['status'];
 
-        $siswa = $this->Report_m->select_laporan($ta, $tk, $sts);
+        $data = $this->Report_m->select_laporan($ta, $tk, $sts);
         $no = 1;
         $x = 2;
-        foreach ($siswa as $row) {
+        foreach ($data as $row) {
             $sheet->setCellValue('A' . $x, $no++)->getColumnDimension('A')->setAutoSize(true);
             $sheet->setCellValue('B' . $x, $row->nidn_pengusul)->getColumnDimension('B')->setAutoSize(true);
             $sheet->setCellValue('C' . $x, $row->nama)->getColumnDimension('C')->setAutoSize(true);
@@ -82,5 +82,22 @@ class Report extends CI_Controller
         header('Cache-Control: max-age=0');
 
         $writer->save('php://output');
+    }
+
+    public function exportexcel()
+    {
+        $ta = $_POST['ta'];
+        $tk = $_POST['tk'];
+        $sts = $_POST['status'];
+
+        $filename = 'Laporan_usulan_' . date('Y-m-d') . '.xls';
+
+        // Fetch records from database 
+        $data = $this->Report_m->select_laporan($ta, $tk, $sts);
+        header("Content-type: application/vnd-ms-excel");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        $data['data'] =  $this->Report_m->select_laporan($ta, $tk, $sts);
+        $this->load->view('admin/pengabdian/report/expore', $data);
+        
     }
 }

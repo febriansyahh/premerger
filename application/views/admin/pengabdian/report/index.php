@@ -86,7 +86,8 @@
                                 if ($show == true) { ?>
                                     <div class="card-body">
                                         <h5 class="card-title text-primary">Report Usulan</h5>
-                                        <form action="<?php echo site_url('admin/pengabdian/report/export'); ?>" method="post" enctype="multipart/form" class="mb-3" target="_blank">
+                                        <form action="<?php echo site_url('admin/pengabdian/report/exportexcel'); ?>" method="post" enctype="multipart/form" class="mb-3" target="_blank">
+                                        <!-- <form action="<?php echo site_url('admin/pengabdian/report/export'); ?>" method="post" enctype="multipart/form" class="mb-3" target="_blank"> -->
                                             <input type="hidden" name='ta' value="<?= $report['tanggal1'] ?>">
                                             <input type="hidden" name='tk' value="<?= $report['tanggal2'] ?>">
                                             <input type="hidden" name='status' value="<?= $report['status'] ?>">
