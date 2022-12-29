@@ -14,7 +14,7 @@ class Report extends CI_Controller
         $this->load->model("admin/pengabdian/Report_m");
     }
 
-    public function index()
+    public function usulan()
     {
         // exit;
         $data['show'] 			= false;
@@ -40,49 +40,41 @@ class Report extends CI_Controller
 		$this->load->view('admin/pengabdian/report/index', $data);
     }
 	 
-	public function excel(){
-		$tanggal1	= $this->uri->segment(5);
-		$tanggal2 	= $this->uri->segment(6);
-		$status 	= $this->uri->segment(7);
-        $list       = $this->Report_m->select_laporan($tanggal1, $tanggal2, $status);
-		$this->load->view('admin/pengabdian/expore', $list);
-		
-	}
+    // Export excel library spreadsheet
+    // public function export()
+    // {
+    //     $spreadsheet = new Spreadsheet();
+    //     $sheet = $spreadsheet->getActiveSheet();
+    //     $sheet->setCellValue('A1', 'No');
+    //     $sheet->setCellValue('B1', 'NIDN Pengusul');
+    //     $sheet->setCellValue('C1', 'Nama Pengusul');
+    //     $sheet->setCellValue('D1', 'Judul Usulan');
+    //     $sheet->setCellValue('E1', 'Fakultas');
 
-    public function export()
-    {
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'NIDN Pengusul');
-        $sheet->setCellValue('C1', 'Nama Pengusul');
-        $sheet->setCellValue('D1', 'Judul Usulan');
-        $sheet->setCellValue('E1', 'Fakultas');
+    //     $ta = $_POST['ta'];
+    //     $tk = $_POST['tk'];
+    //     $sts = $_POST['status'];
 
-        $ta = $_POST['ta'];
-        $tk = $_POST['tk'];
-        $sts = $_POST['status'];
+    //     $data = $this->Report_m->select_laporan($ta, $tk, $sts);
+    //     $no = 1;
+    //     $x = 2;
+    //     foreach ($data as $row) {
+    //         $sheet->setCellValue('A' . $x, $no++)->getColumnDimension('A')->setAutoSize(true);
+    //         $sheet->setCellValue('B' . $x, $row->nidn_pengusul)->getColumnDimension('B')->setAutoSize(true);
+    //         $sheet->setCellValue('C' . $x, $row->nama)->getColumnDimension('C')->setAutoSize(true);
+    //         $sheet->setCellValue('D' . $x, $row->usulan_judul)->getColumnDimension('D')->setAutoSize(true);
+    //         $sheet->setCellValue('E' . $x, $row->fakultas)->getColumnDimension('E')->setAutoSize(true);
+    //         $x++;
+    //     }
+    //     $writer = new Xlsx($spreadsheet);
+    //     $filename = 'laporan-usulan';
 
-        $data = $this->Report_m->select_laporan($ta, $tk, $sts);
-        $no = 1;
-        $x = 2;
-        foreach ($data as $row) {
-            $sheet->setCellValue('A' . $x, $no++)->getColumnDimension('A')->setAutoSize(true);
-            $sheet->setCellValue('B' . $x, $row->nidn_pengusul)->getColumnDimension('B')->setAutoSize(true);
-            $sheet->setCellValue('C' . $x, $row->nama)->getColumnDimension('C')->setAutoSize(true);
-            $sheet->setCellValue('D' . $x, $row->usulan_judul)->getColumnDimension('D')->setAutoSize(true);
-            $sheet->setCellValue('E' . $x, $row->fakultas)->getColumnDimension('E')->setAutoSize(true);
-            $x++;
-        }
-        $writer = new Xlsx($spreadsheet);
-        $filename = 'laporan-usulan';
+    //     header('Content-Type: application/vnd.ms-excel');
+    //     header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+    //     header('Cache-Control: max-age=0');
 
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
-        header('Cache-Control: max-age=0');
-
-        $writer->save('php://output');
-    }
+    //     $writer->save('php://output');
+    // }
 
     public function exportexcel()
     {
@@ -98,6 +90,41 @@ class Report extends CI_Controller
         header("Content-Disposition: attachment; filename=\"$filename\"");
         $data['data'] =  $this->Report_m->select_laporan($ta, $tk, $sts);
         $this->load->view('admin/pengabdian/report/expore', $data);
-        
+    }
+
+    public function dana()
+    {
+        $data['show']             = false;
+        $this->load->view('admin/pengabdian/report/apbn', $data);
+    }
+
+    public function caridata()
+    {
+        $tanggal1    = date("Y-m-d", strtotime($this->input->post('tanggal1')));
+        $tanggal2     = date("Y-m-d", strtotime($this->input->post('tanggal2')));
+        $status     = $this->input->post('status');
+        $datas = array(
+            'tanggal1'     => $tanggal1,
+            'tanggal2'     => $tanggal2,
+            'status'     => $status
+        );
+        $data['report']         = $datas;
+        $data['show']             = 'true';
+        $data['listLaporan']     = $this->Report_m->laporan($tanggal1, $tanggal2, $status);
+        $this->load->view('admin/pengabdian/report/apbn', $data);
+    }
+
+    public function exportdana()
+    {
+        $ta = $_POST['ta'];
+        $tk = $_POST['tk'];
+        $sts = $_POST['status'];
+
+        $filename = 'Laporan_dana_' . date('Y-m-d') . '.xls';
+        $data = $this->Report_m->laporan($ta, $tk, $sts);
+        header("Content-type: application/vnd-ms-excel");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        $data['dana'] =  $this->Report_m->select_laporan($ta, $tk, $sts);
+        $this->load->view('admin/pengabdian/report/exportdana', $data);
     }
 }

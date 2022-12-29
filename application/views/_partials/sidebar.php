@@ -136,14 +136,14 @@
 
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="<?= site_url('admin/pengabdian/report') ?>" class="menu-link">
+                                <a href="<?= site_url('admin/pengabdian/report/usulan') ?>" class="menu-link">
                                     <div data-i18n="Without menu">Report Usulan</div>
                                 </a>
                             </li>
                         </ul>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="<?= site_url('admin/pengabdian/apbn') ?>" class="menu-link">
+                                <a href="<?= site_url('admin/pengabdian/report/dana') ?>" class="menu-link">
                                     <div data-i18n="Without menu">Report Dana</div>
                                 </a>
                             </li>

@@ -21,9 +21,9 @@
 
 
                 <!-- / Navbar -->
-            
-                
-                
+
+
+
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
@@ -34,14 +34,14 @@
                             <div class="d-flex align-items-end row">
                                 <div class="card-body">
                                     <div class="body">
-                                        <h5 class="card-title text-primary">Report Dana</h5>
-                                        <form role="form" method="post" action="<?php echo site_url('admin/pengabdian/apbn/caridata'); ?>">
+                                        <h5 class="card-title text-primary">Laporan Dana</h5>
+                                        <form role="form" method="post" action="<?php echo site_url('admin/pengabdian/report/caridata'); ?>">
                                             <div class="row clearfix">
                                                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
                                                     <label>Tanggal Awal</label>
                                                     <div class="form-group form-float">
                                                         <div class="form-line">
-                                                            <input type="date" class="datepicker form-control" placeholder="Pilih Tanggal" name="tanggal1" value="<?php echo set_value('tanggal1'); ?>" autocomplete="off">
+                                                            <input type="date" class="datepicker form-control" placeholder="Pilih Tanggal" name="tanggal1" autocomplete="off">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -49,7 +49,7 @@
                                                     <label>Tanggal Selesai</label>
                                                     <div class="form-group form-float">
                                                         <div class="form-line">
-                                                            <input type="date" class="datepicker form-control" placeholder="Pilih Tanggal" name="tanggal2" autocomplete="off" value="<?php echo set_value('tanggal2'); ?>">
+                                                            <input type="date" class="datepicker form-control" placeholder="Pilih Tanggal" name="tanggal2" autocomplete="off">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -58,7 +58,7 @@
                                                     <div class="form-group form-float">
                                                         <div class="form-line">
                                                             <select name="status" class="form-control" id="">
-                                                                <option value="" selected>pilih</option>
+                                                                <option value="" selected>Pilih</option>
                                                                 <option value="Menunggu">Menunggu</option>
                                                                 <option value="Ditolak">Ditolak</option>
                                                                 <option value="Diterima">Diterima</option>
@@ -80,17 +80,19 @@
                                         </form>
                                     </div>
                                 </div>
-                                
+
                                 <?php
                                 // var_dump($show);
-                                if ($show == true) { 
-                                    ?>
-
+                                if ($show == true) {
+                                ?>
                                     <div class="card-body">
-                                        <h5 class="card-title text-primary">Report Dana</h5>
-                                        <!-- <a href="<?php echo site_url('admin/pengabdian/report/excel'); ?>" class="btn btn-success waves-effect" target="_blank"><i class="material-icons"></i> Excel
-                                        </a> -->
-                                        <!-- <a target="_blank" href="export_excel.php">EXPORT KE EXCEL</a> -->
+                                        <h5 class="card-title text-primary">Laporan Dana Per Tanggal <?= date('d-m-Y', strtotime($report['tanggal1'])) ?> s/d <?= date('d-m-Y', strtotime($report['tanggal2'])) ?></h5>
+                                        <form action="<?php echo site_url('admin/pengabdian/report/exportdana'); ?>" method="post" enctype="multipart/form" class="mb-3" target="_blank">
+                                            <input type="hidden" name='ta' value="<?= $report['tanggal1'] ?>">
+                                            <input type="hidden" name='tk' value="<?= $report['tanggal2'] ?>">
+                                            <input type="hidden" name='status' value="<?= $report['status'] ?>">
+                                            <button type="submit" name="export" class="btn btn-success">Export Excel</button>
+                                        </form>
                                         <table id="tableapb" class="table table-bordered table-striped table-hover" style="width:100%">
                                             <thead>
                                                 <tr>
@@ -124,8 +126,8 @@
                                                 ?>
                                         </table>
                                     </div>
-                                <?php 
-                            } ?>
+                                <?php
+                                } ?>
 
                             </div>
                         </div>
