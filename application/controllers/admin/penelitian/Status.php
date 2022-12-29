@@ -30,7 +30,7 @@ class Status extends CI_Controller
         } else {
             $this->session->set_flashdata('gglsimpan', 'failed');
         }
-        redirect('penelitian/Master/status');
+        redirect('admin/penelitian/status');
     }
 
     public function updatestatus()
@@ -44,7 +44,7 @@ class Status extends CI_Controller
         } else {
             $this->session->set_flashdata('gglubah', 'failed');
         }
-        redirect('penelitian/Master/status');
+        redirect('admin/penelitian/status');
     }
 
     public function deletestatus($id)
@@ -56,7 +56,7 @@ class Status extends CI_Controller
         } else {
             $this->session->set_flashdata('gglhapus', 'hapus gagal');
         }
-        redirect('penelitian/Master/status');
+        redirect('admin/penelitian/status');
     }
 }
 

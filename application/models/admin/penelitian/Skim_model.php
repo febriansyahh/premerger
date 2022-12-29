@@ -5,7 +5,7 @@ class Skim_model extends CI_Model
 {
     public function skim()
     {
-        return $this->db->get('lemlit_skim')->result();
+        return $this->db->get('lit_skim')->result();
     }
 
     public function saveskim()
@@ -20,7 +20,7 @@ class Skim_model extends CI_Model
         $this->skim_anggotamhs_min  = $this->input->post('anggota_mhs');
         $this->skim_anggotaeks_min  = $this->input->post('anggota_eks');
 
-        return $this->db->insert('lemlit_skim', $this);
+        return $this->db->insert('lit_skim', $this);
     }
 
     public function updateskim()
@@ -39,7 +39,7 @@ class Skim_model extends CI_Model
 
         $ids = $this->variasi->decode($id);
 
-        $this->db->query("UPDATE `lemlit_skim` SET `skim_name` = '$skim', `skim_name_seo` = '$seo',
+        $this->db->query("UPDATE `lit_skim` SET `skim_name` = '$skim', `skim_name_seo` = '$seo',
         `skim_budget` = '$budget', `skim_active` = '$status', `skim_update` = '$date', `skim_external` = '$eksternal',
         `skim_anggota_min` = '$min_anggota', `skim_anggota_max` ='$max_anggota', `skim_anggotamhs_min` = '$anggota_mhs',
         `skim_anggotaeks_min` = '$anggota_eks'  WHERE `skim_id` = '$ids' ");
@@ -48,7 +48,7 @@ class Skim_model extends CI_Model
     public function deleteskim($id)
     {
         $ids = $this->variasi->decode($id);
-        return $this->db->delete('lemlit_skim', array("skim_id" => $ids));
+        return $this->db->delete('lit_skim', array("skim_id" => $ids));
     }
 
     public function sbk()

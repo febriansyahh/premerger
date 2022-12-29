@@ -18,7 +18,7 @@ class Header_model extends CI_Model {
     function select_pusat_studi($id)
     {
         $this->db->select('*');
-        $this->db->from('lemlit_pusat_studi');
+        $this->db->from('lit_pusat_studi');
         $this->db->where('pusat_studi_nis', $id); // Jika 1 maka bisa ganti peran
 
         return $this->db->get();
@@ -36,7 +36,7 @@ class Header_model extends CI_Model {
 
     function pusat_studi($id)
     {
-        $query = $this->db->query("SELECT * FROM `lemlit_pusat_studi` WHERE pusat_studi_nis = '$id' ");
+        $query = $this->db->query("SELECT * FROM `lit_pusat_studi` WHERE pusat_studi_nis = '$id' ");
         if ($query->num_rows() == 1) {
             return 1;
         } else {

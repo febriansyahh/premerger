@@ -209,7 +209,7 @@
                                     <div data-i18n="Container">Status Proposal</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <!-- <li class="menu-item">
                                 <a href="<?= site_url('admin/penelitian/tkt') ?>" class="menu-link">
                                     <div data-i18n="Container">TKT Master</div>
                                 </a>
@@ -218,11 +218,11 @@
                                 <a href="<?= site_url('admin/penelitian/tkt') ?>" class="menu-link">
                                     <div data-i18n="Container">TKT Detail</div>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
 
-                    <li class="menu-item">
+                    <!-- <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-box"></i>
                             <div data-i18n="Layouts">Master Umum</div>
@@ -254,7 +254,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">

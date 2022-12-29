@@ -86,7 +86,12 @@
                                                     <td><?= $value->skim_name ?></td>
                                                     <td><?= $value->skim_budget ?></td>
                                                     <td><?= $value->skim_external ?></td>
-                                                    <td><?= $value->skim_active ?></td>
+                                                    <td><?php
+                                                    if ($value->skim_active == 'Active'){
+                                                            echo '<span class="badge bg-success">Active</span>';
+                                                    }else{
+                                                        echo '<span class="badge bg-danger">Non Active</span>';
+                                                    } ?></td>
                                                     <td>
                                                         <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editSkim" onclick="editableSkim(this)" data-id="<?php echo $this->variasi->encode($value->skim_id) . "~" . $value->skim_name . "~" . $value->skim_budget . "~" . $value->skim_active . "~" . $value->skim_external . "~" . $value->skim_anggota_min . "~" . $value->skim_anggota_max . "~" . $value->skim_anggotamhs_min . "~" . $value->skim_anggotaeks_min ?>" class="btn btn-outline-primary btn-sm">Edit</a>
                                                         <a href="<?php echo site_url('admin/penelitian/skim/deleteskim/' . $this->variasi->encode($value->skim_id)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm">Hapus</a>

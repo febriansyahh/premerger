@@ -5,7 +5,7 @@ class Komlap_model extends CI_Model
 {
     public function komlap()
     {
-        return $this->db->get('lemlit_component_report')->result();
+        return $this->db->get('lit_component_report')->result();
     }
 
     public function savekomlap()
@@ -15,12 +15,12 @@ class Komlap_model extends CI_Model
         $this->component_bobot      = $this->input->post('bobot');
         $this->component_update      = date("Y-m-d H:i:s");
 
-        return $this->db->insert('lemlit_component_report', $this);
+        return $this->db->insert('lit_component_report', $this);
     }
 
     public function editkomlap($id)
     {
-        return $this->db->query("SELECT * FROM `lemlit_component_report` WHERE `component_id` = '" . $this->variasi->decode($id) . "' ")->row();
+        return $this->db->query("SELECT * FROM `lit_component_report` WHERE `component_id` = '" . $this->variasi->decode($id) . "' ")->row();
     }
 
     public function updatekomlap()
@@ -33,12 +33,12 @@ class Komlap_model extends CI_Model
 
         $ids = $this->variasi->decode($id);
 
-        $this->db->query("UPDATE `lemlit_component_report` SET `component_name` = '$komponen', `component_indicator` = '$indikator', `component_bobot` = '$bobot', `component_update` = '$date' WHERE `component_id` = '$ids'");
+        $this->db->query("UPDATE `lit_component_report` SET `component_name` = '$komponen', `component_indicator` = '$indikator', `component_bobot` = '$bobot', `component_update` = '$date' WHERE `component_id` = '$ids'");
     }
 
     public function deletekomlap($id)
     {
         $ids = $this->variasi->decode($id);
-        return $this->db->delete('lemlit_component_report', array("component_id" => $ids));
+        return $this->db->delete('lit_component_report', array("component_id" => $ids));
     }
 }

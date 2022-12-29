@@ -5,14 +5,14 @@ class Luaran_model extends CI_Model
 {
     public function getLuaran()
     {
-        return $this->db->query("SELECT * FROM `lemlit_output_type` ")->result();
+        return $this->db->query("SELECT * FROM `lit_output_type` ")->result();
     }
 
     public function saveluaran()
     {
         $this->output_type_title    = $this->input->post('nama');
 
-        return $this->db->insert('lemlit_output_type', $this);
+        return $this->db->insert('lit_output_type', $this);
     }
 
     public function updateluaran()
@@ -22,12 +22,12 @@ class Luaran_model extends CI_Model
 
         $ids = $this->variasi->decode($id);
 
-        $this->db->query("UPDATE `lemlit_output_type` SET `output_type_title` = '$nama' WHERE `output_type_id` = '$ids' ");
+        $this->db->query("UPDATE `lit_output_type` SET `output_type_title` = '$nama' WHERE `output_type_id` = '$ids' ");
     }
 
     public function deleteluaran($id)
     {
         $ids = $this->variasi->decode($id);
-        return $this->db->delete('lemlit_output_type', array("output_type_id" => $ids));
+        return $this->db->delete('lit_output_type', array("output_type_id" => $ids));
     }
 }

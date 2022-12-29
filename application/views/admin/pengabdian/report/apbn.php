@@ -86,7 +86,7 @@
                                 if ($show == true) {
                                 ?>
                                     <div class="card-body">
-                                        <h5 class="card-title text-primary">Laporan Dana Per Tanggal <?= date('d-m-Y', strtotime($report['tanggal1'])) ?> s/d <?= date('d-m-Y', strtotime($report['tanggal2'])) ?></h5>
+                                        <h5 class="card-title text-primary">Laporan Dana Per Tanggal </h5>
                                         <form action="<?php echo site_url('admin/pengabdian/report/exportdana'); ?>" method="post" enctype="multipart/form" class="mb-3" target="_blank">
                                             <input type="hidden" name='ta' value="<?= $report['tanggal1'] ?>">
                                             <input type="hidden" name='tk' value="<?= $report['tanggal2'] ?>">

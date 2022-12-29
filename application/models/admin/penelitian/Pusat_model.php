@@ -5,7 +5,7 @@ class Pusat_model extends CI_Model
 {
     public function pusatstudi()
     {
-        return $this->db->get('lemlit_pusat_studi')->result();
+        return $this->db->get('lit_pusat_studi')->result();
     }
 
     public function savepusat()
@@ -14,7 +14,7 @@ class Pusat_model extends CI_Model
         $this->pusat_studi_ketua = $this->input->post('ketua');
         $this->pusat_studi_nis = $this->input->post('nis');
 
-        return $this->db->insert('lemlit_pusat_studi', $this);
+        return $this->db->insert('lit_pusat_studi', $this);
     }
 
     public function updatepusat()
@@ -26,12 +26,12 @@ class Pusat_model extends CI_Model
 
         $ids = $this->variasi->decode($id);
 
-        $this->db->query("UPDATE `lemlit_pusat_studi` SET `pusat_studi_nama` = '$nama', `pusat_studi_ketua` = '$ketua', `pusat_studi_nis` = '$nis' WHERE `pusat_studi_id` = '$ids' ");
+        $this->db->query("UPDATE `lit_pusat_studi` SET `pusat_studi_nama` = '$nama', `pusat_studi_ketua` = '$ketua', `pusat_studi_nis` = '$nis' WHERE `pusat_studi_id` = '$ids' ");
     }
 
     public function deletepusat($id)
     {
         $ids = $this->variasi->decode($id);
-        return $this->db->delete('lemlit_pusat_studi', array("pusat_studi_id" => $ids));
+        return $this->db->delete('lit_pusat_studi', array("pusat_studi_id" => $ids));
     }
 }

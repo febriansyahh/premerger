@@ -5,7 +5,7 @@ class Status_model extends CI_Model
 {
     public function status()
     {
-        return $this->db->get('lemlit_status')->result();
+        return $this->db->get('lit_status_proposal')->result();
     }
 
     public function savestatus()
@@ -13,7 +13,7 @@ class Status_model extends CI_Model
         $this->status_desc   = $this->input->post('status');
         $this->status_update = date('Y-m-d H:i:s');
 
-        return $this->db->insert('lemlit_status', $this);
+        return $this->db->insert('lit_status_proposal', $this);
     }
 
     public function updatestatus()
@@ -24,12 +24,12 @@ class Status_model extends CI_Model
 
         $ids = $this->variasi->decode($id);
 
-        $this->db->query("UPDATE `lemlit_status` SET `status_desc` = '$status', `status_update` = '$date' WHERE `status_id` = '$ids'");
+        $this->db->query("UPDATE `lit_status_proposal` SET `status_desc` = '$status', `status_update` = '$date' WHERE `status_id` = '$ids'");
     }
 
     public function deletestatus($id)
     {
         $ids = $this->variasi->decode($id);
-        return $this->db->delete('lemlit_status', array("status_id" => $ids));
+        return $this->db->delete('lit_status_proposal', array("status_id" => $ids));
     }
 }
