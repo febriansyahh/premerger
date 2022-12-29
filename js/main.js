@@ -273,6 +273,19 @@ $(document).ready(function () {
      	
 	],
 	});
+	$('#tableapb').DataTable({
+	columns: [
+      { width: "5%" }, // No
+      { width: "15%" }, // pengusul
+      { width: "37%" }, // Judul
+      { width: "10%" }, // dana apn 
+      { width: "10%" }, // usulan apb 
+      { width: "10%" }, // biaya lain
+      { width: "20%" }, // sumber dana 
+      { width: "10%" }, // dana disetujui
+     	
+	],
+	});
 });
 
 
