@@ -7,11 +7,7 @@ class Usulan_model extends CI_Model
     {
         $nis = $this->session->userdata('nis');
         $nidn = $this->session->userdata('nidn');
-
-        // Pre merger
-        // $sql = $this->db->query("SELECT u.*, IF(s.`semester` = '1', 'Ganjil', IF(s.`semester` = '2', 'Genap', '-')) AS semester , s.`tahun_ajaran`, sk.`nama_skim` 
-        //         FROM `p_usulan` u LEFT JOIN `p_semester` s ON u.`id_tahun`= s.`id_semester` JOIN `p_skim` sk ON u.`skim_id`=sk.`skim_id`
-        //         WHERE (u.`username` = '$nis' OR u.`username` = '$nidn') ")->result();
+        $kode = $this->session->userdata('kode');
 
         // simlitabmas
         $sql = $this->db->query("SELECT a.`id_usulan`, a.`nidn_pengusul`, b.bidang, c.`kelompok_nama`, d.bidang_fokus, a.`usulan_tema`, a.`usulan_topik`, a.`usulan_judul`, a.`status_tkt`, a.`tkt_target`, a.`usulan_tahun`, f.`tahun_ajaran`, a.`usulan_biaya`, e.`sbk_nama`, e.`sbk_budget`, a.`usulan_total_biaya`, a.`usulan_unit_ajar`, a.`file_usulan`, a.`usulan_jumlah_mahasiswa`, a.`usulan_tgl_mulai`, a.`usulan_tgl_selesai`, a.`usulan_status` FROM `lit_usulan` a LEFT JOIN `lit_bidang_ilmu` b ON a.`bidang_ilmu`=b.id_bidang LEFT JOIN `lit_kelompok_makro` c ON a.`kelompok_makro`=c.`kelompok_id` LEFT JOIN `lit_riset_fokus` d ON a.`riset_fokus`=d.`riset_id`

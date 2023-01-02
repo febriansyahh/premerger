@@ -6,18 +6,32 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // $this->load->model("Header_model");
-        // $this->load->library('form_validation');
     }
 
     public function index()
     {
-       
-        $data['penelitian'] = $this->Header_model->c_penelitian();
-        $data['pengabdian'] = $this->Header_model->c_pengabdian();
-        
 
-        $this->load->view("homeadmin", $data);
+        if ($this->session->userdata('level') == 'Admin' AND $this->session->userdata('sistem') != '') {
+            $data['penelitian'] = $this->Header_model->c_penelitian();
+            $data['pengabdian'] = $this->Header_model->c_pengabdian();
+
+            $this->load->view("homeadmin", $data);
+        }else{
+            $kode = $this->session->userdata('kode');
+            $cekadm = $this->Header_model->cekadm($kode);
+
+            $array_item = array(
+                'iduser'    => $cekadm->id_user,
+                'username'  => $cekadm->username,
+                'level'     => 'Admin',
+                'sistem'    => $cekadm->user_sistem);
+            $this->session->set_userdata($array_item);
+
+            $data['penelitian'] = $this->Header_model->c_penelitian();
+            $data['pengabdian'] = $this->Header_model->c_pengabdian();
+    
+            $this->load->view("homeadmin", $data);
+        }
     }
 
     public function profile()

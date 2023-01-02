@@ -41,8 +41,6 @@ class Login extends CI_Controller
             if ($login->status == 'true') {
                 $response = $login->result->data; 
                 if ($response->level == 'dosen') {
-                    $reviewer = $this->Login_model->reviewer($response->nidn);
-                    $pusatstudi = $this->Login_model->pusat_studi($response->nis);
 
                     $this->session->set_userdata('iduser', $response->iduser);
                     $this->session->set_userdata('kode', $response->kode);
@@ -52,13 +50,23 @@ class Login extends CI_Controller
                     $this->session->set_userdata('nama_gelar', $response->nama_gelar);
                     $this->session->set_userdata('prodi', $response->prodi);
                     $this->session->set_userdata('level', $response->level);
-                    $this->session->set_userdata('is_reviewer', $reviewer);
-                    $this->session->set_userdata('is_pusatstudi', $pusatstudi);
+                    
     
                     redirect('dosen/home');
     
+                } elseif ($response->level == 'pegawai') {
+                    $kode = $response->kode;
+                    $cekadmin = $this->Login_model->loginadm($kode);
+                   
+                    $this->session->set_userdata('iduser', $cekadmin->id_user);
+                    $this->session->set_userdata('username', $cekadmin->username);
+                    $this->session->set_userdata('nama', $response->nama_gelar);
+                    $this->session->set_userdata('level', $cekadmin->user_level);
+                    $this->session->set_userdata('sistem', $cekadmin->user_sistem);
+
+                    redirect('admin/home');
                 }else{
-                    echo "<script>alert('Akun Anda Tidak Sebagai Dosen !'); document.location='index' </script>";
+                    echo "<script>alert('Maaf anda tidak memiliki akses masuk !'); document.location='index' </script>";
                 }
             }else{
                 echo "<script>alert('Username atau password anda tidak sesuai !'); document.location='index' </script>";

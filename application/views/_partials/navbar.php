@@ -1,9 +1,13 @@
  <?php
     $nidn = $this->session->userdata('nidn');
     $nis = $this->session->userdata('nis');
+    $kode = $this->session->userdata('kode');
     $check_reviewer    = $this->Header_model->reviewer($nidn);
     $check_pusat_studi = $this->Header_model->pusat_studi($nis);
     $check_reviewer_pengabdian = $this->Header_model->reviewerpengabdian($nidn);
+    $adminpengabdian = $this->Header_model->adminpengabdian();
+    $adminpenelitian = $this->Header_model->adminpenelitian();
+    $isdosen = $this->Header_model->isdosen($nidn);
 
     ?>
  <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
@@ -32,25 +36,32 @@
                      </button>
                      <ul class="dropdown-menu">
                          <?php
-                            if ($check_reviewer_pengabdian == '1') {
+                            if ($adminpengabdian == '1') {
                             ?>
-                             <li><a class="dropdown-item" href="<?php echo site_url('reviewer/home'); ?>">Reviewer Pengabdian</a></li>
+                             <li><a class="dropdown-item" href="<?php echo site_url('admin/home'); ?>">Admin Pengabdian</a></li>
+                         <?php
+                            }
+
+                            if ($adminpenelitian == '1') {
+                            ?>
+                             <li><a class="dropdown-item" href="<?php echo site_url('admin/home'); ?>">Admin Pengabdian</a></li>
                          <?php
                             }
 
                             if ($check_reviewer == '1') {
-                                echo '<li><a class="dropdown-item" href="javascript:void(0);">Reviewer Penelitian</a></li>
-                            ';
+                            ?>
+                             <li><a class="dropdown-item" href="#">Reviewer Penelitian</a></li>
+                         <?php
                             }
 
                             if ($check_pusat_studi == '1') {
-                                echo '<li><a class="dropdown-item" href="javascript:void(0);">Pusat Studi</a></li>
-                                    <li>
-                                    <hr class="dropdown-divider" />
-                                    </li>';
+                            ?>
+                             <li><a class="dropdown-item" href="#">Reviewer Penelitian</a></li>
+                         <?php
+                                echo '<li><hr class="dropdown-divider"/></li>';
                             }
 
-                            if ($check_reviewer == '0' & $check_pusat_studi == '0' && $check_reviewer_pengabdian == '0') {
+                            if ($check_reviewer == '0' & $check_pusat_studi == '0' && $check_reviewer_pengabdian == '0' && $adminpengabdian == '0' && $adminpenelitian == '0') {
                                 echo '
                             <li><a class="dropdown-item" href="javascript:void(0);">Tidak ada peran lain</a></li>
                             ';
@@ -58,7 +69,21 @@
                             ?>
                      </ul>
                  </div>
+                 <?php
+                }
+                if ($this->session->userdata('level') == 'Admin' && $this->session->userdata('sistem') != '0') {
+                    if ($isdosen == 1) {
+                    ?>
+                     <div class="btn-group dropddown">
+                         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Ganti Peran
+                         </button>
+                         <ul class="dropdown-menu">
+                             <li><a class="dropdown-item" href="<?php echo site_url('dosen/home'); ?>">Dosen</a></li>
+                         </ul>
+                     </div>
              <?php
+                    }
                 }
                 ?>
              <!-- User -->

@@ -14,7 +14,6 @@ class Akun extends CI_Controller
     {
         $data['result'] = $this->Akun_model->index();
         $this->load->view("super/akun/index", $data);
-        // $this->load->view("super/akun/index");
     }
 
     public function add()
@@ -33,7 +32,7 @@ class Akun extends CI_Controller
         }else{
             $this->session->set_flashdata('gglsimpan', 'gagal simpan');
         }
-        redirect('Akun');
+        redirect('admin/Akun');
     }
 
     public function reset()
@@ -46,7 +45,7 @@ class Akun extends CI_Controller
         }else{
             $this->session->set_flashdata('gglreset', 'Berhasil simpan');
         }
-        redirect('Akun');
+        redirect('admin/Akun');
     }
 
     public function delete($id)
@@ -60,7 +59,12 @@ class Akun extends CI_Controller
         } else {
             $this->session->set_flashdata('ggldelete', 'gagal hapus');
         }
-        redirect('Akun');
+        redirect('admin/Akun');
+    }
+
+    public function getkode()
+    {
+        $this->Akun_model->getkode();
     }
 }
 ?>

@@ -54,13 +54,40 @@ class Header_model extends CI_Model {
         }
     }
 
+    public function adminpengabdian()
+    {
+        $kode = $this->session->userdata('kode');
+        $query = $this->db->query("SELECT * FROM `mst_users` WHERE username = '$kode' AND `user_active` = 'Active' AND `user_sistem` ='1' ");
+        if ($query->num_rows() == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public function adminpenelitian()
+    {
+        $kode = $this->session->userdata('kode');
+        $query = $this->db->query("SELECT * FROM `mst_users` WHERE username = '$kode' AND `user_active` = 'Active' AND `user_sistem` ='2' ");
+        if ($query->num_rows() == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public function cekadm($usr)
+    {
+        $query = $this->db->query("SELECT * FROM `mst_users` WHERE username = '$usr' AND `user_active` = 'Active'");
+        return $query->row();
+    }
 
     public function c_penelitian()
     {
         if ($this->session->userdata('level') == 'dosen') {
-            return $this->db->query("SELECT COUNT(`id_usulan`) AS jumlah FROM `lit_usulan` WHERE `nidn_pengusul` = '" . $this->session->userdata('nidn') . "' OR `nidn_pengusul` ='" . $this->session->userdata('nis') . "' ")->row();
+            return $this->db->query("SELECT COUNT(`usulan_id`) AS jumlah FROM `lit_usulan` WHERE `nidn` = '" . $this->session->userdata('nidn') . "' OR `nidn` ='" . $this->session->userdata('nis') . "' ")->row();
         } else {
-            return $this->db->query("SELECT COUNT(`id_usulan`) AS jumlah FROM `lit_usulan` ")->row();
+            return $this->db->query("SELECT COUNT(`usulan_id`) AS jumlah FROM `lit_usulan` ")->row();
         }
     }
 
@@ -100,6 +127,20 @@ class Header_model extends CI_Model {
         $ids = $this->variasi->decode($id);
         $sql = $this->db->query("SELECT `kemajuan_id` FROM `ab_laporan_kemajuan` WHERE `usulan_id` = '$ids' ")->num_rows();
         return $sql;
+    }
+
+    public function isdosen($kode)
+    {
+        if ($kode != '') {
+            $ws = _wsgetdosen($kode);
+            $sts = $ws['status'];
+            $data = $ws['result']['data'][0];
+            if ($sts == true && !empty($data['nidn'])) {
+                return 1;
+            }
+        }else{
+           return 0;
+        }
     }
 }
 ?>

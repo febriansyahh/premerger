@@ -264,7 +264,7 @@
 
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="<?= site_url('penelitian/pengajuan/list') ?>" class="menu-link">
+                                <a href="<?= site_url('admin/penelitian/usulan') ?>" class="menu-link">
                                     <div data-i18n="Container">Pengajuan</div>
                                 </a>
                             </li>
@@ -273,7 +273,50 @@
                                     <div data-i18n="Container">Hasil Keputusan</div>
                                 </a>
                             </li>
+                        </ul>
+                    </li>
 
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bxs-file"></i>
+                            <div data-i18n="Layouts">Laporan Pelaksanaan</div>
+                        </a>
+
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/catatan') ?>" class="menu-link">
+                                    <div data-i18n="Without menu">Catatan Harian</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/laporan/kemajuan') ?>" class="menu-link">
+                                    <div data-i18n="Without navbar">Laporan Kemajuan</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/laporan/monev') ?>" class="menu-link">
+                                    <div data-i18n="Without navbar">Laporan Monev</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/laporan/akhir') ?>" class="menu-link">
+                                    <div data-i18n="Without navbar">Laporan Akhir</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-file"></i>
+                            <div data-i18n="Layouts">Report</div>
+                        </a>
+
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/report/usulan') ?>" class="menu-link">
+                                    <div data-i18n="Without menu">Report Usulan</div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -295,6 +338,13 @@
                     </li>
                     <!-- Layouts -->
                     <li class="menu-item">
+                        <a href="<?= site_url('admin/pengabdian/reviewer') ?>" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-user"></i>
+                            <div data-i18n="Analytics">Reviewer</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-box"></i>
                             <div data-i18n="Layouts">Master Data Pengabdian</div>
@@ -302,15 +352,15 @@
 
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="<?php echo site_url('admin/pengabdian/jabatan') ?>" class="menu-link">
-                                    <div data-i18n="Without menu">Jabatan</div>
-                                </a>
-                            </li>
-                            <!-- <li class="menu-item">
-                                <a href="<?= site_url('admin/pengabdian/jabatan/lpm') ?>" class="menu-link">
+                                <a href="<?= site_url('admin/pengabdian/jabatan') ?>" class="menu-link">
                                     <div data-i18n="Without menu">Jabatan LPM</div>
                                 </a>
-                            </li> -->
+                            </li>
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/skema') ?>" class="menu-link">
+                                    <div data-i18n="Basic">Skema Pengabdian</div>
+                                </a>
+                            </li>
                             <li class="menu-item">
                                 <a href="<?= site_url('admin/pengabdian/pemeriksaan') ?>" class="menu-link">
                                     <div data-i18n="Container">Pemeriksaan</div>
@@ -326,14 +376,12 @@
                                     <div data-i18n="Container">Batas Minimal</div>
                                 </a>
                             </li>
+                            <li class="menu-item">
+                                <a href="<?= site_url('admin/pengabdian/lembaga') ?>" class="menu-link">
+                                    <div data-i18n="Without menu">Lembaga Pengabdian</div>
+                                </a>
+                            </li>
                         </ul>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="<?= site_url('admin/pengabdian/skema') ?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-street-view"></i>
-                            <div data-i18n="Basic">Skema Pengabdian</div>
-                        </a>
                     </li>
 
                     <li class="menu-header small text-uppercase">
@@ -512,7 +560,7 @@
                     </li>
                     <li class="menu-item">
                         <a href="<?= site_url('dosen/pengabdian/laporan/monev') ?>" class="menu-link">
-                            <div data-i18n="Without navbar">Laporan  Monev</div>
+                            <div data-i18n="Without navbar">Laporan Monev</div>
                         </a>
                     </li>
                     <li class="menu-item">

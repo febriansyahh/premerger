@@ -44,6 +44,16 @@ class Login_model extends CI_Model
         }
     }
 
+    public function loginadm($kode)
+    {
+        $query = $this->db->query("SELECT * FROM `mst_users` WHERE `username` = '$kode' AND `user_active` ='Active'");
+        if ($query->num_rows() == 1) {
+            return $query->row();
+        } else {
+            return false;
+        }
+    }
+
     public function reviewer($id)
     {
         $query = $this->db->query("SELECT * FROM `lemlit_lecture` WHERE user_username = '$id' AND `lecture_review` = '1' ");
