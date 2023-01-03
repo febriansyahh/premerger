@@ -49,12 +49,12 @@
                                     </div>';
 
                                     if ($this->session->flashdata('active')) echo '<div class="alert alert-success alert-dismissible" role="alert">
-                                    Berhasil melakukan perubahan status data jabatan LPM
+                                    Berhasil melakukan perubahan status semester
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
 
                                     if ($this->session->flashdata('gglactive')) echo '<div class="alert alert-danger alert-dismissible" role="alert">
-                                        Gagal melakukan perubahan status data jabatan LPM
+                                        Gagal melakukan perubahan status semester
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>';
 
