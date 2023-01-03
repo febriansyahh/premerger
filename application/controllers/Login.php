@@ -57,14 +57,19 @@ class Login extends CI_Controller
                 } elseif ($response->level == 'pegawai') {
                     $kode = $response->kode;
                     $cekadmin = $this->Login_model->loginadm($kode);
+                    if ($cekadmin) {
+                        # code...
+                        $this->session->set_userdata('iduser', $cekadmin->id_user);
+                        $this->session->set_userdata('username', $cekadmin->username);
+                        $this->session->set_userdata('nama', $response->nama_gelar);
+                        $this->session->set_userdata('level', $cekadmin->user_level);
+                        $this->session->set_userdata('sistem', $cekadmin->user_sistem);
+    
+                        redirect('admin/home');
+                    }else{
+                        echo "<script>alert('Maaf anda tidak memiliki akses masuk !'); document.location='index' </script>";
+                    }
                    
-                    $this->session->set_userdata('iduser', $cekadmin->id_user);
-                    $this->session->set_userdata('username', $cekadmin->username);
-                    $this->session->set_userdata('nama', $response->nama_gelar);
-                    $this->session->set_userdata('level', $cekadmin->user_level);
-                    $this->session->set_userdata('sistem', $cekadmin->user_sistem);
-
-                    redirect('admin/home');
                 }else{
                     echo "<script>alert('Maaf anda tidak memiliki akses masuk !'); document.location='index' </script>";
                 }
