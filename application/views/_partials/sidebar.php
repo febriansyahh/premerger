@@ -488,7 +488,7 @@
                         <span class="menu-header-text">Super Admin</span>
                     </li>
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="<?= site_url('admin/semester') ?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-cog"></i>
                             <div data-i18n="Without navbar">Semester</div>
                         </a>
