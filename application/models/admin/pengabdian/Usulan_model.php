@@ -10,38 +10,6 @@ class Usulan_model extends CI_Model
         return $this->db->query("SELECT a.*, b.`skema_nama`, c.`anggota_nama`, c.`anggota_nidn` FROM `ab_usulan` a LEFT JOIN `ab_skema` b ON a.`skema_id`=b.`skema_id` LEFT JOIN `ab_anggota` c ON c.`usulan_id`=a.`usulan_id` WHERE c.`anggota_posisi` ='ketua' ORDER BY a.`usulan_id` DESC")->result();
     }
 
-    // // public function jabatan()
-    // // {
-    // //     return $this->db->get("p_jabatan")->result();
-    // // }
-
-    // public function save()
-    // {
-    //     $post = $this->input->post();
-
-    //     $nama = $post['nama'];
-    //     $jabatan = $post['jabatan'];
-    //     $pagumin = $post['pagumin'];
-    //     $pagumax = $post['pagumax'];
-    //     $kuota = $post['kuota'];
-    //     $status = $post['status'];
-
-    //     $this->nama_skim = $nama;
-    //     $this->jabatan_minimal = $jabatan;
-    //     $this->biaya_pagu_min = $pagumin;
-    //     $this->biaya_pagu_max = $pagumax;
-    //     $this->kuota_skim = $kuota;
-    //     $this->status_skim = $status;
-
-    //     return $this->db->insert($this->_table, $this);
-    // }
-
-    // public function delete($id)
-    // {
-    //     $ids = $this->variasi->decode($id);
-    //     return $this->db->delete($this->_table, array("skim_id" => $ids));
-    // }
-
     public function getbyid($id)
     {
         $ids = $this->variasi->decode($id);
@@ -137,7 +105,10 @@ class Usulan_model extends CI_Model
     public function done($id)
     {
         $ids = $this->variasi->decode($id);
+        $iduser = $this->session->userdata('iduser');
+        $date = date('Y-m-d H:i:s');
         $this->db->query("UPDATE `ab_usulan` SET `status_usulan` = 'Selesai' WHERE `usulan_id` = '$ids' ");
+        $this->db->query("UPDATE `ab_log` SET `verif_selesai` = '$iduser', `verif_selesai_date` = '$date' WHERE `usulan_id` = '$ids' ");
     }
 
     public function verifikasi()
@@ -147,7 +118,12 @@ class Usulan_model extends CI_Model
         $ids = $this->variasi->decode($id);
         $usulan = $post['usulan'];
         $alasan = $post['alasan'];
+        $iduser = $this->session->userdata('iduser');
+        $date = date('Y-m-d H:i:s');
         $this->db->query("UPDATE `ab_usulan` SET `status_usulan` = '$usulan', `alasan_tolak` = '$alasan' WHERE `usulan_id` = '$ids' ");
+        $this->db->query("INSERT INTO `ab_log`(`usulan_id`, `verif_confirm`, `verif_confirm_date`) VALUES 
+        ('$ids','$iduser','$date') ");
+
     }
 
     public function reviewer()
@@ -209,8 +185,11 @@ class Usulan_model extends CI_Model
     {
         $ids = $this->variasi->decode($_POST['id']);
         $post = $this->input->post();
+        $iduser = $this->session->userdata('iduser');
+        $date = date('Y-m-d H:i:s');
 
         $this->db->query("UPDATE `ab_usulan` SET `setujui_biaya` = '".$post['biayaacc']."' WHERE `usulan_id` = '$ids' ");
+        $this->db->query("UPDATE `ab_log` SET `verif_biaya` = '$iduser', `verif_biaya_date` = '$date' WHERE `usulan_id` = '$ids' ");
     }
 
     public function deletereview($id)

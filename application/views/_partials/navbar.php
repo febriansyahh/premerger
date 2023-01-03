@@ -48,6 +48,12 @@
                          <?php
                             }
 
+                            if ($check_reviewer_pengabdian == '1') {
+                            ?>
+                             <li><a class="dropdown-item" href="<?php echo site_url('reviewer/home'); ?>">Reviewer Pengabdian</a></li>
+                         <?php
+                            }
+
                             if ($check_reviewer == '1') {
                             ?>
                              <li><a class="dropdown-item" href="#">Reviewer Penelitian</a></li>
