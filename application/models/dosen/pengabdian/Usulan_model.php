@@ -9,11 +9,6 @@ class Usulan_model extends CI_Model
         $nidn = $this->session->userdata('nidn');
         $kode = $this->session->userdata('kode');
 
-        // Pre merger
-        // $sql = $this->db->query("SELECT u.*, IF(s.`semester` = '1', 'Ganjil', IF(s.`semester` = '2', 'Genap', '-')) AS semester , s.`tahun_ajaran`, sk.`nama_skim` 
-        //         FROM `p_usulan` u LEFT JOIN `p_semester` s ON u.`id_tahun`= s.`id_semester` JOIN `p_skim` sk ON u.`skim_id`=sk.`skim_id`
-        //         WHERE (u.`username` = '$nis' OR u.`username` = '$nidn') ")->result();
-
         // simlitabmas
         $sql = $this->db->query("SELECT a.*, b.`skema_nama`, c.`tahun_ajaran`, c.tahun_semester, IF(c.tahun_semester = '1', 'Gasal', IF(c.tahun_semester = '2', 'Genap', 'Data Lama')) AS semester FROM `ab_usulan` a LEFT JOIN `ab_skema` b ON a.`skema_id`=b.`skema_id` LEFT JOIN `mst_tahun_akademik` c ON a.`id_tahun`=c.`id_tahun`
         WHERE (a.`nidn_pengusul` = '$nidn' OR a.`nidn_pengusul` = '$nis' OR a.kode_user='$kode') ORDER BY a.`usulan_id` DESC ")->result();

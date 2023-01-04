@@ -36,14 +36,14 @@
                                 <h5 style="color: #5f61e6;">Profile Anda</h5>
                             </span>
                             <div class="row mb-8">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-body">
                                             <a href="#">
                                                 <div class="d-flex">
                                                     <div class="flex-grow-1">
                                                         <p class="text-muted fw-medium menu_profile_title">Identitas</p>
-                                                        <h4 class="mb-0 menu_profile_desc"><?= $this->session->userdata('nama') ?></h4>
+                                                        <h4 class="mb-0 menu_profile_desc"><?= $this->session->userdata('nama_gelar') ?></h4>
                                                     </div>
                                                     <img src="<?= base_url('assets/img/icons/home/user.png') ?>" style="width: 10%; height: 10%;" alt="">
                                                 </div>
@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="card">
                                         <a href="#">
                                             <div class="card-body">
@@ -66,7 +66,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="card">
                                         <a href="#">
                                             <div class="card-body">

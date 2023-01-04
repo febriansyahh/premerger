@@ -62,7 +62,7 @@
 
                             if ($check_pusat_studi == '1') {
                             ?>
-                             <li><a class="dropdown-item" href="#">Reviewer Penelitian</a></li>
+                             <li><a class="dropdown-item" href="#">Pusat Studi Penelitian</a></li>
                          <?php
                                 echo '<li><hr class="dropdown-divider"/></li>';
                             }

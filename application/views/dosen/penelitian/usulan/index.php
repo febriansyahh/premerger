@@ -28,7 +28,7 @@
                     <!-- Content -->
                     <div class="container">
                         <div class="form-group mt-4">
-                            <a href="<?= site_url('dosen/penelitian/pengajuan/add') ?>" class="btn btn-primary" type="button" style="color: white;">Tambah Proposal</a>
+                            <a href="<?= site_url('dosen/penelitian/usulan/add') ?>" class="btn btn-primary" type="button" style="color: white;">Tambah Proposal</a>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Tanggal Usulan</th>
-                                                <th>Kategori Penelitian</th>
+                                                <th>SKim</th>
                                                 <th>Judul</th>
                                                 <th>Tanggal Pelaksanaan</th>
                                                 <th>Status</th>
@@ -84,51 +84,53 @@
                                             ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
-                                                    <td><?= date("d-m-Y", strtotime($data->propose_date)) ?></td>
+                                                    <td><?= date("d-m-Y", strtotime($data->tgl_usulan)) ?></td>
                                                     </td>
                                                     <td><?= $data->skim_name ?></td>
-                                                    <td><?= $data->propose_title ?></td>
-                                                    <td><?= date("d-m-Y", strtotime($data->propose_date1)) . ' s/d ' . date("d-m-Y", strtotime($data->propose_date2)) ?></td>
+                                                    <td><?= $data->usulan_judul ?></td>
+                                                    <td><?= date("d-m-Y", strtotime($data->usulan_tglmulai)) . ' s/d ' . date("d-m-Y", strtotime($data->usulan_tglakhir)) ?></td>
                                                     <td>
                                                         <?php
-                                                        if ($data->propose_status == 1) {
-                                                            echo '<label class="label label-warning">Baru</label>';
+                                                        if ($data->status_usulan == 1) {
+                                                            echo '<span class="badge bg-warning">Baru</span>';
                                                         } else {
-                                                            if ($data->propose_verif_studi == 0) {
-                                                                echo '<label class="label label-warning">Pending Verifikasi Studi</label>';
-                                                            } else if ($data->propose_verif_studi == 2) {
+                                                            if ($data->usulan_verif_studi == 0) {
+                                                                echo '<span class="badge bg-warning">Pending Verifikasi Studi</span>';
+                                                            } else if ($data->usulan_verif_studi == 2) {
                                                                 echo '
                                                                         <center>
-                                                                        <label class="label label-danger mb-4">Revisi Pusat Studui</label>
+                                                                        <span class="badge bg-danger mb-4">Revisi Pusat Studi</span>
                                                                         <br><br>  
-                                                                        <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float" data-toggle="modal" data-target="#listrevisi" onclick="verif(this.value)" value="' . $r->propose_verif_note . '">
+                                                                        <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float" data-toggle="modal" data-target="#listrevisi" onclick="verif(this.value)" value="' . $r->usulan_verif_note . '">
                                                                         <i class="material-icons">assignment</i>
                                                                         </button>
                                                                         </center>';
                                                             } else {
-                                                                echo '<label class="label label-success">Proses</label>';
+                                                                echo '<span class="badge bg-success">Proses</span>';
                                                             }
                                                         }
                                                         ?>
                                                     </td>
                                                     <td>
                                                         <?php
-                                                        if ($data->propose_status == '1') {
+                                                        if ($data->status_usulan == '1') {
                                                         ?>
-                                                            <a href="<?= site_url('dosen/penelitian/pengajuan/detail/' . $this->variasi->encode($data->propose_id))  . '/' . $this->variasi->encode($data->user_username) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-edit"></i></a>
-                                                            <a href="<?= site_url('dosen/penelitian/pengajuan/anggota/' . $this->variasi->encode($data->propose_id)) . '/' . $this->variasi->encode($data->user_username) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-user"></i></a>
+                                                            <a href="<?= site_url('dosen/penelitian/pengajuan/detail/' . $this->variasi->encode($data->usulan_id))  . '/' . $this->variasi->encode($data->nidn) ?>" class="btn btn-outline-primary btn-sm" style="margin-bottom: 5px;"><i class="bx bxs-edit"></i> Detail</a>
+                                                            <a href="<?= site_url('dosen/penelitian/pengajuan/anggota/' . $this->variasi->encode($data->usulan_id)) . '/' . $this->variasi->encode($data->nidn) ?>" class="btn btn-outline-primary btn-sm" style="margin-bottom: 5px;"><i class="bx bxs-user"></i> Anggota</a>
+                                                            <a href="<?= site_url('dosen/penelitian/pengajuan/delete/' . $this->variasi->encode($data->usulan_id)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm"><i class="bx bxs-trash"></i> Hapus</a>
                                                             <?php
                                                         } else {
-                                                            if ($data->propose_verif_studi == '2') {
+                                                            if ($data->usulan_verif_studi == '2') {
                                                             ?>
-                                                                <a href="<?= site_url('dosen/penelitian/pengajuan/anggota/' . $this->variasi->encode($data->propose_id)) . '/' . $this->variasi->encode($data->user_username) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-edit"></i></a>
+                                                                <a href="<?= site_url('dosen/penelitian/pengajuan/anggota/' . $this->variasi->encode($data->usulan_id)) . '/' . $this->variasi->encode($data->nidn) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-edit"></i> Edit</a>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <a href="<?= site_url('dosen/penelitian/pengajuan/anggota/' . $this->variasi->encode($data->usulan_id)) . '/' . $this->variasi->encode($data->nidn) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-user"></i> Anggota</a>
                                                         <?php
                                                             }
                                                         }
                                                         ?>
-                                                        <a href="<?= site_url('dosen/penelitian/pengajuan/detail/' . $this->variasi->encode($data->propose_id))  . '/' . $this->variasi->encode($data->user_username) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-edit"></i></a>
-                                                        <a href="<?= site_url('dosen/penelitian/pengajuan/anggota/' . $this->variasi->encode($data->propose_id)) . '/' . $this->variasi->encode($data->user_username) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-user"></i></a>
-                                                        <a href="<?= site_url('dosen/penelitian/pengajuan/delete/' . $this->variasi->encode($data->propose_id)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm"><i class="bx bxs-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php

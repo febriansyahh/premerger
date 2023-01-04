@@ -575,17 +575,17 @@
                 <span class="menu-header-text">Penelitian</span>
             </li>
 
-            <li class="menu-item">
+            <!-- <li class="menu-item">
                 <a href="#" class="menu-link">
                     <span class="menu-header-text">Dalam Pengembangan</span>
                 </a>
-            </li>
+            </li> -->
             <!-- <li class="menu-item">
                 <a href="#" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-spreadsheet"></i>
                     <div data-i18n="Basic">Ukur TKT</div>
                 </a>
-            </li>
+            </li> -->
 
             <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -595,7 +595,7 @@
 
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="<?= site_url('dosen/penelitian/usulan') ?>" class="menu-link">
                             <div data-i18n="Without menu">Usulan Baru</div>
                         </a>
                     </li>
@@ -647,7 +647,7 @@
                     <i class="menu-icon tf-icons bx bxs-user"></i>
                     <div data-i18n="Basic">Konfirmasi Anggota</div>
                 </a>
-            </li> -->
+            </li>
 
         </ul>
     <?php

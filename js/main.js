@@ -243,8 +243,8 @@ $(document).ready(function () {
 	columns: [
       { width: "5%" }, // No
       { width: "10%" }, // tanggal
-      { width: "18%" }, // skim
-      { width: "30%" }, // judul
+      { width: "15%" }, // skim
+      { width: "33%" }, // judul
       { width: "10%" }, // tgl pelaksanaan
       { width: "10%" }, // status
       { width: "17%" }, // action

@@ -6,20 +6,26 @@ class Usulan extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('penelitian/Usulan_model');
+        $this->load->model('dosen/penelitian/Usulan_model');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
-        $data['pengajuan'] = $this->Usulan_model->getall();
+        
+        $data['pengajuan'] = $this->Usulan_model->index();
         $this->load->view('dosen/penelitian/usulan/index', $data);
     }
 
     public function add()
     {
-        $data['pusat'] = $this->Usulan_model->getpusatstudi();
-        $data['skim']  = $this->Usulan_model->getskim();
+        $nidn = $this->session->userdata('nidn');
+        $result = $this->Usulan_model->status_dos($nidn);
+        $res = $result['result']['data'][0];
+        $data['status'] = $res['status'];
+        $data['periode'] = $this->Usulan_model->periode();
+        $data['pusat'] = $this->Usulan_model->getpusatstudi()->result();
+        $data['skim']  = $this->Usulan_model->getskim()->result();
         $this->load->view('dosen/penelitian/usulan/add', $data);
     }
 
