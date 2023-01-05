@@ -349,7 +349,7 @@
                                                                     <div class="row mb-3">
                                                                         <label class="col-sm-2" for="basic-icon-default-fullname">Bidang Penelitian (Pusat Studi)</label>
                                                                         <div class="col-sm-10">
-                                                                            <select name="skim" id="" class="form-control">
+                                                                            <select name="studi" id="" class="form-control">
                                                                                 <option selected>- Pilih -</option>
                                                                                 <?php
                                                                                 foreach ($pusat as $value) {

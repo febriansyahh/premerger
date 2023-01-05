@@ -82,6 +82,7 @@
                                             $no = 1;
                                             foreach ($pengajuan as $data) {
                                             ?>
+                                            
                                                 <tr>
                                                     <td><?= $no++ ?></td>
                                                     <td><?= date("d-m-Y", strtotime($data->tgl_usulan)) ?></td>
@@ -115,18 +116,18 @@
                                                         <?php
                                                         if ($data->status_usulan == '1') {
                                                         ?>
-                                                            <a href="<?= site_url('dosen/penelitian/pengajuan/detail/' . $this->variasi->encode($data->usulan_id))  . '/' . $this->variasi->encode($data->nidn) ?>" class="btn btn-outline-primary btn-sm" style="margin-bottom: 5px;"><i class="bx bxs-edit"></i> Detail</a>
-                                                            <a href="<?= site_url('dosen/penelitian/pengajuan/anggota/' . $this->variasi->encode($data->usulan_id)) . '/' . $this->variasi->encode($data->nidn) ?>" class="btn btn-outline-primary btn-sm" style="margin-bottom: 5px;"><i class="bx bxs-user"></i> Anggota</a>
-                                                            <a href="<?= site_url('dosen/penelitian/pengajuan/delete/' . $this->variasi->encode($data->usulan_id)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm"><i class="bx bxs-trash"></i> Hapus</a>
+                                                            <a href="<?= site_url('dosen/penelitian/usulan/detail/' . $this->variasi->encode($data->usulan_id)) ?>" class="btn btn-outline-primary btn-sm" style="margin-bottom: 5px;"><i class="bx bxs-edit"></i> Detail</a>
+                                                            <a href="<?= site_url('dosen/penelitian/usulan/anggota/' . $this->variasi->encode($data->usulan_id))?>" class="btn btn-outline-primary btn-sm" style="margin-bottom: 5px;"><i class="bx bxs-user"></i> Anggota</a>
+                                                            <a href="<?= site_url('dosen/penelitian/usulan/delete/' . $this->variasi->encode($data->usulan_id)) ?>" onclick="return confirm('Apakah yakin untuk menghapus data ini ?');" class="btn btn-outline-danger btn-sm"><i class="bx bxs-trash"></i> Hapus</a>
                                                             <?php
                                                         } else {
                                                             if ($data->usulan_verif_studi == '2') {
                                                             ?>
-                                                                <a href="<?= site_url('dosen/penelitian/pengajuan/anggota/' . $this->variasi->encode($data->usulan_id)) . '/' . $this->variasi->encode($data->nidn) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-edit"></i> Edit</a>
+                                                                <a href="<?= site_url('dosen/penelitian/usulan/anggota/' . $this->variasi->encode($data->usulan_id))?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-edit"></i> Edit</a>
                                                             <?php
                                                             } else {
                                                             ?>
-                                                                <a href="<?= site_url('dosen/penelitian/pengajuan/anggota/' . $this->variasi->encode($data->usulan_id)) . '/' . $this->variasi->encode($data->nidn) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-user"></i> Anggota</a>
+                                                                <a href="<?= site_url('dosen/penelitian/usulan/anggota/' . $this->variasi->encode($data->usulan_id))?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-user"></i> Anggota</a>
                                                         <?php
                                                             }
                                                         }

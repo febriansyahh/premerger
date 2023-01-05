@@ -48,7 +48,6 @@ class Usulan extends CI_Controller {
     {
         $model      = $this->Usulan_model;
         $id = $this->input->post('id');
-        $usr = $this->input->post('nidn');
 
         $validation = $this->form_validation;
 
@@ -59,14 +58,15 @@ class Usulan extends CI_Controller {
             $this->session->set_flashdata('gglubah', 'failed');
         }
 
-        redirect('dosen/penelitian/usulan/detail/' . $id .'/'. $usr);
+        redirect('dosen/penelitian/usulan/detail/' . $id);
     }
 
-    public function detail($id, $usr)
+    public function detail($id)
     {
-        $data['detail'] = $this->Usulan_model->detail($id, $usr);
-        $data['pusat']  = $this->Usulan_model->getpusatstudi();
-        $data['skim']   = $this->Usulan_model->getskim();
+        $data['detail'] = $this->Usulan_model->detail($id);
+        $data['periode'] = $this->Usulan_model->periode();
+        $data['pusat'] = $this->Usulan_model->getpusatstudi()->result();
+        $data['skim']  = $this->Usulan_model->getskim()->result();
         $this->load->view('dosen/penelitian/usulan/detail', $data);
     }
 

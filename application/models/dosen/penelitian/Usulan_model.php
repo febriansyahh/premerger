@@ -22,16 +22,10 @@ class Usulan_model extends CI_Model
         $ids = $this->variasi->decode($id);
         $nis = $this->session->userdata('nis');
         $nidn = $this->session->userdata('nidn');
-        $sql = $this->db->query("SELECT status_kelengkapan, catatan, sifat_kegiatan, bidang_keahlian,
-			    p_usulan.username, p_usulan.nama_lengkap, p_usulan.status_usulan, p_usulan.nama_prodi,
-			    nama_jabatan, tahun_usulan, nama_skim, nama_fakultas, tahun_pelaksanaan, judul,
-				abstrak, keyword, email_dosen, nomor_hp, alamat_dosen, lama_penelitian, apb_umk, biaya_lain,
-                p_usulan.biaya_pagu_min, p_usulan.biaya_pagu_max, kota_usulan, lpm_nama, lpm_nip, rektor_nama,
-                rektor_nip, dekan_nama, nilai_rata, hasil_nilai, dekan_nip FROM p_usulan
-                JOIN p_skim ON p_usulan.skim_id = p_skim.skim_id
-                JOIN p_anggota ON p_anggota.usulan_id = p_usulan.usulan_id
-                LEFT JOIN p_review_proposal ON p_review_proposal.usulan_id = p_usulan.usulan_id
-                WHERE p_usulan.usulan_id = '$ids' AND (p_usulan.`username` = '$nis' OR `p_usulan`.`username`='$nidn')")->row();
+        $kode = $this->session->userdata('kode');
+
+        $sql = $this->db->query("SELECT a.*, b.lembaga_nama, b.lembaga_jabatan, b.lembaga_pimpinan, b.lembaga_pimpinan_id, b.lembaga_file, b.lembaga_lokasi 
+        FROM `lit_usulan` a LEFT JOIN `lit_lembaga` b ON a.usulan_id=b.usulan_id WHERE a.usulan_id='$ids' AND (a.nidn = '$nidn' OR a.nidn='$nis' OR a.kode_user='$kode');")->row();
         return $sql;
     }
 
@@ -108,7 +102,7 @@ class Usulan_model extends CI_Model
         $this->nidn               = $nidn;
         $this->nama               = $namagelar;
         $this->skim_id            = $post['skim'];
-        $this->pusat_studi        = $post['skim'];
+        $this->pusat_studi        = $post['studi'];
         $this->usulan_judul       = $post['judul'];
         $this->usulan_seo         = seo_title($post['judul']);
         $this->usulan_lokasi      = $post['tempat'];
@@ -159,6 +153,159 @@ class Usulan_model extends CI_Model
         '" . date('Y-m-d H:i:s') . "')
         ");
 
+        $this->db->query("INSERT INTO `lit_log` (`usulan_id`) VALUES ('" . $usulanid . "') ");
+
+    }
+
+    public function update()
+    {
+        $post = $this->input->post();
+        $filep = $_FILES['fileproposal']['name'];
+        $filem = $_FILES['filemitra']['name'];
+        $id = $post['id'];
+        $nidn = $this->session->userdata('nidn');
+        $ids = $this->variasi->decode($post['id']);
+        $data = $this->db->query("SELECT a.usulan_id, a.usulan_file, b.lembaga_file FROM lit_usulan a LEFT JOIN lit_lembaga b ON a.usulan_id=b.usulan_id WHERE a.usulan_id = '$ids' ")->row();
+        
+        if ($filep != '' && $filem !='') {
+            unlink('./upload_file/penelitian/file/' . $filep);
+            unlink('./upload_file/penelitian/lembaga/' . $filem);
+
+            $data = array(
+                'skim_id'           => $post['skim'],
+                'pusat_studi'       => $post['studi'],
+                'usulan_judul'      => $post['judul'],
+                'usulan_seo'        => seo_title($post['judul']),
+                'usulan_lokasi'     => $post['tempat'],
+                'usulan_metode'     => $post['metode'],
+                'usulan_masalah'    => $post['masalah'],
+                'usulan_tujuan'     => $post['tujuan'],
+                'usulan_biaya'      => $post['budget'],
+                'usulan_biaya_apb'  => $post['dana'],
+                'usulan_tglmulai'   => $post['date1'],
+                'usulan_tglakhir'   => $post['date2'],
+                'usulan_luaran'     => $post['luaran'],
+                'usulan_file'       => $this->_uploadFile($nidn, $post['judul']),
+                'id_tahun_akademik' => $this->tahunakademik(),
+                'usulan_update'     => date("Y-m-d H:i:s")
+            );
+            $this->db->where('usulan_id', $ids);
+            $this->db->update('lit_usulan', $data);
+
+            $lembaga = array(
+                'lembaga_nama'          => $post['lembaga'] , 
+                'lembaga_jabatan'       => $post['jns_lembaga'] , 
+                'lembaga_pimpinan'      => $post['pimpinan'] , 
+                'lembaga_pimpinan_id'   => $post['nopim'] , 
+                'lembaga_file'          => $this->_uploadLembaga($post['lembaga'], $ids) , 
+                'lembaga_lokasi'        => $post['titiklokasi'] , 
+            );
+
+            $this->db->where('usulan_id', $ids);
+            $this->db->update('lit_lembaga', $lembaga);
+
+        }elseif ($filep != '' && $filem == '') {
+            unlink('./upload_file/penelitian/file/' . $filep);
+
+            $data = array(
+                'skim_id'           => $post['skim'],
+                'pusat_studi'       => $post['studi'],
+                'usulan_judul'      => $post['judul'],
+                'usulan_seo'        => seo_title($post['judul']),
+                'usulan_lokasi'     => $post['tempat'],
+                'usulan_metode'     => $post['metode'],
+                'usulan_masalah'    => $post['masalah'],
+                'usulan_tujuan'     => $post['tujuan'],
+                'usulan_biaya'      => $post['budget'],
+                'usulan_biaya_apb'  => $post['dana'],
+                'usulan_tglmulai'   => $post['date1'],
+                'usulan_tglakhir'   => $post['date2'],
+                'usulan_luaran'     => $post['luaran'],
+                'usulan_file'       => $this->_uploadFile($nidn, $post['judul']),
+                'id_tahun_akademik' => $this->tahunakademik(),
+                'usulan_update'     => date("Y-m-d H:i:s")
+            );
+            $this->db->where('usulan_id', $ids);
+            $this->db->update('lit_usulan', $data);
+
+            $lembaga = array(
+                'lembaga_nama'          => $post['lembaga'],
+                'lembaga_jabatan'       => $post['jns_lembaga'],
+                'lembaga_pimpinan'      => $post['pimpinan'],
+                'lembaga_pimpinan_id'   => $post['nopim'],
+                'lembaga_lokasi'        => $post['titiklokasi'],
+            );
+
+            $this->db->where('usulan_id', $ids);
+            $this->db->update('lit_lembaga', $lembaga);
+
+        }elseif ($filep == '' && $filem != '') {
+            unlink('./upload_file/penelitian/lembaga/' . $filem);
+
+            $data = array(
+                'skim_id'           => $post['skim'],
+                'pusat_studi'       => $post['studi'],
+                'usulan_judul'      => $post['judul'],
+                'usulan_seo'        => seo_title($post['judul']),
+                'usulan_lokasi'     => $post['tempat'],
+                'usulan_metode'     => $post['metode'],
+                'usulan_masalah'    => $post['masalah'],
+                'usulan_tujuan'     => $post['tujuan'],
+                'usulan_biaya'      => $post['budget'],
+                'usulan_biaya_apb'  => $post['dana'],
+                'usulan_tglmulai'   => $post['date1'],
+                'usulan_tglakhir'   => $post['date2'],
+                'usulan_luaran'     => $post['luaran'],
+                'id_tahun_akademik' => $this->tahunakademik(),
+                'usulan_update'     => date("Y-m-d H:i:s")
+            );
+            $this->db->where('usulan_id', $ids);
+            $this->db->update('lit_usulan', $data);
+
+            $lembaga = array(
+                'lembaga_nama'          => $post['lembaga'],
+                'lembaga_jabatan'       => $post['jns_lembaga'],
+                'lembaga_pimpinan'      => $post['pimpinan'],
+                'lembaga_pimpinan_id'   => $post['nopim'],
+                'lembaga_file'          => $this->_uploadLembaga($post['lembaga'], $ids),
+                'lembaga_lokasi'        => $post['titiklokasi'],
+            );
+
+            $this->db->where('usulan_id', $ids);
+            $this->db->update('lit_lembaga', $lembaga);
+
+        }else{
+            $data = array(
+                'skim_id'           => $post['skim'],
+                'pusat_studi'       => $post['studi'],
+                'usulan_judul'      => $post['judul'],
+                'usulan_seo'        => seo_title($post['judul']),
+                'usulan_lokasi'     => $post['tempat'],
+                'usulan_metode'     => $post['metode'],
+                'usulan_masalah'    => $post['masalah'],
+                'usulan_tujuan'     => $post['tujuan'],
+                'usulan_biaya'      => $post['budget'],
+                'usulan_biaya_apb'  => $post['dana'],
+                'usulan_tglmulai'   => $post['date1'],
+                'usulan_tglakhir'   => $post['date2'],
+                'usulan_luaran'     => $post['luaran'],
+                'id_tahun_akademik' => $this->tahunakademik(),
+                'usulan_update'     => date("Y-m-d H:i:s")
+            );
+            $this->db->where('usulan_id', $ids);
+            $this->db->update('lit_usulan', $data);
+
+            $lembaga = array(
+                'lembaga_nama'          => $post['lembaga'],
+                'lembaga_jabatan'       => $post['jns_lembaga'],
+                'lembaga_pimpinan'      => $post['pimpinan'],
+                'lembaga_pimpinan_id'   => $post['nopim'],
+                'lembaga_lokasi'        => $post['titiklokasi'],
+            );
+
+            $this->db->where('usulan_id', $ids);
+            $this->db->update('lit_lembaga', $lembaga);
+        }
     }
 
     private function _uploadFile($a, $b)
