@@ -11,7 +11,7 @@ class Report extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model("admin/pengabdian/Report_m");
+        $this->load->model("admin/penelitian/Report_m");
     }
 
     public function usulan()
@@ -19,7 +19,7 @@ class Report extends CI_Controller
         // exit;
         $data['show'] 			= false;
         // $data['report'] = $this->Report_m->index();
-        $this->load->view('admin/pengabdian/report/index', $data);
+        $this->load->view('admin/penelitian/report/index', $data);
     }
 
     public function cari()
@@ -37,7 +37,7 @@ class Report extends CI_Controller
         $data['show']             = 'true';
         $data['listLaporan']     = $this->Report_m->select_laporan($tanggal1, $tanggal2, $status);
 		
-		$this->load->view('admin/pengabdian/report/index', $data);
+		$this->load->view('admin/penelitian/report/index', $data);
     }
 	 
     // Export excel library spreadsheet
@@ -89,42 +89,8 @@ class Report extends CI_Controller
         header("Content-type: application/vnd-ms-excel");
         header("Content-Disposition: attachment; filename=\"$filename\"");
         $data['data'] =  $this->Report_m->select_laporan($ta, $tk, $sts);
-        $this->load->view('admin/pengabdian/report/expore', $data);
+        $this->load->view('admin/penelitian/report/expore', $data);
     }
 
-    public function dana()
-    {
-        $data['show']             = false;
-        $this->load->view('admin/pengabdian/report/apbn', $data);
-    }
-
-    public function caridata()
-    {
-        $tanggal1    = date("Y-m-d", strtotime($this->input->post('tanggal1')));
-        $tanggal2     = date("Y-m-d", strtotime($this->input->post('tanggal2')));
-        $status     = $this->input->post('status');
-        $datas = array(
-            'tanggal1'     => $tanggal1,
-            'tanggal2'     => $tanggal2,
-            'status'     => $status
-        );
-        $data['report']         = $datas;
-        $data['show']             = 'true';
-        $data['listLaporan']     = $this->Report_m->laporan($tanggal1, $tanggal2, $status);
-        $this->load->view('admin/pengabdian/report/apbn', $data);
-    }
-
-    public function exportdana()
-    {
-        $ta = $_POST['ta'];
-        $tk = $_POST['tk'];
-        $sts = $_POST['status'];
-
-        $filename = 'Laporan_dana_' . date('Y-m-d') . '.xls';
-        $data = $this->Report_m->laporan($ta, $tk, $sts);
-        header("Content-type: application/vnd-ms-excel");
-        header("Content-Disposition: attachment; filename=\"$filename\"");
-        $data['dana'] =  $this->Report_m->select_laporan($ta, $tk, $sts);
-        $this->load->view('admin/pengabdian/report/exportdana', $data);
-    }
+    
 }
