@@ -313,7 +313,7 @@
 
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="<?= site_url('admin/pengabdian/report/usulan') ?>" class="menu-link">
+                                <a href="<?= site_url('admin/penelitian/report/usulan') ?>" class="menu-link">
                                     <div data-i18n="Without menu">Report Usulan</div>
                                 </a>
                             </li>
