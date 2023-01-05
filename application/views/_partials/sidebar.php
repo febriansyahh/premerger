@@ -284,22 +284,22 @@
 
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="<?= site_url('admin/pengabdian/catatan') ?>" class="menu-link">
+                                <a href="<?= site_url('admin/penelitian/catatan') ?>" class="menu-link">
                                     <div data-i18n="Without menu">Catatan Harian</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="<?= site_url('admin/pengabdian/laporan/kemajuan') ?>" class="menu-link">
+                                <a href="<?= site_url('admin/penelitian/laporan/kemajuan') ?>" class="menu-link">
                                     <div data-i18n="Without navbar">Laporan Kemajuan</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
-                                <a href="<?= site_url('admin/pengabdian/laporan/monev') ?>" class="menu-link">
+                            <!-- <li class="menu-item">
+                                <a href="<?= site_url('admin/penelitian/laporan/monev') ?>" class="menu-link">
                                     <div data-i18n="Without navbar">Laporan Monev</div>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="menu-item">
-                                <a href="<?= site_url('admin/pengabdian/laporan/akhir') ?>" class="menu-link">
+                                <a href="<?= site_url('admin/penelitian/laporan/akhir') ?>" class="menu-link">
                                     <div data-i18n="Without navbar">Laporan Akhir</div>
                                 </a>
                             </li>
