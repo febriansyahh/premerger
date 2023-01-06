@@ -17,14 +17,14 @@ class Report extends CI_Controller
     public function usulan()
     {
         // exit;
-        $data['show'] 			= false;
+        $data['show']             = false;
         // $data['report'] = $this->Report_m->index();
         $this->load->view('admin/penelitian/report/index', $data);
     }
 
     public function cari()
     {
-        
+
         $tanggal1    = date("Y-m-d", strtotime($this->input->post('tanggal1')));
         $tanggal2     = date("Y-m-d", strtotime($this->input->post('tanggal2')));
         $status     = $this->input->post('status');
@@ -36,10 +36,10 @@ class Report extends CI_Controller
         $data['report']         = $data;
         $data['show']             = 'true';
         $data['listLaporan']     = $this->Report_m->select_laporan($tanggal1, $tanggal2, $status);
-		
-		$this->load->view('admin/penelitian/report/index', $data);
+
+        $this->load->view('admin/penelitian/report/index', $data);
     }
-	 
+
     // Export excel library spreadsheet
     // public function export()
     // {
@@ -88,34 +88,70 @@ class Report extends CI_Controller
         header("Content-type: application/vnd-ms-excel");
         header("Content-Disposition: attachment; filename=\"$filename\"");
         $dataArray = array();
-		$no = 0;
-        foreach($data as $value){
+        $no = 0;
+        foreach ($data as $value) {
             $no++;
             $id = $value->usulan_id;
-            $row_array['no']=$no;
-            $row_array['nidn']=$value->nidn;
-            $row_array['nama']=$value->nama;
-            $row_array['usulan_judul']=$value->usulan_judul;
-            $row_array['skim_name']=$value->skim_name;
-            $row_array['pusat_studi_nama']=$value->pusat_studi_nama;
-            $row_array['anggota_posisi']=$value->anggota_posisi;
-            $row_array['usulan_biaya_confirm']=$value->usulan_biaya_confirm;
-            $row_array['tgl_usulan']=$value->tgl_usulan;
+            $row_array['no'] = $no;
+            $row_array['nidn'] = $value->nidn;
+            $row_array['nama'] = $value->nama;
+            $row_array['usulan_judul'] = $value->usulan_judul;
+            $row_array['skim_name'] = $value->skim_name;
+            $row_array['pusat_studi_nama'] = $value->pusat_studi_nama;
+            $row_array['anggota_posisi'] = $value->anggota_posisi;
+            $row_array['usulan_biaya_confirm'] = $value->usulan_biaya_confirm;
+            $row_array['tgl_usulan'] = $value->tgl_usulan;
             $anggota = $this->Report_m->countanggota($id);
-            $row_array['anggota']=$anggota->jumlah;
+            $row_array['anggota'] = $anggota->jumlah;
             $mhs = $this->Report_m->countmhs($id);
-            $row_array['mhs']=$mhs->jumlah;
-            $row_array['status_desc']=$value->status_desc;
-            
+            $row_array['mhs'] = $mhs->jumlah;
+            $row_array['status_desc'] = $value->status_desc;
+
             array_push($dataArray, $row_array);
         }
         $datas['data'] = $dataArray;
-        // echo '<pre>';
-        // var_dump($datas);
-        // echo '</pre>';
-        // exit;
+
         $this->load->view('admin/penelitian/report/expore', $datas);
     }
 
-    
+    // dana
+    public function dana()
+    {
+        $data['show']             = false;
+        $this->load->view('admin/penelitian/report/apbn', $data);
+    }
+
+    public function caridata()
+    {
+        $tanggal1    = date("Y-m-d", strtotime($this->input->post('tanggal1')));
+        $tanggal2     = date("Y-m-d", strtotime($this->input->post('tanggal2')));
+        $status     = $this->input->post('status');
+        $datas = array(
+            'tanggal1'     => $tanggal1,
+            'tanggal2'     => $tanggal2,
+            'status'     => $status
+        );
+        $data['report']         = $datas;
+        $data['show']             = 'true';
+        $data['listLaporan']     = $this->Report_m->laporan($tanggal1, $tanggal2, $status);
+        $this->load->view('admin/penelitian/report/apbn', $data);
+    }
+
+    public function exportdana()
+    {
+        $ta = $_POST['ta'];
+        $tk = $_POST['tk'];
+        $sts = $_POST['status'];
+
+        $filename = 'Laporan_dana_' . date('Y-m-d') . '.xls';
+        $data = $this->Report_m->laporan($ta, $tk, $sts);
+        header("Content-type: application/vnd-ms-excel");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        $data['dana'] =  $this->Report_m->laporan($ta, $tk, $sts);
+        // echo '<pre>';
+        // var_dump($data);
+        // echo '</pre>';
+        // exit;
+        $this->load->view('admin/penelitian/report/exportdana', $data);
+    }
 }
