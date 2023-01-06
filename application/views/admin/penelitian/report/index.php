@@ -100,6 +100,7 @@
                                                     <th>Pengusul</th>
                                                     <th>Judul</th>
                                                     <th>Tahun Usulan</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -112,6 +113,7 @@
                                                         <td><?= $data->nidn . ' - ' . $data->nama ?></td>
                                                         <td><?= $data->usulan_judul ?></td>
                                                         <td><?= $data->tgl_usulan ?></td>
+                                                        <td><?= $data->status_desc ?></td>
                                                     </tr>
                                                 <?php
                                                 }

@@ -83,13 +83,38 @@ class Report extends CI_Controller
         $sts = $_POST['status'];
 
         $filename = 'Laporan_usulan_' . date('Y-m-d') . '.xls';
-
         // Fetch records from database 
         $data = $this->Report_m->select_laporan($ta, $tk, $sts);
         header("Content-type: application/vnd-ms-excel");
         header("Content-Disposition: attachment; filename=\"$filename\"");
-        $data['data'] =  $this->Report_m->select_laporan($ta, $tk, $sts);
-        $this->load->view('admin/penelitian/report/expore', $data);
+        $dataArray = array();
+		$no = 0;
+        foreach($data as $value){
+            $no++;
+            $id = $value->usulan_id;
+            $row_array['no']=$no;
+            $row_array['nidn']=$value->nidn;
+            $row_array['nama']=$value->nama;
+            $row_array['usulan_judul']=$value->usulan_judul;
+            $row_array['skim_name']=$value->skim_name;
+            $row_array['pusat_studi_nama']=$value->pusat_studi_nama;
+            $row_array['anggota_posisi']=$value->anggota_posisi;
+            $row_array['usulan_biaya_confirm']=$value->usulan_biaya_confirm;
+            $row_array['tgl_usulan']=$value->tgl_usulan;
+            $anggota = $this->Report_m->countanggota($id);
+            $row_array['anggota']=$anggota->jumlah;
+            $mhs = $this->Report_m->countmhs($id);
+            $row_array['mhs']=$mhs->jumlah;
+            $row_array['status_desc']=$value->status_desc;
+            
+            array_push($dataArray, $row_array);
+        }
+        $datas['data'] = $dataArray;
+        // echo '<pre>';
+        // var_dump($datas);
+        // echo '</pre>';
+        // exit;
+        $this->load->view('admin/penelitian/report/expore', $datas);
     }
 
     

@@ -39,9 +39,17 @@
 		<thead>
 			<tr>
 				<th>No</th>
-				<th>Pengusul</th>
-				<th>Judul</th>
-				<th>Tahun Usulan</th>
+				<th>NIDN</th>
+				<th>NAMA</th>
+				<th>JUDUL</th>
+				<th>SKIM</th>
+				<th>PUSAT STUDI</th>
+				<th>JABATAN</th>
+				<th>DANA</th>
+				<th>TAHUN</th>
+				<th>ANGGOTA</th>
+				<th>MAHASISWA</th>
+				<th>STATUS</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -51,9 +59,17 @@
 			?>
 				<tr>
 					<td><?= $no++ ?></td>
-					<td><?= $data->nidn . ' - ' . $data->nama ?></td>
-					<td><?= $data->usulan_judul ?></td>
-					<td><?= $data->tgl_usulan ?></td>
+					<td><?= $data['nidn'] ?></td>
+					<td><?= $data['nama'] ?></td>
+					<td><?= $data['usulan_judul'] ?></td>
+					<td><?= $data['skim_name'] ?></td>
+					<td><?= $data['pusat_studi_nama'] ?></td>
+					<td><?= $data['anggota_posisi'] ?></td>
+					<td><?= $data['usulan_biaya_confirm'] ?></td>
+					<td><?= $data['tgl_usulan'] ?></td>
+					<td><?= $data['anggota'] ?></td>
+					<td><?= $data['mhs'] ?></td>
+					<td><?= $data['status_desc']?></td>
 				</tr>
 			<?php
 			}
