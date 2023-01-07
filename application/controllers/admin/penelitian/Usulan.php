@@ -103,7 +103,6 @@ class Usulan extends CI_Controller{
     {
         $data['data'] = $this->Usulan_model->getbyid($id);
         $data['anggota'] = $this->Usulan_model->getanggotabyid($id);
-        $data['anggotaeks'] = $this->Usulan_model->getanggotaeksbyid($id);
         $this->load->view('admin/penelitian/usulan/detail', $data);
     }
 

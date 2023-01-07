@@ -108,12 +108,12 @@
                                             <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-isian" aria-controls="navs-isian" aria-selected="false">
                                                 <i class="tf-icons bx bxs-report"></i> Isian Pengesahan
                                             </button>
-                                        </li>
+                                        </li>-->
                                         <li class="nav-item">
                                             <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-lembaga" aria-controls="navs-lembaga" aria-selected="false">
                                                 <i class="tf-icons bx bxs-building"></i> Lembaga Penelitian
                                             </button>
-                                        </li> -->
+                                        </li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="navs-usulan" role="tabpanel">
@@ -303,7 +303,7 @@
                                                     <td><?php echo $data->rektor_nidn ?></td>
                                                 </tr>
                                             </table>
-                                        </div>
+                                        </div>-->
 
                                         <div class="tab-pane fade" id="navs-lembaga" role="tabpanel">
                                             <p></p>
@@ -340,10 +340,10 @@
                                                 <tr>
                                                     <td>File Persetujuan</td>
                                                     <td>:</td>
-                                                    <td><a href="<?php echo base_url('/upload_file/pengabdian/lembaga/' . $data->lembaga_file);  ?>" target="_blank" title="Download <?php echo $data->nidn_pengusul ?>"><i class="icon-download-alt"></i> <?php echo substr($data->lembaga_file, 0, 30) . '...'; ?></a></td>
+                                                    <td><a href="<?php echo base_url('/upload_file/penelitian/lembaga/' . $data->lembaga_file);  ?>" target="_blank" title="Download <?php echo $data->nidn ?>"><i class="icon-download-alt"></i> <?php echo substr($data->lembaga_file, 0, 30) . '...'; ?></a></td>
                                                 </tr>
                                             </table>
-                                        </div> -->
+                                        </div>
                                     </div>
                                     <!-- </div> -->
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
