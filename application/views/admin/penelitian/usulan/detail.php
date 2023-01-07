@@ -129,19 +129,19 @@
                                                 <tr>
                                                     <td>Metode Penelitian</td>
                                                     <td>:</td>
-                                                    <td><textarea readonly name="metode" class="form-control" rows="5"><?php echo $data->usulan_method ?></textarea></td>
+                                                    <td><textarea readonly name="metode" class="form-control" rows="5"><?php echo $data->usulan_metode ?></textarea></td>
                                                 </tr>
 
                                                 <tr>
                                                     <td>Masalah Penelitian</td>
                                                     <td>:</td>
-                                                    <td><textarea readonly name="masalah" class="form-control" rows="5"><?php echo $data->usulan_masalah ?></textarea></td>
+                                                    <td><textarea id="editor1" readonly name="masalah" class="form-control" rows="5"><?php echo $data->usulan_masalah ?></textarea></td>
                                                 </tr>
 
                                                 <tr>
                                                     <td>Tujuan Penelitian</td>
                                                     <td>:</td>
-                                                    <td><textarea readonly name="tujuan" class="form-control" rows="5"><?php echo $data->usulan_tujuan ?></textarea></td>
+                                                    <td><textarea id="editor2" readonly name="tujuan" class="form-control" rows="5"><?php echo $data->usulan_tujuan ?></textarea></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Luaran Penelitian</td>
@@ -375,6 +375,14 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <?php $this->load->view("_partials/js.php") ?>
+    <script>
+        CKEDITOR.replace('editor1', {
+            height: 130
+        });
+        CKEDITOR.replace('editor2', {
+            height: 130
+        });
+    </script>
 
 </body>
 
