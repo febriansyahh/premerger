@@ -12,7 +12,6 @@ class Usulan extends CI_Controller {
 
     public function index()
     {
-        
         $data['pengajuan'] = $this->Usulan_model->index();
         $this->load->view('dosen/penelitian/usulan/index', $data);
     }

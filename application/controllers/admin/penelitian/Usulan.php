@@ -14,8 +14,89 @@ class Usulan extends CI_Controller{
 
     public function index()
     {
-        $data['usulan'] = $this->Usulan_model->index();
-        $this->load->view('admin/penelitian/usulan/index', $data);
+        $list = $this->Usulan_model->index();
+        $data = array();
+        $link = '';
+        $no = 0;
+
+        foreach ($list as $value) {
+            $no++;
+            $row = array();
+            $usulan_id = $value->usulan_id;
+            $linkdetail = site_url('admin/penelitian/usulan/detail/' . $this->variasi->encode($usulan_id));
+            $linkreviewer = site_url('admin/penelitian/usulan/reviewer/' . $this->variasi->encode($usulan_id));
+            $linkdownload = site_url('upload_file/penelitian/file/' . $value->usulan_file);
+            $linkhapus = site_url('admin/penelitian/usulan/delete' . $this->variasi->encode($usulan_id));
+            
+
+            $syaratangg = $this->Usulan_model->syaratanggota($usulan_id);
+            $anggota_int = $this->Usulan_model->anggotain($usulan_id);
+            $anggota_eks = $this->Usulan_model->anggotaeks($usulan_id, 'eksternal');
+            $anggota_mhs = $this->Usulan_model->anggotaeks($usulan_id, 'mahasiswa');
+            
+            if ($syaratangg->in_min >= $anggota_int && $syaratangg->in_max <= $anggota_int 
+                && $syaratangg->mhs_min >= $anggota_mhs && $syaratangg->eks_min >= $anggota_eks) {
+                $syarat = 'Terpenuhi<br>(
+                    Internal  = '. $anggota_int->angg_in .'<br>
+                    Mahasiswa  = '. $anggota_mhs->jmlheks .'<br>
+                    Eksternal  = '. $anggota_eks->jmlheks .')';
+                $is_syarat = '1';
+            }else{
+                $syarat = 'Belum Terpenuhi<br>(
+                    Internal  = ' . $anggota_int->angg_in . '<br>
+                    Mahasiswa  = ' . $anggota_mhs->jmlheks . '<br>
+                    Eksternal  = ' . $anggota_eks->jmlheks . ')';
+                $is_syarat = '0';
+
+            }
+
+            // default button action
+            if ($value->status_usulan == 1) {
+                if ($is_syarat == '1') {
+                    $link = '<a onclick="confirmProposal(' . "'" . $usulan_id . "'" . ')"class="btn btn-outline-primary btn-sm" style="margin-bottom: 5px;"><i class="bx bxs-check"></i> Acc
+                        </a>';
+                }
+            } elseif ($value->status_usulan == 2) {
+                // Jika Sudah di ACC Lemlit
+                $link = '<a href="' . $linkreviewer . '"class="btn btn-outline-primary btn-sm" style="margin-bottom: 5px;"><i class="bx bxs-user"></i> Reviewer
+            			</a>';
+            }
+            if ($value->status_usulan == 1) {
+                $btnHapus = '<a href="' . $linkhapus . '" onclick="return confirm("Apakah yakin untuk menghapus data ini ?")" class="btn btn-outline-danger btn-sm" style="margin-bottom: 5px;">
+	            				<i class="bx bxs-trash"></i> Hapus
+	            			</a>';
+            } else {
+                $btnHapus = '';
+            }
+
+            $row['link'] = '<a href="' . $linkdetail . '" class="btn btn-outline-primary btn-sm" style="margin-bottom: 5px;"><i class="bx bxs-detail"></i> Detail
+            		</a>' .
+                    $link
+                . '
+            		<a href="' . $linkdownload . '" class="btn btn-outline-primary btn-sm" style="margin-bottom: 5px;"><i class="bx bxs-download" ></i> Download
+            		</a>' . $btnHapus;
+
+            $row['nidn'] = $value->nidn;
+            $row['nama'] = $value->nama;
+            $row['judul'] = $value->usulan_judul;
+            $row['skim'] = $value->skim_name;
+            $row['tgl_usulan'] = $value->tgl_usulan;
+            $row['mulai'] = $value->usulan_tglmulai;
+            $row['akhir'] = $value->usulan_tglakhir;
+            $row['status'] = $value->status_id;
+            $row['desc'] = $value->status_desc;
+            $row['syarat'] = $syarat;
+
+            array_push($data, $row);
+
+        }
+        $datas['usulan'] = $data;
+        // echo '<pre>';
+        // var_dump($datas);
+        // echo '</pre>';
+        // exit;
+        // $data['usulan'] = $this->Usulan_model->index();
+        $this->load->view('admin/penelitian/usulan/index', $datas);
     }
 
     public function detail($id)

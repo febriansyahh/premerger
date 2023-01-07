@@ -288,13 +288,13 @@ $(document).ready(function () {
 	});
 	$('#tableusulanpenelitianadmin').DataTable({
 	columns: [
-      { width: "5%" }, // No
+      { width: "4%" }, // No
       { width: "20%" }, // pengusul
-      { width: "20%" }, // Judul
+      { width: "15%" }, // Judul
       { width: "10%" }, // skim 
-      { width: "13%" }, // status 
-      { width: "7%" }, // tgl
-      { width: "10%" }, // tglpelaksanaan 
+      { width: "13%" }, // tglpelaksanaan 
+      { width: "7%" }, // status
+      { width: "16%" }, // tglpelaksanaan 
       { width: "15%" }, // action
      	
 	],

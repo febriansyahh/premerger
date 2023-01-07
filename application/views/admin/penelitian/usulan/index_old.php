@@ -75,65 +75,73 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Pengusul</th>
-                                                <!-- <th>Judul</th> -->
+                                                <th>Judul</th>
                                                 <th>Skim</th>
                                                 <th>Tanggal</th>
                                                 <th>Tanggal Pelaksanaan</th>
                                                 <th>Status</th>
-                                                <th>Anggota</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            foreach ($usulan as $key => $value) {
+                                            foreach ($usulan as $data) {
                                             ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
-                                                    <td><?= '<b>'. $value['nidn'] . '</b><br>' . $value['nama'] ?></td>
-                                                    <!-- <td><?= $value['judul'] ?></td> -->
+                                                    <td><?= $data->nidn . ' - ' . $data->nama ?></td>
+                                                    <td><?= $data->usulan_judul ?></td>
                                                     <td>
-                                                        <?= $value['skim'] ?>
+                                                        <?= $data->skim_name ?>
                                                     </td>
-                                                    <td><?= date('d-m-Y', strtotime($value['tgl_usulan'])) ?></td>
+                                                    <td><?= date('d-m-Y', strtotime($data->tgl_usulan)) ?></td>
                                                     <td>
-                                                        <?= date('d-m-Y', strtotime($value['mulai'])) . ' s/d ' . date('d-m-Y', strtotime($value['akhir'])) ?>
+                                                        <?= date('d-m-Y', strtotime($data->usulan_tglmulai)) . ' s/d ' . date('d-m-Y', strtotime($data->usulan_tglakhir)) ?>
                                                     </td>
                                                     <td>
                                                         <?php
-                                                        switch ($value['status']) {
+                                                        switch ($data->status_id) {
                                                             case '1':
                                                                 echo '<span class="badge bg-danger">';
                                                         ?>
                                                             <?php
-                                                                echo $value['desc'] . '</span>';
+                                                                echo $data->status_desc . '</span>';
                                                                 break;
 
                                                             case '2':
                                                                 echo '<span class="badge bg-primary">'
                                                             ?>
                                                             <?php
-                                                                echo $value['desc'] . '</span>';
+                                                                echo $data->status_desc . '</span>';
                                                                 break;
 
                                                             case '3':
                                                                 echo '<span class="badge bg-primary">';
                                                             ?>
                                                         <?php
-                                                                echo $value['desc'] . '</span>';
+                                                                echo $data->status_desc . '</span>';
                                                                 break;
-                                                                default :
+                                                            default:
                                                                 echo '<span class="badge bg-warning">Pending</span>';
                                                                 break;
                                                         }
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <?= $value['syarat'] ?>
-                                                    </td>
-                                                    <td>
-                                                        <?= $value['link'] ?>
+                                                        <a href="<?= site_url('admin/penelitian/usulan/detail/' . $this->variasi->encode($data->usulan_id)) ?>" class="btn btn-outline-primary btn-sm"><i class="bx bxs-detail"></i> </a>
+                                                        <?php
+                                                        if ($data->status_usulan != '2') {
+                                                        ?>
+                                                            <a href="<?= site_url('admin/pengabdian/usulan/isdone/' . $this->variasi->encode($data->usulan_id)) ?>" onclick="return confirm('Apakah yakin untuk mengkonfirmasi bahwa usulan ini sudah benar ?');" class="btn btn-outline-success btn-sm"><i class="bx bx-check"></i></a>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <a href="<?= site_url('admin/pengabdian/usulan/isconfirm/' . $this->variasi->encode($data->usulan_id)) ?>" onclick="return confirm('Apakah yakin untuk mengkomfirmasi usulan ini ?');" class="btn btn-outline-primary btn-sm"><i class="bx bx-check"></i></a>
+
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </td>
                                                 </tr>
                                             <?php
